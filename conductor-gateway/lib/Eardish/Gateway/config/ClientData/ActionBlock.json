@@ -1,0 +1,14 @@
+{
+  "route": {
+    "type": "string",
+    "required": 1
+  },
+  "priority": {
+    "type": "int",
+    "required": 1
+  },
+  "responseToken": {
+    "type": "int",
+    "required": 0
+  }
+}

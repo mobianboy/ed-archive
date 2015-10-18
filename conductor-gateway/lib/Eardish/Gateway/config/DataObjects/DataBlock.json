@@ -1,0 +1,13 @@
+  {
+    "model": "loggedInUser",
+    "raw":{
+        "name":"",
+        "path":""
+    },
+    "profile":{
+      "name":"",
+      "location":"",
+      "genre":"",
+      "year_founded":""
+    }
+}

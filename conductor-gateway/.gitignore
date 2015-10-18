@@ -1,0 +1,9 @@
+vendor
+build
+nbproject
+.idea/
+composer.lock
+composer.phar
+report/
+.DS_Store
+logs/
