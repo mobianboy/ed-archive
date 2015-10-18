@@ -1,9 +1,0 @@
-{
-  "Controllers": [
-    "Profile",
-    "User",
-    "Music",
-    "Social",
-    "Analytic"
-  ]
-}

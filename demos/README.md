@@ -1,2 +1,0 @@
-# demos
-demo.eardish.com
