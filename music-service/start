@@ -1,0 +1,160 @@
+<?php
+
+require_once('vendor/autoload.php');
+
+$cli = new League\CLImate\CLImate();
+
+
+$cli->arguments->add([
+    'silent' => [
+        'prefix'        => 's',
+        'longPrefix'    => 'silent',
+        'description'   => 'Execute without any prompting, including killing active processes',
+        'noValue'       => true
+    ],
+    'silentWithoutKill' => [
+        'prefix'        => 'x',
+        'longPrefix'    => 'no-kill',
+        'description'   => 'Execute without any prompting, but do not kill active processes',
+        'noValue'       => true
+    ],
+    'help' => [
+        'longPrefix'    => 'help',
+        'description'   => 'Display this help document',
+        'noValue'       => true
+    ],
+    'app-config' => [
+        'prefix'        => 'c',
+        'longPrefix'    => 'config',
+        'description'   => 'The application config file to use.',
+        'defaultValue'  => 'app.json'
+    ],
+    'env' => [
+        'prefix'        => 'e',
+        'longPrefix'    => 'env',
+        'description'   => 'The environment that you are starting the server in.',
+        'defaultValue'  => 'local'
+    ],
+    'fqdn' => [
+        'prefix'        => 'n',
+        'longPrefix'    => 'fqdn',
+        'description'   => 'The internal FQDN for this server in its environment.'
+    ]
+]);
+
+
+
+
+try {
+    $cli->arguments->parse();
+} catch (\Exception $e) {
+    $cli->red()->out('One of the required parameters was missing. Please use the --help option for more detail.');
+    exit();
+}
+
+
+
+
+if (!$cli->arguments->defined('fqdn') && ($cli->arguments->defined('silent') || $cli->arguments->defined('silentWithoutKill'))) {
+    $cli->red()->out('While using any of the silent modes, you MUST provide the script with an FQDN using the --fqdn option.');
+    exit();
+}
+
+
+
+
+if ($cli->arguments->defined('help')) {
+    $cli->usage();
+    exit();
+}
+
+
+
+
+
+if (file_exists($cli->arguments->get('app-config'))) {
+    $config = file_get_contents($cli->arguments->get('app-config'));
+
+    $configValues = json_decode($config, true);
+} else {
+    $cli->red()->out('The config file couldn\'t be located. Please use the --help option for more detail.');
+    exit();
+}
+
+
+$doKill = null;
+
+
+if (!$cli->arguments->defined('silent') && !$cli->arguments->defined('silentWithoutKill')) {
+    $cli->br()->green()->out('Welcome to the Eardish Conductor Deployment Process.');
+
+    $cli->green()->out('You are about to start up the ' . $configValues['default']['name'] . ' process.');
+
+    $cli->br()->border('-', 50)->br();
+
+    $confirm = $cli->red()->input('Do you wish to continue?');
+    $confirm->accept(['Y', 'N'], true);
+    $confirm->strict();
+
+    $confirmation = $confirm->prompt();
+
+    if ($confirmation === 'N') {
+        exit();
+    }
+
+    $input = $cli->yellow()->input('What port should this process use? [Default: ' . $configValues['port'] . ']');
+    $input->defaultTo($configValues['port']);
+
+    $port = $input->prompt();
+
+    $configValues['port'] = $port;
+
+    $kill = $cli->br()->red()->input('Do you want to kill active PHP processes?');
+    $kill->accept(['Y', 'N'], true);
+    $kill->strict();
+
+    $doKill = $kill->prompt();
+}
+
+
+
+
+
+
+if ((null !== $doKill && $doKill === 'Y') || $cli->arguments->defined('silent')) {
+
+    $list = exec('ps aux | grep php');
+
+    $array = explode("\n", $list);
+
+    $pid = [];
+
+    foreach ($array as $val) {
+        $tempArray = array();
+        $tempArray = explode(' ', $val);
+        foreach ($tempArray as $val2) {
+            if (is_numeric($val2)) {
+                $pid[] = $val2;
+                break;
+            }
+        }
+    }
+
+    array_pop($pid);
+
+    foreach ($pid as $process) {
+        exec('kill -9 '.$process);
+    }
+
+}
+
+$f = fopen($cli->arguments->get('app-config'), 'w');
+$configValues['default']['self-fqdn'] = $cli->arguments->get('fqdn');
+fwrite($f, json_encode($configValues, true));
+fclose($f);
+
+$startup = exec('php app.php --env="'.$cli->arguments->get('env').'" &');
+
+if (!$cli->arguments->defined('silent') && !$cli->arguments->defined('silentWithoutKill')) {
+    echo $startup;
+}

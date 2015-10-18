@@ -1,0 +1,9 @@
+vendor
+build
+/nbproject/
+.idea/
+composer.lock
+build/logs
+logs/
+*.orig
+Eardish/EmailService/*

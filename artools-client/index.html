@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html ng-app="ARtoolsApp">
+<head>
+  <title>AR Tools</title>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/vendor/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <!--<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>-->
+  <!--<script data-require="angular.js@*" data-semver="1.2.0-rc1" src="http://code.angularjs.org/1.2.0rc1/angular.js"></script>-->
+
+
+  <link rel='stylesheet' href='js/vendor/textAngular-1.3.8/src/textAngular.css'>
+  <link rel='stylesheet' href='css/vendor/font-awesome-4.3.0/css/font-awesome.min.css'>
+  <script src="js/vendor/jquery.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.21.min.js"></script>
+  <script src="js/vendor/angular.js"></script>
+  <script src='js/vendor/textAngular-1.3.8/dist/textAngular-rangy.min.js'></script>
+  <script src='js/vendor/textAngular-1.3.8/dist/textAngular-sanitize.min.js'></script>
+  <script src='js/vendor/textAngular-1.3.8/dist/textAngular.min.js'></script>
+  <script src="js/vendor/bootstrap.js"></script>
+  <script src="js/directive.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+<body ng-controller="ARtoolsController">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <object class="logo" type="image/svg+xml" data="assets/eardish-logo-no-slogan.svg"></object>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <p ng-show="arRepLogin">{{currentLoggedInProfile.displayName}} <i class="fa fa-user"></i> <span class="caret pull-right"></span></p>
+            <p ng-hide="arRepLogin">Login <i class="fa fa-user"></i> <span class="caret"></span></p>
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-hide="arRepLogin"><a ng-click="setActiveTab(5)" href="#e" >Login</a></li>
+            <li ng-hide="arRepLogin"><a ng-click="setActiveTab(7)" href="#g" >Register</a></li>
+            <li ng-show="arRepLogin" ng-if="currentLoggedInProfile.type == 'ar-admin'"><a ng-click="setActiveTab(8)" href="#h" >Add Rep</a></li>
+            <li ng-show="arRepLogin" ng-if="currentLoggedInProfile.type == 'ar-admin'" role="separator" class="divider"></li>
+            <li ng-show="arRepLogin"><a ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div id="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-3">
+      <div ng-show="loggedIn">
+        <label>Search</label>
+        <input ng-model="query" class="form-control col-md-11" id="search" placeholder="Filter artists..." ng-change="updateFilter(query)">
+      <span class="input-group-btn">
+          <button ng-if="query.length"
+                  class="btn btn-default"
+                  ng-click="clearSearch()">X
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="col-md-3" ng-show="loggedIn">
+      <label>Select Artist</label>
+      <select class="form-control" ng-model="selectedArtist" role="menu" ng-options="artist as artist.artistName for artist in filteredArtists | orderBy:'artistName'">
+        <option value="test">{{selectedArtist}}
+        </option>
+      </select>
+    </div>
+    <div ng-show="loggedIn" class="col-md-1">
+      <img class="text-center" ng-show="loading" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+    </div>
+    <div ng-show="loggedIn" class="col-md-2">
+      <p ng-if="selectedArtist.lastEditedByName">Last edited by: {{selectedArtist.lastEditedByName}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <!--Left nav tabs-->
+      <div class="tabs-left">
+        <ul class="nav nav-tabs">
+          <li ng-show="loggedIn" ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="#a" data-toggle="tab">Account Information</a></li>
+          <li ng-show="loggedIn" ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="#b" data-toggle="tab">Bio</a></li>
+          <li ng-show="loggedIn" ng-class="getTabClass(3)" ng-click="setActiveTab(3)"><a href="#c" data-toggle="tab">Art</a></li>
+          <li ng-show="loggedIn" ng-class="getTabClass(4)" ng-click="setActiveTab(4)"><a href="#d" data-toggle="tab">Music</a></li>
+        </ul>
+        <!--Tab content-->
+
+        <div class="tab-content">
+          <div ng-class="getTabPaneClass(1)" class="content" id="a">
+
+            <!--Account Information-->
+              <h3 class="text-center">Account Information</h3>
+            <br>
+            <form ng-submit="createProfile()" name="profile">
+              <div class="row">
+                <div class="col-md-3">
+                  <label>Artist Picture: *</label>
+                  <img ng-show="profilePicDefault" class="img-thumbnail" src="assets/default-avatar.gif" />
+                  <div ng-hide="profilePicDefault">
+                    <img class="img-thumbnail" ng-src="{{selectedArtist.avatar}}" />
+                    <br>
+                  </div>
+                  <span class="btn btn-default btn-file">
+                     Browse...<input type="file" class="btn btn-default" file-model="profilePic" value="something">
+                  </span><label class="fileName"> {{profilePic.name}}</label>
+                  <br>
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="text-center">Artist Type: *</label><br>
+                      <input type="radio" name="artist-type" ng-model="selectedArtist.type" value="artist-solo" > Solo
+                      <input type="radio" name="artist-type" ng-model="selectedArtist.type" value="artist-group" > Group
+                    </div>
+                    <div class="col-md-6">
+                      <label class="text-center">Invite Code: *</label><br>
+                      <input type="text"  class="form-control" ng-model="selectedArtist.inviteCode" placeholder="Invite Code" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-md-offset-6">
+                      <label>Genre: *</label>
+                      <select class="form-control" ng-model="selectedArtist.genre" role="menu" ng-options="genre.id as genre.name for genre in genres">
+                        <option value="test">{{selectedArtist.genre}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <br>
+              <h5 class="text-center">ARTIST INFORMATION</h5>
+              <div class="form-group">
+                <label>Artist/Band Name: *</label>
+                <input type="text"  class="form-control" ng-model="selectedArtist.artistName" id="ab-name" placeholder="Artist/Band Name" required>
+              </div>
+              <div class="row">
+                <div class="form-group col-xs-6 col-sm-4">
+                  <label>Hometown:</label>
+                  <input type="text" class="form-control"  ng-model="selectedArtist.hometown" id="hometown" placeholder="Hometown">
+                </div>
+                <div class="form-group col-xs-6 col-sm-4">
+                  <label>Influenced By:</label>
+                  <input type="text" class="form-control" ng-model="selectedArtist.influencedBy" id="influenced-by" placeholder="Influenced by">
+                </div>
+                <div class="btn-group col-xs-6 col-sm-4">
+                  <label>Year founded:</label>
+                  <select class="form-control" ng-model="selectedArtist.yearFounded" role="menu" ng-options="year for year in years">
+                    <option value="test">{{selectedArtist.yearFounded}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Website:</label>
+                <input type="url" class="form-control" ng-model="selectedArtist.website" id="website" placeholder="Website">
+              </div>
+              <div class="row">
+                <div class="form-group col-xs-6">
+                  <label>Facebook Page:</label>
+                  <input type="url" class="form-control" ng-model="selectedArtist.facebookPage" id="fb-page" placeholder="Facebook Page">
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Twitter Page:</label>
+                  <input type="url" class="form-control" ng-model="selectedArtist.twitterPage" id="twit-page" placeholder="Twitter Page">
+                </div>
+              </div>
+              <br>
+              <h5 class="text-center">MAIN CONTACT</h5>
+              <div class="row">
+                <div class="form-group col-xs-6">
+                  <label>First Name: *</label>
+                  <input type="text" class="form-control" ng-model="selectedArtist.name.first" id="first-name" placeholder="First Name" required>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Last Name: *</label>
+                  <input type="text" class="form-control" ng-model="selectedArtist.name.last" id="last-name" placeholder="Last Name" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-xs-6" ng-show="showEmail">
+                  <label>Email: *</label>
+                  <input type="email" class="form-control" ng-model="selectedArtist.email" id="email" placeholder="Email" >
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Phone: *</label>
+                  <input type="tel" class="form-control" ng-model="selectedArtist.phone" id="phone" placeholder="Phone" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-xs-6">
+                  <label>Address: </label>
+                  <input type="text" class="form-control" ng-model="selectedArtist.address1" id="address" placeholder="Address">
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Address, Line 2: </label>
+                  <input type="text" class="form-control" ng-model="selectedArtist.address2" id="address2" placeholder="Address, Line 2">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-xs-6 col-sm-4">
+                  <label>City: </label>
+                  <input type="text" class="form-control" ng-model="selectedArtist.city" id="city" placeholder="City">
+                </div>
+                <div class="btn-group col-xs-6 col-sm-4">
+                  <label>State</label>
+                  <select class="form-control" ng-model="selectedArtist.state" role="menu" ng-options="state.name as state.name for state in states">
+                    <option value="test">{{selectedArtist.state}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-xs-6 col-sm-4">
+                  <label>Zip: </label>
+                  <input type='text' name='zipcode' ng-model="selectedArtist.zipcode" class='form-control' placeholder="zipcode"  />
+                </div>
+              </div>
+              <br>
+              <br>
+              <label>* mandatory fields</label><br>
+              <div class="row btn-block">
+                <div class="col-md-4 col-md-offset-4">
+                  <button class="btn btn-block center-block" type="submit">Save Changes</button>
+                  <img ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                  <p ng-show="profileResult">{{profileMessage}}</p>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--Bio-->
+          <div ng-class="getTabPaneClass(2)" class="content" id="b">
+              <h3 class="text-center">Biography</h3>
+            <div id="bio">
+              <form ng-submit="saveBio()">
+                <text-angular ng-model="selectedArtist.bio"></text-angular>
+                <!--<div text-angular class="form-control" ng-model="selectedArtist.bio" placeholder="Bio" required></div><br>-->
+                <div class="row">
+                  <div class=" col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-default btn-block text-center">Save Changes</button>
+                    <img ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                    <p ng-show="profileResult">{{profileMessage}}</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!--Art-->
+          <div ng-class="getTabPaneClass(3)" class="content" id="c">
+              <h3 class="text-center">Art</h3>
+            <form ng-submit="uploadArt()">
+              <br>
+              <div class="row">
+                <div class="col-md-offset-4 col-md-3">
+                  <img ng-show="artDefault" class="img-thumbnail" src="assets/default-avatar.gif" />
+                  <div ng-hide="artDefault" ng-repeat="(key, value) in arts[profileId]">
+                    <img ng-if="value.status == 'pending'" class="img-thumbnail" ng-src="{{value.url}}" /><br>{{value.trackName}}<br>
+                  </div>
+                </div>
+                <div class="col-md-2"><br>
+                  <label>Add Song Art</label><br>
+                  <span class="btn btn-default btn-file">
+                     Browse...<input type="file" file-model="artUpload" value="something" required>
+                  </span><label class="fileName"> {{artUpload.name}}</label>
+                </div>
+              </div>
+              <br>
+              <div class="row btn-block">
+                <div class="col-md-4 col-md-offset-4">
+                  <button class="btn btn-block center-block" type="submit">Upload</button>
+                  <img ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                  <p ng-show="artUploadedResult">{{artMessage}}</p>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--Music-->
+          <div ng-class="getTabPaneClass(4)" class="content" id="d">
+            <h3 class="text-center">Music</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <form ng-submit="uploadSong()">
+                  <label>Select song art: </label>
+                  <select class="form-control" ng-model="selectedArt" role="menu" ng-options="art as art.artName for art in arts[profileId]">
+                    <option value="test">{{selectedArt}}
+                    </option>
+                  </select>
+                  <img ng-show="showTrackArt" class="img-thumbnail" ng-src="{{selectedArt.url}}" />
+
+                  <img ng-hide="showTrackArt" class="img-thumbnail" src="assets/defaultAlbum.png" />
+                  <br><br>
+                  <label>Song Name:</label>
+                  <input type='text' name='trackName' ng-model="trackName" class='form-control' placeholder="Song Name" required/>
+                  <label>Choose song to upload: </label>
+                  <span class="btn btn-default btn-file">
+                    Browse...<input type="file" class="btn btn-default" file-model="songUpload" required/>
+                  </span><label class="fileName"> {{songUpload.name}}</label>
+                  <br><br>
+                  <div class="row btn-block">
+                    <div class="col-md-4 col-md-offset-4">
+                      <button class="btn btn-block center-block" type="submit">Upload</button>
+                      <img class="text-center" ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                      <p class="text-center" ng-show="songUploadResult">{{songMessage}}</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <label ng-if="selectedArtist.artistName">{{selectedArtist.artistName}}'s Songs</label>
+                <label ng-if="!selectedArtist.artistName">Songs</label>
+                <div ng-repeat="(key, value) in tracks[profileId]|orderBy:'value.trackName'">
+                  <div class="row">
+                    <div class="col-md-6 track-name">
+                      <input type="checkbox" class="publish" name="publish" ng-model="value.published" ng-change="publishTrack(value)" >
+                      <b><a ng-href="{{value.trackUrl}}" target="_blank">{{value.trackName}}</a> </b>
+                    </div>
+                    <div class="col-md-6">
+                      <button ng-click="deleteTrack(value, key)" class="btn btn-default btn-xs"> delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-class="getTabPaneClass(5)" class="content" id="e">
+            <h3 class="text-center">Login</h3>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <form ng-submit="login()">
+                  <label>Email: </label>
+                  <input type='text' ng-model="loginParams.email" class='form-control' placeholder="Email" required/>
+                  <label>Password:</label>
+                  <input type='password' ng-model="loginParams.password" class='form-control' placeholder="Password" required/>
+                  <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                      <button class="btn text-center" type="submit">Login</button>
+                      <img class="text-center" ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                      <p class="text-center" ng-show="loginResult">{{loginMessage}}</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div ng-class="getTabPaneClass(6)" class="content" id="f">
+            <h3 class="text-center">Logout</h3>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <form ng-submit="logout()">
+                  <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                      <button class="btn text-center" type="submit">Logout</button>
+                      <img class="text-center" ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                      <p class="text-center" ng-show="loginResult">{{loginMessage}}</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div ng-class="getTabPaneClass(7)" class="content" id="g">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <h3 class="text-center">Register</h3>
+                <form ng-submit="registerRep()">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>First Name: </label>
+                      <input type='text' ng-model="register.name.first" class='form-control' placeholder="First Name" required/>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Last Name:</label>
+                      <input type='text' ng-model="register.name.last" class='form-control' placeholder="Last Name" required/>
+                    </div>
+                  </div>
+                  <label>Email:</label>
+                  <input type='text' ng-model="register.email" class='form-control' placeholder="Email" required/>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Password: </label>
+                      <input type='password' ng-model="register.password" class='form-control' placeholder="Password" required/>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Confirm Password:</label>
+                      <input type='password' ng-model="register.passwordConfirmation" class='form-control' placeholder="Password" required/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Zip Code: </label>
+                      <input type='text' ng-model="register.zipcode" class='form-control' placeholder="Zip Code" required/>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Invite Code: </label>
+                      <input type='text' ng-model="register.inviteCode" class='form-control' placeholder="Invite Code" required/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                      <button class="btn" type="submit">Submit</button>
+                      <img class="text-center" ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                      <p class="text-center" ng-show="profileResult">{{profileMessage}}</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div ng-class="getTabPaneClass(8)" class="content" id="h">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <h3 class="text-center">Add AR Rep</h3>
+                <form ng-submit="inviteRep()">
+                  <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                      <label>Admin? </label>
+                      <input type="checkbox" class="publish" ng-model="newRep.admin"/>
+                      <br>
+                      <label>Email:</label>
+                      <input type='text' ng-model="newRep.email" class='form-control' placeholder="Email" required/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                      <button class="btn" type="submit">Submit</button>
+                      <img class="text-center" ng-show="waiting" src="http://oneworld.org/skin/img/SearchWidget/searching.gif">
+                      <p class="text-center" ng-show="inviteResult">{{inviteMessage}}</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div><!-- /tab-content -->
+      </div><!-- /tabbable -->
+    </div><!-- /col -->
+  </div><!-- /row -->
+</div>
+</body>
+</html>

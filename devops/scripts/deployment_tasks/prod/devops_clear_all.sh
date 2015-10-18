@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# this script is used for removing all the devops folder from all the servers  
+
+############################################################
+## This section is for defining the environment variables ##
+
+## Admin is the value used for the root user (ubuntu or edadmin)
+
+#admin=$USER
+#admin=edadmin
+admin=ubuntu
+
+## Environment is the value used for the environment (local, dev, qa, stg, or prod)
+
+#environment=local
+#environment=dev
+#environment=qa
+#environment=stg
+environment=prod
+
+## The below listing is for text files that contain a list of all the servers participating in a service or site or all for the environment
+
+servers=$(< /home/$admin/devops/servers/$environment/allservers.txt)
+analytics=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+auth=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+artools=$(< /home/$admin/devops/servers/$environment/artools.txt)
+bridge=$(< /home/$admin/devops/servers/$environment/bridge_all.txt)
+dbsvc=$(< /home/$admin/devops/servers/$environment/dbsvc_all.txt)
+email=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+gateway=$(< /home/$admin/devops/servers/$environment/gateway_all.txt)
+image=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+music=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+profile=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+rec=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+song=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+user=$(< /home/$admin/devops/servers/$environment/service_all.txt)
+
+## The below values define paths for this environment
+
+edwebsites="/eda/web"
+edservices="/eda/app"
+edlogs="/eda/logs"
+configs="/eda/secret"
+
+## This is the end of the environment variable section  ##
+##########################################################
+
+######################################
+## Start the script functions below ##
+
+echo Starting script to remove the devops folder 
+date
+
+for server in ${servers[@]}
+do
+ssh $server "sudo rm -rf /home/$admin/devops"
+done
+
+echo jobs done

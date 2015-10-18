@@ -1,0 +1,65 @@
+<?php
+namespace Eardish\ProfileService\Core;
+
+use Eardish\Exceptions\EDConnectionException;
+use Eardish\Exceptions\EDConnectionReadException;
+use Eardish\Exceptions\EDConnectionWriteException;
+use Eardish\Exceptions\EDException;
+use Eardish\Exceptions\EDTransportException;
+
+class Connection
+{
+    protected $sock;
+    protected $addr;
+    protected $port;
+
+    /**
+     * @param $addr String
+     * @param $port String
+     */
+    public function start($addr, $port)
+    {
+        $this->addr = $addr;
+        $this->port = $port;
+
+    }
+
+    /**
+     * @param request
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function sendToDB($request)
+    {
+        // todo -- stream_socket_client sends notices on failures -- work there
+        $this->sock = stream_socket_client($this->addr.':'.$this->port);
+        if($this->sock === false) {
+            throw new EDConnectionException("PROFILE: unable to connect to Notation DB service at $this->addr port: $this->port");
+        }
+
+        $status = fwrite($this->sock, json_encode($request));
+        if(!($status)) {
+            throw new EDConnectionWriteException("PROFILE: unable to send query to Notation DB service at $this->addr port: $this->port");
+        }
+
+        $response = stream_get_contents($this->sock);
+        if(!($response)) {
+            throw new EDConnectionReadException("PROFILE: unable to read results from Notation DB service at $this->addr port: $this->port", 24);
+        }
+
+        fclose($this->sock);
+
+        $result = json_decode($response, true);
+        if(!($result)) {
+            throw new EDTransportException("PROFILE: unable to decode JSON from Notation DB service at $this->addr port: $this->port ");
+        }
+
+        if (isset($result["exception"])) {
+            throw new EDException($result["exception"]["message"], $result["exception"]["code"]);
+        }
+        
+        return $result;
+    }
+
+
+}

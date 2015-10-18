@@ -1,0 +1,26 @@
+sudo: false
+language: php
+php:
+- 5.6
+- 5.5
+- hhvm
+notifications:
+  hipchat:
+    rooms:
+      secure: il0sNjwnM9rokjL+lIeBtiUw6XRptsP5SDP3NNRbpXmMeLWcIGQngEcvZY8cMpkgYiH4MGu3oZQ5NTCLHJDdwhco/WhrvgPj5So8+21hlc5w5Azg2ueM9y7B4uKHusBqGd6eiaSAYwmHT6amRdCieNHSOem4m2SwyL4j+jtyH5g=
+install:
+- sh -c 'if [ ! -d vendor ]; then composer install --dev; fi;'
+- wget https://scrutinizer-ci.com/ocular.phar
+before_script:
+- mkdir -p build/logs
+- export COVERALLS_SERVICE_NAME=travis-pro
+- export COVERALLS_REPO_TOKEN=2KAl4mt14U9GJ7IKGpL5mijR0RPIuI12l
+script:
+- phpunit --configuration phpunit.xml.dist
+after_script:
+- phpunit --configuration phpunit.xml.dist --coverage-text | grep "Lines:" | grep
+  -v "Methods:" > build/logs/coverageper.txt
+- sh -c 'if [ "$TRAVIS_PHP_VERSION" = "5.5" ]; then php vendor/bin/coveralls -v; fi;'
+- sh -c 'if [ "$TRAVIS_PHP_VERSION" = "5.5" ]; then php ocular.phar code-coverage:upload
+  --access-token="6338e1a7beec477c62fcd1e96ca89a2372afafa2de6cb7c5a825431962bf01c5"
+  --format=php-clover build/logs/clover.xml; fi;'

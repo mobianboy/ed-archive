@@ -1,0 +1,9 @@
+#container{
+	padding: 20px;
+	margin:20px;
+	font-size:18px;
+}
+.message {
+	background-color:#ccc;
+	border:1px solid #ddd;
+}

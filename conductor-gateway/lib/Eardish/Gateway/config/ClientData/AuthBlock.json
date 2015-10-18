@@ -1,0 +1,10 @@
+{
+  "email": {
+    "type": "string",
+    "required": 1
+  },
+  "password": {
+    "type": "string",
+    "required": 1
+  }
+}

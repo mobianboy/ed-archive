@@ -1,0 +1,40 @@
+/***
+* Column property mixin
+* .column();
+*
+* Description:
+* This mixin is used to separate content into multiple columns.
+* This mixin needs to take in @count, which is short for column-count, as its first
+* parameter in order to work.
+* Support across all browsers with the exception of @fill which only has support
+* for Moz, see below for details.
+*
+* Ex: .column( 3; @width: 200px; @ruleColor: red );
+*
+* This mixin takes in the following parameters:
+* @count: <number> | auto *REQUIRED*
+* @width: auto | <length>
+* @ruleWidth: medium | thin | thick | <length>
+* @ruleStyle: none | hidden | dotted | dashed | solid | double | groove | ridge | inset | outset
+* @ruleColor:  <color>, currently set to transparent as it has no default color and takes
+               in the current color of the element as default
+* @fill:  balance | auto
+* @gap: <length> | normal
+* @span: 1 | all
+***/
+.columns( @count; @width: auto; @ruleWidth: medium; @ruleStyle: none; @ruleColor: transparent; @fill: balance; @gap: normal; @span: 1 ){
+  -webkit-columns: @width @count;
+  -moz-columns: @width @count;
+  columns: @width @count;
+  -webkit-column-rule: @ruleWidth @ruleStyle @ruleColor;
+  -moz-column-rule: @ruleWidth @ruleStyle @ruleColor;
+  column-rule: @ruleWidth @ruleStyle @ruleColor;
+  // no support for fill other than Mozilla
+  -moz-column-fill: @fill;
+  column-fill: @fill;
+  -webkit-column-gap: @gap;
+  -moz-column-gap: @gap;
+  column-gap: @gap;
+  -webkit-column-span: @span;
+  column-span: @span;
+}

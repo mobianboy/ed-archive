@@ -1,0 +1,14 @@
+apidev.eardishcorp.com
+analyticsdev.eardishcorp.com
+emaildev.eardishcorp.com
+authdev.eardishcorp.com
+slcdev.eardishcorp.com
+recdev.eardishcorp.com
+songdev.eardishcorp.com
+profiledev.eardishcorp.com
+musicdev.eardishcorp.com
+imagedev.eardishcorp.com
+userdev.eardishcorp.com
+dbsvcdev.eardishcorp.com
+artoolsdev.eardishcorp.com
+clientdev.eardishcorp.com

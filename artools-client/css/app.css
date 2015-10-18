@@ -1,0 +1,206 @@
+html {
+  font-size: 62.5%;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+  background-color: #ddd;
+
+}
+
+h3 {
+  margin-top: 0;
+  color: #5d0c7b;
+}
+
+.tabs-left { margin-top: 3rem;
+  border-radius: 5px;
+}
+
+.nav-tabs {
+  float: left;
+  border-bottom: 0;
+  border-radius: 5px;
+}
+
+label {
+  color:  #5d0c7b;
+}
+
+.logo {
+  width: 60%;
+  max-width: 150px;
+  min-width: 150px;
+  margin-left: 10px;
+}
+
+li {
+  float: none;
+  margin: 0
+  color:  #5d0c7b;
+}
+
+li a {
+  margin-right: 0;
+  border: 0;
+  background-color: #5d0c7b;
+  color: white;
+}
+
+li a {
+  margin-right: 0;
+  border: 0;
+  background-color: #5d0c7b;
+  color: white;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: white;
+  color: #5d0c7b;
+}
+
+.nav-tabs > li > a:hover, .nav-tabs > li > a:hover {
+  background-color: mediumpurple;
+  color: white;
+}
+
+.tab-content {
+  margin-left: 45px;
+  border-radius: 5px;
+  box-shadow: 0 0px 20px 1px #c0c0c0;
+}
+
+.tab-pane {
+  display: none;
+  background-color: #fff;
+  padding: 1.6rem;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.tabs-left>.nav-tabs>li>a {
+  border-radius: 5px;
+}
+
+.active { display: block
+}
+
+
+.list-group {
+  width: 100%
+}
+
+.list-group-item {
+  height: 50px
+}
+
+h4, span {
+  line-height: 11px;
+}
+
+#artist-type {
+  display: inline-block;
+}
+
+#container {
+  width:100%;
+  max-width:70%;
+  height:100%;
+  margin:0 auto;
+}
+
+#arts {
+  display: inline-block;
+}
+
+input {
+ height: 34px;
+}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  height: 34px;
+}
+
+.btn {
+  background-color: #5d0c7b;
+  color:white;
+}
+
+.btn:hover {
+  background-color: mediumpurple;
+  color: #ffffff;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.fileName {
+  padding-left: 5px;
+}
+
+.track-name {
+  word-wrap: break-word;
+}
+
+.publish {
+  height: 14px;
+}
+
+ul {
+  list-style: none;
+}
+
+#search {
+  width: 88%;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  color: white;
+  background-color: mediumpurple;
+}
+.dropdown-menu > li > a {
+  color: #5d0c7b;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  background-color: #5d0c7b;
+  padding: 6px 12px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active {
+  background-color: mediumpurple;
+  color: transparent;
+}
+
+.dropdown-toggle > p {
+  margin-bottom: 0;
+}
+
+.dropdown-menu > li:hover,  .dropdown-menu > li:active{
+  background-color: mediumpurple;
+}
+
+.navbar .nav li.dropdown.open>.dropdown-toggle, .navbar .nav li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active>.dropdown-toggle {
+  background-color: mediumpurple;
+  color: #ffffff;
+}

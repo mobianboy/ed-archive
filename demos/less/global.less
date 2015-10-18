@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+@import "./mixins/hidden.less";
+@import "./fonts/edTypeStyles.less";
+@import "./mixins/breakpoints/mixins.less";
+@import "./ed/colors.vars.less";
+
+html {
+  font-size: 62.5%;
+  font-family: Ubuntu;
+  background-color: @darkPurple3;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  &[unresolved] {
+    display: block;
+    opacity: 1;
+  }
+  & > .left {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin: 20px 0 0;
+  }
+}
+
+#splash-screen {
+  position: absolute;
+  background-color: @originalPurple;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  opacity: 0;
+  transition: opacity ease-in 0.2s;
+  svg {
+    width: 95%;
+    margin: 25% auto 0;
+    fill: white;
+    opacity: 0;
+    transition: inherit;
+  }
+  body[unresolved] & {
+    display: block;
+    opacity: 1;
+    svg {
+      opacity: 1;
+    }
+  }
+}
+
+.hidden();
+

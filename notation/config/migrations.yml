@@ -1,0 +1,4 @@
+migrations_directory: ../lib/Eardish/DatabaseService/Migration/DoctrineMigrations
+migrations_namespace: Eardish\DatabaseService\Migration\DoctrineMigrations
+table_name: migration_versions
+name: Application Migrations

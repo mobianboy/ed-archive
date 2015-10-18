@@ -1,0 +1,31 @@
+{
+  "name": "eardish/notation",
+  "require": {
+    "guzzle/guzzle": "3.7.0",
+    "guzzle/parser": "3.0.7",
+    "doctrine/orm": "2.5.*@dev",
+    "doctrine/common": "2.5.x-dev",
+    "doctrine/migrations": "1.0.*@dev",
+    "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
+    "everyman/neo4jphp": "dev-master",
+    "elasticsearch/elasticsearch": "dev-master",
+    "react/react": "0.5.*@dev",
+    "monolog/monolog": "~1.11",
+    "cron/cron": "1.0.*@dev",
+    "league/climate": "3.0.*",
+    "eardish/conductor-dataobjects": "dev-dev",
+    "doctrine/doctrine-bundle": "~1.4"
+  },
+
+  "require-dev": {
+    "satooshi/php-coveralls": "dev-master",
+    "fzaninotto/faker": "1.5.*@dev"
+  },
+
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "git@github.com:eardish/conductor-dataobjects.git"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:eardish/conductor-dataobjects.git"
+    }
+  ],
+  "require": {
+    "react/socket-client": "0.4.*@dev",
+    "eardish/conductor-dataobjects": "dev-dev",
+    "league/climate": "3.0.*"
+  }
+}

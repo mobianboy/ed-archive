@@ -1,0 +1,26 @@
+{
+    "default": {
+        "name": "Echo Service",
+        "port": 1000,
+        "self-fqdn": "",
+        "agents": {
+            "db": {
+                "address": "localhost",
+                "port": 9000
+            }
+        }
+    },
+    "local": {
+        "port": 1000
+    },
+    "dev": {
+        "agents": {
+            "db": {
+                "address": "dbsvcdev.eardishcorp.com"
+            }
+        }
+    },
+    "qa": [],
+    "staging": [],
+    "production": []
+}

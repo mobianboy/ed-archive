@@ -1,0 +1,84 @@
+{
+  "common": {
+    "device": {
+      "type": {
+        "type": "string",
+        "required" : 0
+      },
+      "make": {
+        "type": "string",
+        "required" : 0
+      },
+      "model": {
+        "type" : "string",
+        "required" : 0
+      },
+      "carrier": {
+        "type": "string",
+        "required": 0
+      },
+      "OS": {
+        "type" : "string",
+        "required": 0
+      }
+    },
+    "clientVersion": {
+      "type": "string",
+      "required": 0
+    },
+    "location": {
+      "lat": {
+        "type": "float",
+        "required": 0
+      },
+      "lon": {
+        "type": "float",
+        "required": 0
+      }
+    },
+    "time": {
+      "type": "dateTime",
+      "required": 0
+    },
+    "user": {
+      "type": "int",
+      "required": 0
+    },
+    "viewRoute": {
+      "type": "string",
+      "required": 0
+    },
+    "viewState": {
+      "playerState": {
+        "trackId": {
+          "type": "int",
+          "required": 0
+        },
+        "playing": {
+          "type": "boolean",
+          "required": 0
+        },
+        "timecode": {
+          "type": "dateTime",
+          "required": 0
+        },
+        "queueLength": {
+          "type": "int",
+          "required": 0
+        }
+      }
+    },
+    "session": {
+      "duration": {
+        "type": "int",
+        "required": 0
+      }
+    }
+  },
+  "event": {
+    "type": {
+      "type": "string",
+      "required": 0
+    }
+  }
+}

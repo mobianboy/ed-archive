@@ -1,0 +1,17 @@
+{
+    "require": {
+        "react/react": "0.5.*@dev",
+        "monolog/monolog": "~1.11"
+    },
+    "require-dev": {
+        "eardish/conductor-dataobjects": "dev-dev",
+        "satooshi/php-coveralls": "dev-master",
+        "league/climate": "3.0.*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:eardish/conductor-dataobjects.git"
+        }
+    ]
+}

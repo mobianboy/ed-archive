@@ -1,0 +1,8 @@
+vendor
+build
+/nbproject/
+.idea/
+composer.lock
+*.orig
+logs/
+report/

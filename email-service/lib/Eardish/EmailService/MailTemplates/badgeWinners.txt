@@ -1,0 +1,1 @@
+Here are the badgewinners for {{ weekStart }} - {{ weekEnd }}

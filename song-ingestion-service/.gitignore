@@ -1,0 +1,11 @@
+vendor
+build
+/nbproject/
+.idea/
+composer.lock
+build/logs
+logs/
+lib/Eardish/Fixtures
+lib/.DS_Store
+lib/Eardish/.DS_Store
+.env

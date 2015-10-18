@@ -1,0 +1,105 @@
+
+{
+  "tables": {
+    "albums": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "album_track": {
+      "isRelationship": "true",
+      "relationshipName": "ALBUM_TRACK",
+      "nodes" : {
+        "album": "album_id",
+        "track": "track_id"
+      }
+    },
+    "friend": {
+      "isRelationship": "true",
+      "relationshipName": "FRIEND",
+      "nodes" : {
+        "user": "user_id",
+        "friend": "friend_id"
+      }
+    },
+    "group": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "group_profile": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "media": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "playlist": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "playlist_follower": {
+      "isRelationship": "true",
+      "relationshipName": "PLAYLIST_FOLLOWER",
+      "nodes" : {
+        "playlist": "playlist_id",
+        "user": "follower_id"
+      }
+    },
+    "playlist_track": {
+      "isRelationship": "true",
+      "relationshipName": "PLAYLIST_TRACK",
+      "nodes" : {
+        "playlist": "playlist_id",
+        "track": "track_id"
+      }
+    },
+    "related_group": {
+      "isRelationship": "true",
+      "relationshipName": "RELATED_GROUP",
+      "nodes" : {
+        "group": "group1_id",
+        "group": "group2_id"
+      }
+    },
+    "track": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "track_play": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "user": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "user_album": {
+      "isRelationship": "true",
+      "relationshipName": "USER_ALBUM",
+      "nodes" : {
+        "user_id": "",
+        "album_id": ""
+      }
+    },
+    "user_group": {
+      "isRelationship": "true",
+      "relationshipName": "USER_GROUP",
+      "nodes" : {
+        "user": "user_id",
+        "group": "group_id"
+      }
+    },
+    "user_profile": {
+      "isRelationship": "false",
+      "relationshipName": ""
+    },
+    "user_track": {
+      "isRelationship": "true",
+      "relationshipName": "USER_TRACK",
+      "nodes" : {
+        "user": "user_id",
+        "track": "track_id"
+      }
+    }
+  }
+}

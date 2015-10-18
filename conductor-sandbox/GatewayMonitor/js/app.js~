@@ -1,0 +1,19 @@
+var ARtoolsApp = angular.module('GatewayMonitor', []);
+
+ARtoolsApp.controller('MonitorList', function($scope, $http) {
+  //$scope.test = "hello";
+  $scope.conn = new WebSocket("ws://10.151.0.51:80");
+  $scope.conn.onopen = function() {
+      console.log("connection successful");
+      connectRequest = '{"key":"3ard1sh","mode":"connection"}';
+      $scope.conn.send($connectRequest);
+      console.log('sent');
+  };
+
+  $scope.conn.onmessage = function() {
+     console.log('got some data');
+     var newDiv = document.createElement("div");
+     var newContent = document.createTextNode("Hi there and greetings!");
+     newDiv.appendChild(newContent); //add the text node to the newly created div.
+  };
+});

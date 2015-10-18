@@ -1,0 +1,16 @@
+edadmin@apidev.eardishcorp.com
+edadmin@analyticsdev.eardishcorp.com
+edadmin@emaildev.eardishcorp.com
+edadmin@authdev.eardishcorp.com
+edadmin@slcdev.eardishcorp.com
+edadmin@recdev.eardishcorp.com
+edadmin@songdev.eardishcorp.com
+edadmin@profiledev.eardishcorp.com
+edadmin@musicdev.eardishcorp.com
+edadmin@imagedev.eardishcorp.com
+edadmin@userdev.eardishcorp.com
+edadmin@dbsvcdev.eardishcorp.com
+edadmin@dbpgdev.eardishcorp.com
+edadmin@dbn4jdev.eardishcorp.com
+edadmin@artoolsdev.eardishcorp.com
+edadmin@clientdev.eardishcorp.com

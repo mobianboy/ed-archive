@@ -1,0 +1,14 @@
+{
+  "action": {
+    "route":"/Echo/pass/12345",
+    "priority":""
+  },
+  "component":{"key":"value"},
+  "head":{
+    "http":"PUT"
+  },  
+  "auth":{
+  "user":"",
+  "pass":""
+  }
+}

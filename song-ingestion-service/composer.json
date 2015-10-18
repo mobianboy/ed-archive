@@ -1,0 +1,26 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:eardish/conductor-dataobjects.git"
+        }
+    ],
+
+    "require": {
+        "react/react": "0.5.*@dev",
+        "monolog/monolog": "~1.11",
+        "eardish/conductor-dataobjects": "dev-dev",
+        "zencoder/zencoder-php": "dev-master",
+        "tpyo/amazon-s3-php-class": "dev-master",
+        "aws/aws-sdk-php": "3.*@dev",
+        "james-heinrich/getid3": "dev-master",
+        "vlucas/phpdotenv": "1.0.*@dev",
+        "guzzlehttp/retry-subscriber": "2.0.0",
+        "guzzlehttp/psr7": "1.0.*@dev"
+    },
+
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master",
+      "league/climate": "3.0.*"
+    }
+}

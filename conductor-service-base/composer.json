@@ -1,0 +1,10 @@
+{
+    "require": {
+        "react/react": "0.5.*@dev",
+        "monolog/monolog": "~1.11"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master",
+        "league/climate": "3.0.*"
+    }
+}

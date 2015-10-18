@@ -1,0 +1,5 @@
+{
+    "type": "http, image, etc",
+    "url": "location of resource",
+    "format": "what format? API, Image or Audio"
+}

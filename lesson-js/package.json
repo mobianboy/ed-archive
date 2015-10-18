@@ -1,0 +1,15 @@
+{
+  "name": "lesson-js",
+  "version": "0.0.1",
+  "private": true,
+  "description": "let us learn javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . || echo 'oh no lint errors :('"
+  },
+  "author": "",
+  "devDependencies": {
+    "eslint": "^0.24.0"
+  }
+}

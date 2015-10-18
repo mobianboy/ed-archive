@@ -1,0 +1,9 @@
+{
+  "method": "transcodeAudioToAllFormats",
+  "priority": 10,
+  "params":{
+    "trackId": 2,
+    "startClip": "0",
+    "endClip": "-1"
+  }
+}

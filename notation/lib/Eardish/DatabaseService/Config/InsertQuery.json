@@ -1,0 +1,257 @@
+{
+  "AnalyticsService": {
+    "submitEntry" : {
+      "COMMENT": "gets artist profile id by track id",
+      "model": "analytic",
+      "columns": [
+        "device_type",
+        "device_make",
+        "device_model",
+        "device_carrier",
+        "device_os",
+        "device_uuid",
+        "client_version",
+        "latitude",
+        "longitude",
+        "time",
+        "user_id",
+        "profile_id",
+        "track_id",
+        "artist_id",
+        "view_route",
+        "player_state",
+        "track_timecode",
+        "session_duration",
+        "event_type",
+        "values"
+      ]
+    },
+    "insertTrackPlay": {
+      "COMMENT": "add track play",
+      "model": "track_play",
+      "columns": [
+        "track_id",
+        "profile_id"
+      ]
+    },
+    "distributeBadges" : {
+      "COMMENT": "insert new badges",
+      "model": "profile_badge",
+      "columns": [
+        "badge_id",
+        "profile_id"
+      ]
+    }
+  },
+  "ProfileService": {
+    "createProfile": {
+      "model": "profile",
+      "COMMENT": "The values below year_founded are new and implemented by AR TOOLS",
+      "columns": [
+        "user_id",
+        "art_id",
+        "ar_rep",
+        "contact_id",
+        "type",
+        "invite_code",
+        "first_name",
+        "last_name",
+        "artist_name",
+        "year_of_birth",
+        "bio",
+        "website",
+        "year_founded",
+        "hometown",
+        "influenced_by",
+        "facebook_page",
+        "twitter_page",
+        "last_edited_by"
+      ]
+    },
+    "addTrack": {
+      "model": "track",
+      "columns": [
+        "profile_id",
+        "created_by",
+        "name",
+        "length",
+        "play_count",
+        "wave_form",
+        "create_date",
+        "deleted"
+      ]
+    },
+    "createContactInfo": {
+      "model": "contact",
+      "columns": [
+        "phone",
+        "address1",
+        "address2",
+        "city",
+        "state",
+        "zipcode"
+      ]
+    }
+  },
+
+  "MusicService": {
+    "addTrackGenre": {
+      "model": "track_genre",
+      "columns": [
+        "track_id",
+        "genre_id"
+      ]
+    },
+    "setArtistGenre": {
+      "model": "profile_genre",
+      "columns": [
+        "profile_id",
+        "genre_id"
+      ]
+    },
+    "addTrackToPlaylist": {
+      "model": "playlist_track",
+      "columns": [
+        "playlist_id",
+        "track_id",
+        "playlist_track",
+        "position"
+      ]
+    },
+    "createAlbum": {
+      "model": "album",
+      "columns": [
+        "name",
+        "profile_id",
+        "various_artist",
+        "release_date"
+      ]
+    },
+    "addTrackToAlbum": {
+      "model": "album_track",
+      "columns" : [
+        "album_id",
+        "track_id",
+        "pos"
+      ]
+    },
+    "addTrack": {
+      "model": "track",
+      "columns" : [
+        "name",
+        "profile_id",
+        "art_id",
+        "created_by"
+      ]
+    },
+    "attachAudioS3URL": {
+      "model": "audio",
+      "columns" :[
+        "track_id",
+        "url",
+        "format",
+        "relative_url"
+      ]
+    },
+    "trackPlay": {
+      "model": "track_play",
+      "columns" : [
+        "user_id",
+        "track_id",
+        "posted_at",
+        "device"
+      ]
+    },
+    "rateTrack" : {
+      "model" : "track_rating",
+      "columns" : [
+        "profile_id",
+        "track_id",
+        "rating"
+      ]
+    }
+  },
+  "UserService": {
+    "createUser": {
+      "model": "user",
+      "columns" : [
+        "email",
+        "password"
+      ]
+    },
+    "createUserProfile": {
+      "model": "profile",
+      "columns": [
+        "user_id",
+        "type",
+        "first_name",
+        "last_name",
+        "year_of_birth",
+        "zipcode"
+      ]
+    },
+    "registerInviteCode": {
+      "model": "invite",
+      "columns" : [
+        "inviter_id",
+        "invite_code",
+        "invitee_email"
+      ]
+    }
+  },
+  "ImageProcessingService": {
+    "addArtImages": {
+      "model": "image",
+      "columns": [
+        "art_id",
+        "format",
+        "url"
+      ]
+    },
+    "newArt": {
+      "model": "art",
+      "columns": [
+        "profile_id",
+        "type",
+        "title",
+        "description",
+        "original_url"
+      ]
+    }
+  },
+  "RecommendationService": {
+    "createProfileGenreBlend": {
+      "model": "profile_genre_blend",
+      "columns": [
+        "profile_id",
+        "genre_id",
+        "weight"
+      ]
+    }
+  },
+
+  "SongIngestionService": {
+    "transcodeStartJob": {
+      "model": "transcode_job",
+      "columns": [
+        "track_id",
+        "infile",
+        "target",
+        "encoding",
+        "bitrate",
+        "status",
+        "started_on"
+      ]
+    },
+    "transcodeRegisterAudioFile": {
+      "model": "audio",
+      "columns": [
+        "track_id",
+        "format",
+        "url",
+        "encoding",
+        "bitrate"
+      ]
+    }
+  }
+}

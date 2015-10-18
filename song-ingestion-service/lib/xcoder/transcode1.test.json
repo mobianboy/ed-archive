@@ -1,0 +1,6 @@
+{
+	"action": {
+		"route": "track/transcode",
+		"priority": 10
+	},
+}

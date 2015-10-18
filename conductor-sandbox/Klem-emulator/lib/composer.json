@@ -1,0 +1,14 @@
+{
+    "require": {
+        "aura/router": "2.1.1",
+        "react/react": "0.4.1",
+        "aura/autoload": "2.0.0",
+        "monolog/monolog": "~1.11",
+        "respect/validation": "0.7.*@dev",
+        "netresearch/jsonmapper": "0.4.*"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master",
+        "symfony/http-kernel": "*"
+    }
+}

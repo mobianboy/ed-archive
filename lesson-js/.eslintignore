@@ -1,0 +1,3 @@
+# Ignore Dependencies
+bower_components/
+node_modules/

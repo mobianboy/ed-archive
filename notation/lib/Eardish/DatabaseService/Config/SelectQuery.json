@@ -1,0 +1,1181 @@
+{
+  "request": {
+    "ProfileService": {
+      "getArtUrls": {
+        "COMMENT": "get all art urls and formats",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT url, relative_url, format FROM image WHERE art_id=$image_art_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "image": [
+            "art_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getArtistContent": {
+        "COMMENT": "track and and track if it belongs to it",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT a.profile_id, a.title as art_title, a.id as art_id, i.url as art_url, i.relative_url as relative_url, t.id as track_id, au.relative_url as relative_audio, t.name, i.format, a.type, t.deleted, t.published FROM art a LEFT OUTER JOIN track t ON a.id = t.art_id JOIN image i ON a.id = i.art_id LEFT OUTER JOIN audio au ON au.track_id = t.id WHERE a.profile_id = $profile_id and i.format = 'phone_large'"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (g:Group {id: $group_id})-[:USER_GROUPS]->(users)) ORDER BY name RETURN users"
+          }
+        },
+        "tables": {
+          "profile": [
+            "id"
+          ]
+        }
+      },
+      "getArtUrl": {
+        "COMMENT": "get art url with art id",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT url, relative_url, format FROM image WHERE art_id=$art_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (g:Group {id: $group_id})-[:USER_GROUPS]->(users)) ORDER BY name RETURN users"
+          }
+        },
+        "tables": {
+          "art": [
+            "id"
+          ]
+        }
+      },
+      "selectContactInfo": {
+        "COMMENT": "get art url with art id",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT * FROM contact WHERE id=$contact_id"
+          }
+        },
+        "tables": {
+          "contact": [
+            "id"
+          ]
+        }
+      },
+      "getGroupFollowers": {
+        "COMMENT": "returns all of an artists followers",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT ug.user_id, u.username FROM user_group ug, user u WHERE ug.group_id=$user_group_group_id AND ug.user_id=u.id ORDER BY u.username"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (g:Group {id: $group_id})-[:USER_GROUPS]->(users)) ORDER BY name RETURN users"
+          }
+        },
+        "tables": {
+          "user_group": [
+            "group_id"
+          ]
+        }
+      },
+      "listArtistProfiles": {
+        "COMMENT": "returns all artist profiles",
+        "STATUS": "testing",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id FROM profile WHERE type = 'artist-solo' OR type = 'artist-group'"
+          },
+          "default": {
+            "db": "postgres",
+            "query": ""
+          }
+        },
+        "tables": {}
+
+      },
+
+      "selectProfile": {
+        "COMMENT": "returns all information for an artist profile",
+        "STATUS": "READY",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT p.*, c.phone, c.address1, c.address2, c.city, c.state, c.zipcode FROM profile p, contact c WHERE p.id=$profile_id AND p.contact_id = c.id"
+          },
+          "default": {
+            "db": "postgres",
+            "query": ""
+          }
+        },
+        "tables": {
+          "profile": [
+            "id"
+          ]
+        }
+      },
+      "getFullNameByEmail": {
+        "COMMENT": "returns full name given an email",
+        "STATUS": "TESTED",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT first_name, last_name FROM profile p, public.user u WHERE p.user_id = u.id and u.email = '$user_email'"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "user": [
+            "email"
+          ]
+        }
+      },
+
+      "getSenderByInviteCode": {
+        "COMMENT": "Get sender by invite called",
+        "STATUS": "TESTED",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT inviter_id FROM invite i WHERE i.invite_code = $invite_invite_code"
+
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "invite": [
+            "invite_code"
+          ]
+        }
+      },
+
+      "getFollowedGroups": {
+        "COMMENT": "return all of the groups that a user follows",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT ug.group_id, b.name FROM user_group ug, group b WHERE ug.user_id=$user_group_user_id AND ug.group_id = b.id ORDER BY b.name ASC"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (u:User {id: $user_id})-[:USER_GROUPS]->(groups)) RETURN groups"
+          }
+        },
+        "tables": [
+          "user_group"
+        ]
+      },
+
+      "getGroupTracks": {
+        "COMMENT": "return all tracks that a user follows",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT ut.track_id, t.name FROM user_track ut, track t WHERE ut.user_id=$user_track_user_id AND ut.track_id=t.id ORDER BY name ASC"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (u:Group {id:'$user_track_acting_as_id'})-[:USER_TRACK]->(tracks) ORDER BY name ASC RETURN tracks"
+          }
+        },
+        "tables": {
+          "user_track": [
+            "acting_as_id"
+          ]
+        }
+      }
+    },
+
+    "MusicService": {
+      "getNewAlbumReleases": {
+        "COMMENT": "returns all of the new album releases",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT a.name g.group a.release_date FROM album a, group g WHERE a.release_date >= $since_date"
+          },
+          "alternate": {
+            "db": "neo",
+            "query": "MATCH (a:Album {id: $album_id})-[:NEW_ALBUM_RELEASES]->(releases)) RETURN releases"
+          },
+          "default": {
+            "db": "elastic",
+            "query": {
+              "range": {
+                "release_date": {
+                  "gte": "$time",
+                  "lte": "now",
+                  "time_zone": "-10:00"
+                }
+              }
+            }
+          }
+        },
+        "tables": {
+          "album": [
+            "name",
+            "release_date"
+          ],
+          "group": [
+            "name"
+          ]
+        },
+        "params": {
+          "since_date": ""
+        },
+        "type": "album"
+      },
+      "getArtistGenre": {
+        "COMMENT": "returns the full listing of tracks in an album and in order",
+        "STATUS": "",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT profile_id, genre_id FROM profile_genre WHERE profile_id=$profile_genre_profile_id"
+          }
+        },
+        "tables": {
+          "profile_genre": [
+            "profile_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getAlbumTrackInfo": {
+        "COMMENT": "returns the full listing of tracks in an album and in order",
+        "STATUS": "",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT a.name, g.name t.name FROM a album, g group, t track, atr album_trac WHERE a.id=$album_id AND g.id=a.group_id and atr.album_id = $album_id AND t.id = atr.track_id ORDER BY atr.pos ASC"
+          }
+        },
+        "tables": {
+          "album": [
+            "album_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getAlbumInfo": {
+        "COMMENT": "returns the basic album table information for an album",
+        "STATUS": "",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT group_id, name, release_date, various_artist, album_art, record_label FROM album WHERE id=$album_id"
+          }
+        },
+        "tables": {
+          "album": [
+            "album_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getAlbumTracks": {
+        "COMMENT": "return the tracks on an album",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT t.id, t.name, atr.album_id, atr.track_num FROM album_track atr, track t WHERE t.id = atr.track_id AND atr.album_id=$album_track_album_id ORDER BY atr.track_num ASC"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (a:Album {id: $album_track_album_id})-[:ALBUM_TRACKS]->(tracks) ORDER BY position ASC RETURN tracks"
+          }
+        },
+        "tables": {
+          "album_track": [
+            "album_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getAlbumInfo": {
+        "COMMENT": "return info about an album",
+        "STATUS": "POSTGRE READY FOR TESTING, NEO NOT DONE",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT * FROM album WHERE id=$album_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (a:Album {id: $album_track_album_id})-[:ALBUM_TRACKS]->(tracks) ORDER BY position ASC RETURN tracks"
+          }
+        },
+        "tables": {
+          "album": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getArtistAlbums": {
+        "COMMENT": "return all albums for an artist",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id, name FROM album WHERE group_id=$album_group_id ORDER BY release_date"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (b:Band {id: $group_id})-[:GROUP_ALBUMS]->(albums)) ORDER BY release_date RETURN albums"
+          }
+        },
+        "tables": {
+          "album": [
+            "group_id"
+          ]
+        }
+      },
+      "getArtistTracks": {
+        "COMMENT": "return all tracks for an artist",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id, name, length  FROM track WHERE profile_id=$track_profile_id AND NOT deleted"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (b:Band {id: $group_id})-[:GROUP_TRACKS]->(tracks)) ORDER BY release_date ASC RETURN tracks"
+          }
+        },
+        "tables": {
+          "track": [
+            "profile_id"
+          ]
+        }
+      },
+      "getPlaylists": {
+        "COMMENT": "returns all of the users playlists returned sorted by the $order column",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT name, created_at FROM playlist WHERE user_id=$playlist_user_id ORDER BY $order $direction"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (u:User {id: '$user_id'})-[:PLAYLIST]->(playlists) RETURN playlists"
+          }
+        },
+        "tables": {
+          "playlist": [
+            "user_id"
+          ]
+        },
+        "params": {
+          "order": "",
+          "direction": ""
+        }
+      },
+      "getPlaylistTracks": {
+        "COMMENT": "three table inner join.  returns the tracks from a playlist, ordered by the column dictated in $order",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT pt.track_id, t.name, b.name FROM playlist_track pt INNER JOIN track t on pt.track_id=t.id INNER JOIN group b on t.group_id = b.id WHERE id=$playlist_id ORDER BY $order $direction"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (pl: Playlist {id: $playlist_id})-[:TRACK]->(tracks) ORDER BY $order $direction RETURN tracks"
+          }
+        },
+        "tables": {
+          "playlist": [
+            "id"
+          ]
+        },
+        "params": {
+          "order": "",
+          "direction": ""
+        }
+      },
+      "getRecentTracks": {
+        "COMMENT": "gets a users most recently played tracks LIMIT to $limit records",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT t.name, tp.posted_at FROM track_play tp, track t WHERE t.user_id=$track_play_user_id ORDER BY posted_at DESC LIMIT $limit"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (u: User {id: $user_id})-[:TRACK_PLAY]->(tracks) ORDER BY posted_at DESC LIMIT $limit RETURN tracks"
+          }
+        },
+        "tables": {
+          "track_play": [
+            "user_id"
+          ]
+        },
+        "params": {
+          "limit": ""
+        }
+      },
+      "getTrackPlay": {
+        "COMMENT": "returns all of the plays for a track between a BEGINDATE and ENDDATE",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT track_id datetime FROM track_play tp WHERE track_id=$track_play_track_id datetime BETWEEN $begindate AND $enddate ORDER BY datetime $direction"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (t:Track {id: $track_id})-[:TRACK_PLAYS]->(plays)) BETWEEN $begindate AND $enddate ORDER BY datetime $direction RETURN plays"
+          }
+        },
+        "tables": {
+          "track_play": [
+            "track_id"
+          ]
+        },
+        "params": {
+          "begindate": "",
+          "enddate": "",
+          "direction": ""
+        }
+      },
+      "getTrackDetail": {
+        "COMMENT": "returns the details of a track",
+        "STATUS": "",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT t.id, t.profile_id, t.art_id, t.name, t.length, tg.genre_id FROM track t, track_genre tg WHERE tg.track_id = t.id AND t.id = $track_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "track": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getProfileTrackRating": {
+        "COMMENT": "returns the rating a profile gave a track - no results if no rating",
+        "STATUS": "",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT rating FROM track_rating WHERE profile_id = $track_rating_profile_id AND track_id = $track_rating_track_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "track_rating": [
+            "profile_id",
+            "track_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getTrackPlayCount": {
+        "COMMENT": "returns a count of the plays for a track between a BEGINDATE and ENDDATE",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT count(*) FROM track_play WHERE track_id=$track_play_track_id posted_at BETWEEN $begindate AND $enddate ORDER BY posted_at $direction"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (t:Track {id: $track_id})-[:TRACK_PLAYS]->(plays)) BETWEEN $begindate AND $enddate ORDER BY datetime $direction RETURN count(plays)"
+          }
+        },
+        "tables": {
+          "track_play": [
+            "track_id"
+          ]
+        },
+        "params": {
+          "begindate": "",
+          "enddate": "",
+          "direction": ""
+        }
+      },
+      "getNewTrackReleases": {
+        "COMMENT": "returns all of the new track releases",
+        "STATUS": "TRACK TABLE NEEDS A RELEASE DATE",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT t.name g.group t.release_date FROM track t, group g WHERE t.release_date >= $since_date"
+          },
+          "default": {
+            "db": "elastic",
+            "query": {
+              "range": {
+                "release_date": {
+                  "gte": "$time",
+                  "lte": "now",
+                  "time_zone": "-10:00"
+                }
+              }
+            }
+          }
+        },
+        "tables": {
+          "track": [
+            "name",
+            "release_date"
+          ],
+          "group": [
+            "name"
+          ]
+        },
+        "params": {
+          "since_date": ""
+        },
+        "type": "track"
+      },
+      "getS3url": {
+        "COMMENT": "given a trackId and mediaType, returns a link to the matching media file in S3",
+        "STATUS": "",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT url, relative_url, format FROM audio WHERE track_id=$audio_track_id and format='$audio_format'"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "audio": [
+            "track_id",
+            "format"
+          ]
+        }
+      },
+      "listGenres": {
+        "COMMENT": "return all genres",
+        "STATUS": "",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id, name FROM genre"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "genre": []
+        },
+        "params": {}
+      }
+    },
+    "SongIngestionService": {
+      "transcodeStageTrack": {
+        "COMMENT": "returns the URL for the amazon S3 original audio file so it can be transcoded",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT url FROM audio WHERE track_id=$audio_track_id AND format=$audio_format"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "audio": [
+            "track_id",
+            "format"
+          ]
+        }
+      },
+      "transcodePushAndCleanFile": {
+        "COMMENT": "returns the finished job details so it can be pushed up to S3 and cleaned up",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT track_id, target, encoding, bitrate FROM transcode_job WHERE id=$job_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "transcode_job": [
+            "id"
+          ]
+        }
+      }
+    },
+    "UserService": {
+      "validateInviteCode": {
+        "COMMENT": "checks to see if code is available",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id, inviter_id, invite_code, null as artist_name FROM invite WHERE invite_code='$invite_invite_code' and date_redeemed is null UNION SELECT null as id, user_id as inviter_id, invite_code, artist_name FROM profile WHERE invite_code = '$invite_invite_code'"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "invite": [
+            "invite_code"
+          ]
+        },
+        "params": {
+        }
+      },
+      "checkIfEmailAlreadyExists": {
+        "COMMENT": "checks to see if email is available",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT * FROM public.user WHERE email ='$user_email'"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "user": [
+            "email"
+          ]
+        },
+        "params": {
+        }
+      },
+      "selectUserProfile": {
+        "COMMENT": "returns user profile info",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT user_id, type, first_name, last_name, zipcode, year_of_birth FROM profile WHERE user_id=$profile_user_id AND type=$profile_type"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "profile": [
+            "user_id",
+            "type"
+          ]
+        },
+        "params": {
+        }
+      },
+      "invitesUsed": {
+        "COMMENT": "count invites used",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT count(*) FROM invite WHERE inviter_id=$invite_inviter_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "invite": [
+            "inviter_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "extraInvites": {
+        "COMMENT": "checks if user has extra invites available",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT extra_invites FROM public.user WHERE id = $user_id"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "user": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getFriends": {
+        "COMMENT": "returns a list of a users friends",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT f.friend_id, u.username FROM friend f, public.user u WHERE f.friend_id = u.id AND f.user_id= $friend_user_id ORDER BY u.username ASC"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (u:User {id: $user_id})-[:FRIENDS]->(friends)) ORDER BY u.username ASC RETURN friends"
+          }
+        },
+        "tables": {
+          "friend": [
+            "user_id",
+            "friend_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "getUserAlbums": {
+        "COMMENT": "return all of the albums that a user follows",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT ua.album_id, a.name FROM user_album ua, album a WHERE ua.user_id=$user_album_user_id AND ua.album_id=a.id ORDER BY name ASC"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (u:User {id: $user_id})-[:USER_ALBUMS]->(albums) ORDER BY name ASC RETURN albums"
+          }
+        },
+        "tables": {
+          "user_album": [
+            "user_id"
+          ]
+        }
+      },
+      "getUserById": {
+        "COMMENT": "returns user information given an id",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT * FROM public.user WHERE id=$user_id"
+          },
+          "alternate": {
+            "db": "neo",
+            "query": ""
+          },
+          "default": {
+            "db": "elastic",
+            "query": {
+              "query": {
+                "match": {
+                  "id": "$user_id"
+                }
+              }
+            }
+          }
+        },
+        "tables": {
+          "user": [
+            "id"
+          ]
+        },
+        "params": {
+        },
+        "type": "user"
+      },
+      "getUserTracks": {
+        "COMMENT": "Return all tracks that a user follows",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT ut.track_id, t.name FROM user_track ut, track t WHERE ut.user_id=$user_track_user_id AND ut.track_id=t.id ORDER BY name"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (u:User {id:'$user_track_user_id'})-[:USER_TRACK]->(tracks) ORDER BY name RETURN tracks"
+          }
+        },
+        "tables": {
+          "user_track": [
+            "user_id"
+          ]
+        }
+      }
+    },
+    "AuthService": {
+      "getHashPass": {
+        "COMMENT": "returns all of an artists followers",
+        "STATUS": "TESTED WITH PGADMIN",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT password FROM public.user WHERE email='$user_email'"
+          },
+          "default": {
+            "db": "neo",
+            "query": "MATCH (g:Group {id: $group_id})-[:USER_GROUPS]->(users)) ORDER BY name RETURN users"
+          }
+        },
+        "tables": {
+          "user": [
+            "email"
+          ]
+        }
+      },
+      "getUserIdByEmail": {
+        "COMMENT": "returns user information given an email",
+        "STATUS": "TESTED WITH PGADMIN",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id FROM public.user WHERE email = '$user_email'"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "user": [
+            "email"
+          ]
+        }
+      },
+      "getEmailByResetCode": {
+        "COMMENT": "returns user email given a reset code",
+        "STATUS": "TESTED WITH PGADMIN",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT email, reset_passcode_exp FROM public.user WHERE reset_passcode = '$user_reset_passcode'"
+          },
+          "default": {
+            "db": "neo",
+            "query": ""
+          }
+        },
+        "tables": {
+          "user": [
+            "reset_passcode"
+          ]
+        }
+      },
+      "getLoginProfileInfo": {
+        "COMMENT": "returns profile id given a user id",
+        "STATUS": "TESTED WITH PGADMIN",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id, onboarded, type FROM profile WHERE user_id=$profile_user_id"
+          }
+        },
+        "tables": {
+          "profile": [
+            "user_id"
+          ]
+        }
+      }
+    },
+    "RecommendationService": {
+      "getProfileGenreBlend": {
+        "COMMENT": "gets the user blend of discovery tracks in preferred genres",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT * FROM profile_genre_blend WHERE profile_id = $profile_genre_blend_profile_id"
+          }
+        },
+        "tables": {
+          "profile_genre_blend": [
+            "profile_id"
+          ]
+        }
+      },
+      "getFullGenreBlendSet": {
+        "COMMENT": "gets the user blend of discovery tracks in preferred genres",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT track_id, genre_id FROM track_genre WHERE genre_id IN (SELECT id FROM genre WHERE id IN (SELECT genre_id FROM profile_genre_blend WHERE weight = 2 and profile_id = $profile_genre_blend_profile_id)) AND track_id IN (select id from track EXCEPT ALL (select id from track WHERE published IS NOT true or deleted = true OR id IN (SELECT track_id from track_play WHERE profile_id = $profile_genre_blend_profile_id ORDER BY date_created DESC limit 25))) GROUP BY track_id, genre_id ORDER BY random() LIMIT $limit"
+          }
+        },
+        "tables": {
+          "profile_genre_blend": [
+            "profile_id"
+          ]
+        },
+        "params": {
+          "limit": ""
+        }
+      },
+      "getSingleGenreBlendSet": {
+        "COMMENT": "gets a set of discovery tracks for a single genre",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "(SELECT track_id FROM track_genre WHERE genre_id = $track_genre_genre_id ORDER BY random()) EXCEPT ALL (select track_id from track_play where profile_id = $track_genre_profile_id ORDER BY date_created DESC LIMIT 25) EXCEPT ALL (select id from track where published IS NOT true or deleted = true) LIMIT $limit"
+          }
+        },
+        "tables": {
+          "track_genre": [
+            "genre_id",
+            "profile_id"
+          ]
+        },
+        "params": {
+          "limit": ""
+        }
+      }
+    },
+
+    "AnalyticsService": {
+      "getRatedTracks": {
+        "COMMENT": "gets artist profile id by track id",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT COUNT(id) FROM track_rating WHERE profile_id=$track_rating_profile_id AND date_created > '$start' AND date_created <= '$stop' GROUP BY profile_id"
+          }
+        },
+        "tables": {
+          "track_rating": [
+            "profile_id"
+          ]
+        },
+        "params": {
+          "start": "",
+          "stop": ""
+        }
+      },
+      "getCompletedListens": {
+        "COMMENT": "gets artist profile id by track id",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT user_id, COUNT(id) FROM analytic WHERE event_type='$analytic_event_type' AND user_id = $analytic_user_id GROUP BY user_id"
+          }
+        },
+        "tables": {
+          "analytic": [
+            "user_id",
+            "event_type"
+          ]
+        },
+        "params": {
+          "start": "",
+          "stop": ""
+        }
+      },
+      "getArtistIdFromTrackId": {
+        "COMMENT": "gets artist profile id by track id",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT profile_id FROM track WHERE id = $track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "id"
+          ]
+        }
+      },
+      "getArtistIdsFromMultipleTracks" : {
+        "COMMENT": "gets artist profile id by track id",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT id, profile_id FROM track WHERE id in ($track_ids)"
+          }
+        },
+        "tables": {
+          "track": [
+            "ids"
+          ]
+        }
+      },
+      "getCompletedListensChart": {
+        "COMMENT": "charts most completed listens for artists",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT $group_by as id, COUNT(id) as value FROM analytic WHERE event_type='$analytic_event_type' AND date_created > '$start' AND date_created <= '$stop' GROUP BY $group_by ORDER BY COUNT(id) DESC LIMIT 10"
+          }
+        },
+        "tables": {
+          "analytic": [
+            "event_type"
+          ]
+        },
+        "params": {
+          "start": "",
+          "stop": "",
+          "group_by": ""
+        }
+      },
+      "getCompletedListensFans": {
+        "COMMENT": "charts most completed listens for fans",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT profile_id as id, COUNT(id) as value FROM analytic WHERE event_type='$analytic_event_type' AND date_created > '$start' AND date_created <= '$stop' GROUP BY profile_id ORDER BY COUNT(id) DESC LIMIT 10"
+          }
+        },
+        "tables": {
+          "analytic": [
+            "event_type"
+          ]
+        },
+        "params": {
+          "start": "",
+          "stop": ""
+        }
+      },
+      "getMostTracksRatedFans": {
+        "COMMENT": "charts most rated songs fans",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT profile_id as id, COUNT(id) as value FROM track_rating WHERE date_created > '$start' AND date_created <= '$stop' GROUP BY profile_id ORDER BY COUNT(id) DESC LIMIT 10"
+          }
+        },
+        "tables": {
+        },
+        "params": {
+          "start": "",
+          "stop": ""
+        }
+      },
+      "getHighestRatedChart": {
+        "COMMENT": "charts most rated tracks artists",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT $group_by as id, ROUND(AVG(rating), 2) as value FROM track_rating WHERE date_modified >'$start' AND date_modified <= '$stop' GROUP BY $group_by ORDER BY AVG(rating) DESC LIMIT 10"
+          }
+        },
+        "tables": {
+          "analytic": [
+            "event_type"
+          ]
+        },
+        "params": {
+          "start": "",
+          "stop": "",
+          "group_by": ""
+        }
+      },
+      "getBadges": {
+        "COMMENT": "List all badges",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT * FROM badge"
+          }
+        },
+        "tables": {
+          "badge": []
+        }
+      },
+      "getProfileBadges": {
+        "COMMENT": "Get all badges for a given profile",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT * FROM profile_badge WHERE profile_id=$profile_badge_profile_id"
+          }
+        },
+        "tables": {
+          "profile_badge": [
+            "profile_id"
+          ]
+        }
+      },
+      "selectMultipleProfiles": {
+        "COMMENT": "returns all information for a list of artists",
+        "STATUS": "READY",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "SELECT p.id, p.first_name, p.last_name, p.artist_name, u.email FROM profile p, public.user u WHERE p.id in ($profile_ids) AND p.user_id = u.id"
+          },
+          "default": {
+            "db": "postgres",
+            "query": ""
+          }
+        },
+        "tables": {
+          "profile": [
+            "ids"
+          ]
+        }
+      }
+    }
+  }
+}

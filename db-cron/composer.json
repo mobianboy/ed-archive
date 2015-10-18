@@ -1,0 +1,19 @@
+{
+    "require": {
+        "guzzle/guzzle": "3.7.0",
+        "guzzle/parser": "3.0.7",
+        "doctrine/orm": "2.5.*@dev",
+        "doctrine/common": "2.5.*@dev",
+        "everyman/neo4jphp": "dev-master",
+        "elasticsearch/elasticsearch": "dev-master",
+        "react/http": "0.3.*",
+        "monolog/monolog": "~1.11",
+        "cron/cron": "1.0.*@dev"
+
+    },
+
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master",
+        "fzaninotto/faker": "1.5.*@dev"
+    }
+}

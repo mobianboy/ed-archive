@@ -1,0 +1,434 @@
+{
+  "request": {
+    "MusicService": {
+      "updateAllGenreTracks": {
+        "COMMENT": "updates genre of all tracks for an artist",
+        "STATUS:": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE track_ge SET $parameters WHERE profile_id=$profile_genre_profile_id"
+          }
+        },
+        "tables": {
+          "track_genre": [
+            "genre_id"
+          ]
+        },
+        "where":{
+          "track": [
+            "profile_id"
+          ]
+        },
+        "from": [
+          "track"
+        ],
+        "fromWhere": [
+          { "track": "id",
+            "track_genre": "track_id"
+          }
+        ]
+      },
+
+      "updateArtistGenre": {
+        "COMMENT": "updates profile genre, will not work with profiles with more than one genre",
+        "STATUS:": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE profile_genre SET $parameters WHERE profile_id=$profile_genre_profile_id"
+          }
+        },
+        "tables": {
+          "profile_genre": [
+            "genre_id"
+          ]
+        },
+        "where":{
+          "profile_genre": [
+            "profile_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "softDeleteTrack": {
+        "COMMENT": "sets deleted flag on track to true",
+        "STATUS:": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE track SET $parameters WHERE id=$track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "deleted"
+          ]
+        },
+        "where": {
+          "track": [
+            "id"
+          ]
+        }
+      },
+      "updateTrack": {
+        "COMMENT": "updates the track record - does NOT update the associate media files",
+        "STATUS:": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE track SET $parameters WHERE id=$track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "published"
+          ]
+        },
+        "where":{
+          "track": [
+            "id"
+          ]
+        }
+      },
+      "updateAlbumData": {
+        "COMMENT": "updates an album's basic data - does NOT update track data",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE album SET $parameters WHERE id=$album_id"
+          }
+        },
+        "tables": {
+          "album": [
+            "name",
+            "group_id",
+            "release_date",
+            "album_art",
+            "record_label",
+            "id"
+          ]
+        },
+        "where":{
+          "album": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "updateTrackRating": {
+        "COMMENT": "updates a track rating of a user",
+        "STATUS": "",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE track_rating SET $parameters WHERE profile_id=$track_rating_profile_id AND track_id=$track_rating_track_id"
+          }
+        },
+        "tables": {
+          "track_rating": [
+            "rating"
+          ]
+        },
+        "where": {
+          "track_rating": [
+            "profile_id",
+            "track_id"
+          ]
+        },
+        "params": {
+        }
+      }
+    },
+
+    "UserService": {
+      "redeemInviteCode": {
+        "COMMENT": "assign invitee to the invite_code/inviter when they successfully register to site",
+        "STATUS": "Ready For Testing",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE invite SET $parameters WHERE id=$invite_id"
+          }
+        },
+        "tables": {
+          "invite": [
+            "invitee_id"
+          ]
+        },
+        "where" : {
+          "invite": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "updateExtraInvites": {
+        "COMMENT": "updates extra invites used",
+        "STATUS": "READY TO TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE public.user SET $parameters WHERE id = $user_id"
+          }
+        },
+        "tables": {
+          "user": [
+            "extra_invites"
+          ]
+        },
+        "where": {
+          "user": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      }
+    },
+
+    "ProfileService": {
+      "editArtistProfile": {
+        "COMMENT": "update an Artist's profile",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE profile SET $parameters WHERE id=$profile_id"
+          }
+        },
+        "tables": {
+          "profile": [
+            "art_id",
+            "contact_id",
+            "type",
+            "invite_code",
+            "first_name",
+            "last_name",
+            "artist_name",
+            "year_of_birth",
+            "bio",
+            "website",
+            "year_founded",
+            "hometown",
+            "influenced_by",
+            "facebook_page",
+            "twitter_page",
+            "last_edited_by",
+            "ar_rep"
+          ]
+        },
+        "where": {
+          "profile": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "editContactInfo": {
+        "COMMENT": "update an Artist's profile",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE contact SET $parameters WHERE id=$contact_id"
+          }
+        },
+        "tables": {
+          "contact": [
+            "phone",
+            "address1",
+            "address2",
+            "city",
+            "state",
+            "zipcode"
+          ]
+        },
+        "where": {
+          "contact": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "updateProfileIsOnboarded": {
+        "COMMENT": "update when user is onboarded after creating profile genre blend",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE profile SET $parameters WHERE id=$profile_id"
+          }
+        },
+        "tables": {
+          "profile": [
+            "onboarded"
+          ]
+        },
+        "where": {
+          "profile": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      }
+    },
+
+    "AuthService": {
+
+      "updatePassword": {
+        "COMMENT": "update and save a user's password with a new one",
+        "STATUS": "",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE public.user SET $parameters WHERE email = '$user_email'"
+          }
+        },
+        "tables": {
+          "user": [
+            "password",
+            "reset_passcode"
+          ]
+        },
+        "where":{
+          "user": [
+            "email"
+          ]
+        },
+        "params": {
+        }
+      },
+
+      "generateResetPassCode": {
+        "COMMENT": "Insert a reset passcode the user can use to create a new one. Eventually expires",
+        "STATUS": "",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE public.user SET $parameters WHERE email = '$user_email'"
+          }
+        },
+        "tables": {
+          "user": [
+            "reset_passcode",
+            "reset_passcode_exp"
+          ]
+        },
+        "where":{
+          "user": [
+            "email"
+          ]
+        },
+        "params": {
+        }
+      },
+      "deleteResetPassCode": {
+        "COMMENT": "Updates the reset passcode and reset passcode expiration date to be null after redemption",
+        "STATUS": "TESTED USING PGADMIN",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE public.user SET $parameters WHERE email = '$user_email'"
+          }
+        },
+        "tables": {
+          "user": [
+            "reset_passcode",
+            "reset_passcode_exp"
+          ]
+        },
+        "where":{
+          "user": [
+            "email"
+          ]
+        }
+      }
+    },
+
+    "ImageProcessingService": {
+      "updateProfilePics": {
+        "COMMENT": "Uploads original and different sizes of user profile picture",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE media SET $parameters WHERE profile_id=$media_profile_id"
+          }
+        },
+        "tables": {
+          "media": [
+            "profile_id",
+            "type",
+            "profile_art_original",
+            "profile_art_phone_small",
+            "profile_art_phone_large",
+            "profile_art_tablet_small",
+            "profile_art_tablet_large",
+            "profile_art_thumbnail_small",
+            "profile_art_thumbnail_large"
+          ]
+        },
+        "where": {
+          "media": [
+            "profile_id"
+          ]
+        }
+      }
+    },
+
+    "SongIngestionService": {
+      "transcodeFinishJob": {
+        "COMMENT": "after transcoder finishes a job, update the job to reflect it",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE transcode_job SET $parameters WHERE id = $transcode_job_id"
+          }
+        },
+        "tables": {
+          "transcode_job": [
+            "status",
+            "finished_on"
+          ]
+        },
+        "where": {
+          "transcode_job": [
+            "id"
+          ]
+        }
+      },
+
+
+      "transcodePushedJob": {
+        "COMMENT": "after SIS pushes a job, update the job to reflect it",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE transcode_job SET $parameters WHERE id = $transcode_job_id"
+          }
+        },
+        "tables": {
+          "transcode_job": [
+            "pushed_on",
+            "status"
+          ]
+        },
+        "where": {
+          "transcode_job": [
+            "id"
+          ]
+        }
+      }
+    }
+  }
+}

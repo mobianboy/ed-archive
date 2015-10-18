@@ -1,0 +1,440 @@
+{
+  "user": {
+    "ar-rep":{
+      "create": {
+        "method": "newUser",
+        "required": {
+          "data": {
+            "inviteCode" : "string",
+            "password": "string",
+            "email": "string,,email",
+            "name": {
+              "first": "string",
+              "last": "string"
+            },
+            "type": "string",
+            "zipcode": "string"
+          }
+        }
+      }
+    },
+    "create": {
+      "method": "newUser",
+      "required": {
+        "data": {
+          "inviteCode" : "string",
+          "password": "string",
+          "email": "string,,email",
+          "name": {
+            "first": "string",
+            "last": "string"
+          },
+          "type": "string",
+          "yearOfBirth": "int,,positive",
+          "zipcode": "string"
+        }
+      }
+    },
+    "password": {
+      "get": {
+        "method": "forgotPassword",
+        "required": {
+          "data" :{
+            "email": "string,,email"
+          }
+        }
+      },
+      "set": {
+        "method": "resetPassword",
+        "required" : {
+          "data": {
+            "password": "string",
+            "resetCode": "string"
+          }
+        }
+      },
+      "update": {
+        "method": "resetPassword",
+        "required" : {
+          "data": {
+            "password": "string"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "stats": {
+      "get": {
+        "method" : "getUserStats",
+        "required": {
+          "data": {},
+          "auth": {}
+        }
+      }
+    },
+    "controller": "User"
+  },
+  "referral": {
+    "create": {
+      "method": "inviteUser",
+      "required": {
+        "data": {
+          "email": "string,,email"
+        },
+        "auth": {}
+      }
+    },
+    "set": {
+      "method": "inviteUser",
+      "required" : {
+        "data": {
+          "email": "string,,email"
+        },
+        "auth": {}
+      }
+    },
+    "get": {
+      "method": "referralsRemaining",
+      "required": {
+        "auth": {}
+      }
+    },
+    "controller": "User"
+  },
+  "track": {
+    "delete": {
+      "method": "deleteTrack",
+      "required": {
+        "data": {
+          "trackId": "int,,positive",
+          "profileId": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "create": {
+      "method": "addTrack",
+      "required": {
+        "data": {
+          "profileId": "int,,positive",
+          "trackName": "string",
+          "artId" : "int,,positive",
+          "genreId": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "upload": {
+      "method": "addTrackUrl",
+      "required": {
+        "data": {
+          "profileId": "int,,positive",
+          "trackUrl": "string",
+          "trackId": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "art": {
+      "get": {
+        "method": "getTrackArt",
+        "required": {
+          "data": {
+            "id": "int,,positive"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "url": {
+      "get": {
+        "method": "getCFURL",
+        "required": {
+          "data": {
+            "id": "int,,positive",
+            "format": "string"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "get": {
+      "method": "getTrackDetail",
+      "required": {
+        "data": {
+          "id": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "list": {
+      "method": "selectTrackDetailsAll",
+      "required": {
+        "data": {
+          "artistId": "int,,positive"
+        }
+      }
+    },
+    "rate": {
+      "create": {
+        "method": "rateTrack",
+        "required": {
+          "data": {
+            "profileId": "int,,positive",
+            "trackId": "int,,positive",
+            "rating": "int,,positive"
+          },
+          "auth": {}
+        }
+      },
+      "set": {
+        "method": "rateTrack",
+        "required": {
+          "data": {
+            "profileId": "int,,positive",
+            "trackId": "int,,positive",
+            "rating": "int,,positive"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "transcode": {
+      "method": "transcodeAudioToAllFormats",
+      "required": {
+        "data": {
+          "trackId": "int,,positive"
+        }
+      }
+    },
+    "update":{
+      "method": "updateTrack",
+      "required": {
+        "data": {
+          "trackId": "int,,positive"
+        },
+        "auth":{}
+      }
+    },
+    "delete": {
+      "method": "softDeleteTrack",
+      "required": {
+        "data": {
+          "trackId": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "controller": "Music"
+  },
+  "discover": {
+    "blend": {
+      "list": {
+        "method": "getFullGenreBlendSet",
+        "required": {
+          "data": {
+            "id": "int,,positive"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "list": {
+      "method": "getSingleGenreBlendSet",
+      "required": {
+        "data": {
+          "id": "int,,positive",
+          "genreId": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "controller": "Music"
+  },
+  "profile": {
+    "get": {
+      "method": "selectProfile",
+      "required": {
+        "data": {
+          "id": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "update": {
+      "method": "editArtistProfile",
+      "required": {
+        "data": {
+          "id": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "set": {
+      "method": "editArtistProfile",
+      "required": {
+        "data": {
+          "id": "int,,positive"
+        },
+        "auth": {}
+      }
+    },
+    "list": {
+      "method": "listArtistProfiles",
+      "required": {
+
+      },
+      "auth": {}
+    },
+    "create": {
+      "method": "createArtistProfile",
+      "required": {
+        "data": {
+          "name": {
+            "first": "string",
+            "last": "string"
+          },
+          "email": "string,,email"
+        }
+      }
+    },
+    "content":{
+      "list": {
+        "method": "getArtistContent",
+        "required": {
+          "data": {
+            "id": "int,,positive"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "art": {
+      "create": {
+        "method": "artCreate",
+        "required": {
+          "data": {
+            "profileId": "int,,positive",
+            "url": "string",
+            "type": "string"
+          },
+          "auth": {}
+        }
+      },
+      "update": {
+        "method": "updateArt",
+        "required": {
+          "data": {
+            "profileId": "int,,positive",
+            "artTitle": "string",
+            "artUrl": "string",
+            "artType": "string"
+          },
+          "auth": {}
+        }
+      },
+      "delete": {
+        "method": "deleteArt",
+        "required": {
+          "data": {
+            "artId": "int,,positive"
+          },
+          "auth": {}
+        }
+      },
+      "list": {
+        "method": "listArt",
+        "required": {
+          "data": {
+            "profileId": "int,,positive"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "blend": {
+      "create": {
+        "method": "createProfileGenreBlend",
+        "required": {
+          "data": {
+            "genresLiked": ["int,,positive"],
+            "genresDisliked": ["int,,positive"],
+            "id": "int,,positive"
+          },
+          "auth": {}
+        }
+      },
+      "update": {
+        "method": "modifyProfileGenreBlend",
+        "required": {
+          "data": {
+            "genresLiked": ["int,,positive"],
+            "genresDisliked": ["int,,positive"],
+            "id": "int,,positive"
+          },
+          "auth": {}
+        }
+      },
+      "set": {
+        "method": "modifyProfileGenreBlend",
+        "required": {
+          "data": {
+            "genresLiked": ["int,,positive"],
+            "genresDisliked": ["int,,positive"],
+            "id": "int,,positive"
+          },
+          "auth": {}
+        }
+      },
+      "get": {
+        "method": "getProfileGenreBlend",
+        "required": {
+          "data": {
+            "id": "int,,positive"
+          },
+          "auth": {}
+        }
+      }
+    },
+    "controller": "Profile"
+  },
+  "chart": {
+    "list": {
+      "method": "listCharts",
+      "required": {
+        "data": {
+          "chartName": "string"
+        }
+      }
+    },
+    "controller": "Social"
+  },
+  "genre": {
+    "list": {
+      "method": "listGenres",
+      "required": {}
+    },
+    "controller": "Music"
+  },
+  "aws": {
+    "token": {
+      "get": {
+        "method": "getClientAws",
+        "required": {
+          "auth": {}
+        }
+      }
+    },
+    "controller": "User"
+  },
+  "analytic": {
+    "submit": {
+      "event": {
+        "method": "submitEntry",
+        "required": {
+        }
+      }
+    },
+    "controller": "Analytic"
+  }
+}

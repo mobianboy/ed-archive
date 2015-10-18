@@ -1,0 +1,377 @@
+.section,
+.slide{
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    float:left;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+nav.sticky{
+    div.midnightInner{
+      overflow: hidden !important;
+    }
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    line-height: 66px;
+    height: 66px !important;
+    h1{
+        text-indent: -99999px;
+        font-size: 16px;
+    }
+    div.container{
+        overflow: hidden;
+    }
+    a.logo{
+        overflow: hidden;
+        display: block;
+        height: 66px;
+        width: 150px;
+        i{
+            font-size: 130px;
+            position: absolute;
+            line-height: 66px;
+        }
+    }
+    a.menu{
+        float:right;
+        position: absolute;
+        top: 0;
+        right: 10%;
+        i{
+            font-size: 27px;
+            position: absolute;
+            top: 0;
+            line-height: 66px;
+            margin-right: 15px;
+
+        }
+    }
+}
+
+nav.global{
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    right: -200px;
+    top: 0;
+    z-index: 140;
+    background: #fff;
+    transition: all 250ms ease-out;
+    .exit{
+        height: 46px;
+        i{
+            font-size:30px;
+            color: #333;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    }
+    .nav > li > a{
+        color: #5e0c7b;
+        &:hover{
+            background: #5e0c7b;
+            color: #fff;
+        }
+    }
+    &.open{
+        right: 0;
+        transition: all 250ms ease-out;
+    }
+}
+
+.midnightHeader{
+    height: 66px;
+    &.default{
+        background: rgba(0,0,0,0.5);
+        a{
+            color:#fff;
+            // &.logo i{
+            //     top:-8px;
+            // }
+            // &.menu i{
+            //     top: -11px;
+            // }
+
+        }
+    }
+    &.dark{
+        background: rgba(0,0,0,0.5);
+    }
+    &.white{
+        background:rgba(255,255,255,0.9);
+        div.container{
+            -moz-transform: translateY(32px);
+        }
+        a{
+            color: #5e0c7b;
+            // &.logo i{
+            //     top:26px;
+            // }
+            // &.menu i{
+            //     top:23px;
+            // }
+        }
+    }
+}
+.slick-slider{
+    margin-bottom: 0;
+}
+.slick-list{
+    height: 100%;
+    .slick-track{
+        height: 100%;
+    }
+}
+#top{
+    padding-bottom: 0;
+    .slide{
+        height: 100%;
+        padding-top: 100px;
+        padding-bottom: 0;
+    }
+    #top-bg-1{
+        background-image: url(/wp-content/themes/eardish/images/bg_top_1.jpg);
+    }
+    #top-bg-2{
+        background-image: url(/wp-content/themes/eardish/images/bg_top_2.jpg);
+    }
+    #top-bg-3{
+        background-image: url(/wp-content/themes/eardish/images/bg_top_3.jpg);
+    }
+    #top-bg-4{
+        background-image: url(/wp-content/themes/eardish/images/bg_top_4.jpg);
+    }
+    #top-bg-5{
+        background-image: url(/wp-content/themes/eardish/images/bg_top_5.jpg);
+    }
+
+}
+
+label{
+    font-size: 18px;
+    font-weight: normal;
+}
+
+input.form-control,
+select.form-control{
+    padding: 5px 10px;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+fieldset.inline{
+    legend{
+        border-bottom: none;
+        float:left;
+        width: auto;
+        font-size: 21px;
+        margin-right: 20px;
+    }
+}
+
+h2{
+    font-size: 65px;
+    color: @brand-primary;
+    strong{
+        color: #fff;
+        font-weight: inherit;
+    }
+    @media (min-width: @screen-md-min) { font-size: 88px; }
+}
+
+.page-header{
+    width: 100%;
+    border-bottom: none;
+    float: left;
+    h3{
+        font-size: 60px;
+        margin-top: 30px;
+        small{
+            font-size: 24px;
+            color: @brand-primary;
+            font-weight: 300;
+            float: right;
+            display: inline-block;
+            margin-top: 35px;
+        }
+    }
+    + div.container{
+        margin-top: 100px;
+    }
+}
+
+#careers{
+    background-image: url(/wp-content/themes/eardish/images/bg_careers.jpg);
+    padding-bottom: 80px;
+    h3{
+        margin-bottom: 30px;
+    }
+    h3,p{
+        color: #5e0c7b;
+    }
+    p{
+        text-align: center;
+        font-size: 32px;
+        font-weight: 200;
+        margin-bottom: 70px;
+    }
+    .button-career{
+      @media (max-width: @screen-xs-max){
+        font-size: 14px;
+      }
+    }
+}
+
+#beta{
+     background-image: url(/wp-content/themes/eardish/images/bg_beta.jpg);
+     padding-bottom: 80px;
+     h3{
+        font-weight: bold;
+        margin-bottom: 30px;
+     }
+     h4,p{
+        text-align: center;
+     }
+     label,legend{
+        color: @brand-primary;
+     }
+     .radio-inline{
+        font-size: 18px;
+        color: #fff;
+        margin-top: 3px;
+        input[type=radio]{
+            margin-top: 8px;
+            margin-right: 10px;
+        }
+     }
+     .checkbox-inline{
+        font-size: 18px;
+        color: #fff;
+     }
+     div.button{
+        margin-top: 60px;
+     }
+}
+
+#contact{
+    background-image: url(/wp-content/themes/eardish/images/bg_contact.jpg);
+    address{
+        margin-top: 40px;
+        strong{
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        font-size: 22px;
+        font-weight: 200;
+        div{
+            &:before{
+                font-family: "icomoon";
+                display: block;
+                float: left;
+                font-size: 16px;
+                color: @brand-primary;
+                margin-top: 5px;
+                margin-right: 15px;
+            }
+        }
+        div.phone{
+            margin-bottom: 10px;
+            &:before{
+                content: "\ea1d";
+            }
+        }
+        div.street{
+            margin-bottom: 15px;
+            margin-top: 15px;
+            &:before{
+                content:"\e600";
+                margin-bottom: 15px;
+            }
+        }
+        div.email{
+            &:before{
+                content: "\ea30";
+            }
+        }
+    }
+    img{
+        margin-top: -60px;
+    }
+}
+
+#artist{
+    background-image: url(/wp-content/themes/eardish/images/bg_artist.jpg);
+    background-position: center center;
+    padding-bottom: 60px;
+    h3{
+        font-size: 60px;
+        color: @brand-primary;
+        strong{
+            color: #fff;
+            font-weight: inherit;
+        }
+    }
+    h4{
+        text-align: center;
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 30px;
+        line-height: 1.3;
+    }
+    .perks{
+        margin-bottom: 80px;
+
+    }
+    ul{
+        li{
+            font-size: 16px;
+            font-weight: 200;
+            margin-bottom: 5px;
+        }
+    }
+    span.next{
+        position: absolute;
+        bottom: 20px;
+    }
+}
+
+#artist-info{
+    background: #fff;
+    padding-top: 70px;
+    h4{
+        color: @brand-primary;
+        font-weight: bold;
+        font-size: 24px;
+        margin-top: 35px;
+    }
+    fieldset{
+        margin-top: 30px;
+        legend{
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+    }
+    fieldset.inline legend{color: #5e0c7b; font-weight: normal; font-size: 18px; text-transform: none;}
+    label{
+        color: #5e0c7b;
+    }
+    .radio-inline{
+        color: #333;
+        input[type=radio]{
+            margin-top: 6px;
+            margin-right: 10px;
+        }
+    }
+    div.button{
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+}
+

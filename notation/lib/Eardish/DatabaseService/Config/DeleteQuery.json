@@ -1,0 +1,445 @@
+{
+  "request": {
+    "ProfileService": {
+      "deleteTrack": {
+        "COMMENT": "delete a track",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM track WHERE track_id=$track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+
+      "deleteArtistProfile": {
+        "COMMENT": "Delete an artist's profile",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM profile WHERE profile_id=$profile_id"
+          }
+        },
+        "tables": {
+          "profile": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+
+      "deleteArt": {
+        "COMMENT": "Delete art uploaded to a profile",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM images WHERE art_id=$art_id"
+          }
+        },
+        "tables": {
+          "images": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+
+      "deleteTrack": {
+        "COMMENT": "Delete a track associated to an artist",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM track WHERE track_id=$track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+
+      "hardDeleteGroup": {
+        "COMMENT": "hard delete a group",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM group WHERE id=$group_id"
+          }
+        },
+        "tables": {
+          "group": {
+            "id": ""
+          }
+        },
+        "params": {
+        }
+      },
+      "softDeleteGroup": {
+        "COMMENT": "marks the GROUP's delete flag to true",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE group SET deleted = 'TRUE' WHERE id=$group_id"
+          }
+        },
+        "tables": {
+          "group": {
+            "id": ""
+          }
+        },
+        "params": {
+        }
+      },
+      "unsoftDeleteGroup": {
+        "COMMENT": "marks the GROUP's delete flag to false",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE group SET deleted = 'FALSE' WHERE id=$group_id"
+          }
+        },
+        "tables": {
+          "group": {
+            "id": ""
+          }
+        },
+        "params": {
+        }
+      }
+    },
+    "MusicService": {
+      "deletePlaylist": {
+        "COMMENT": "remove a playlist",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM playlist WHERE user_id=$playlist_user_id and id=$playlist_id"
+          }
+        },
+        "tables": {
+          "playlist": [
+            "user_id",
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "deletePlaylistTracks": {
+        "COMMENT": "delete all tracks from a playlist",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM playlist_track WHERE playlist_id=$playlist_track_playlist_id"
+          }
+        },
+        "tables": {
+          "playlist_track": [
+            "playlist_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "hardDeleteAlbum": {
+        "COMMENT": "hard deletes an album record (does not delete from album-track table)",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM album WHERE id=$album_id"
+          }
+        },
+        "tables": {
+          "album": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "hardDeleteTrack": {
+        "COMMENT": "hard deletes the track record (does NOT delete associated media files)",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM track WHERE id=$track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "softDeleteAlbum": {
+        "COMMENT": "soft deletes an album record (does not delete from album-track table)",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE album SET deleted = 'TRUE' WHERE id=$album_id"
+          }
+        },
+        "tables": {
+          "album": "id"
+        },
+        "params": {
+        }
+      },
+      "softDeleteTrack": {
+        "COMMENT": "marks track as deleted - leaves record intact (does NOT delete associated media files)",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE track SET deleted = 'TRUE' WHERE id=$track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "unsoftDeleteAlbum": {
+        "COMMENT": "marks the album's delete flag to false",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE album SET deleted = 'FALSE' WHERE id=$album_id"
+          }
+        },
+        "tables": {
+          "album": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "unsoftDeleteTrack": {
+        "COMMENT": "changes the track's deleted flag to false",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE track SET deleted = 'FALSE' WHERE id=$track_id"
+          }
+        },
+        "tables": {
+          "track": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      }
+    },
+    "UserService": {
+      "deletePlaylistTrack": {
+        "COMMENT": "delete track from playlist ",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM playlist_track WHERE playlist_id=$playlist_track_playlist_id and track_id=$playlist_track_track_id"
+          }
+        },
+        "tables": {
+          "playlist_track": [
+            "playlist_id",
+            "track_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "deleteUserTrack": {
+        "COMMENT": "delete a single followed track from the user's list",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM user_track WHERE user_id=$user_track_user_id and track_id=$user_track_track_id"
+          }
+        },
+        "tables": {
+          "user_track": [
+            "user_id",
+            "track_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "hardDeleteAllUserTracks": {
+        "COMMENT": "hard delete all of the user's associated tracks",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM user_track WHERE user_id=$user_track_user_id"
+          }
+        },
+        "tables": {
+          "user_track": [
+            "user_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "hardDeleteUser": {
+        "COMMENT": "hard deletes a user",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "DELETE FROM user WHERE id=$user_id"
+          }
+        },
+        "tables": {
+          "user": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "softDeleteAllUserTracks": {
+        "COMMENT": "mark all of the user's followed tracks as deleted ",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE user_track SET deleted = 'TRUE' WHERE user_id=$user_track_user_id"
+          }
+        },
+        "tables": {
+          "user_track": [
+            "user_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "softDeleteUser": {
+        "COMMENT": "marks the user's delete flag to true",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE user SET deleted = 'TRUE' WHERE id=$user_id"
+          }
+        },
+        "tables": {
+          "user": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "unsoftDeleteAllUserTracks": {
+        "COMMENT": "mark all of the user's followed track's deleted flag to false ",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE user_track SET deleted = 'FALSE' WHERE user_id=$user_track_user_id"
+          }
+        },
+        "tables": {
+          "user_track": [
+            "user_id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "unsoftDeleteUser": {
+        "COMMENT": "marks the user's delete flag to false",
+        "STATUS": "READY FOR TESTING",
+        "queries": {
+          "default": {
+            "db": "postgres",
+            "query": "UPDATE user SET deleted = 'FALSE' WHERE id=$user_id"
+          }
+        },
+        "tables": {
+          "user": [
+            "id"
+          ]
+        },
+        "params": {
+        }
+      },
+      "SocialService": {
+        "deleteFriend": {
+          "COMMENT": "remove a friend/FOLLOW relationship ",
+          "STATUS": "READY FOR TESTING",
+          "queries": {
+            "default": {
+              "db": "postgres",
+              "query": "DELETE FROM friend WHERE user_id=$friend_user_id and friend_id=$friend_friend_id"
+            }
+          },
+          "tables": {
+            "friend": [
+              "user_id",
+              "friend_id"
+            ]
+          },
+          "params": {
+          }
+        }
+      }
+    },
+    "RecommendationService": {
+      "wipeProfileGenreBlend": {
+        "COMMENT": "Removes all user genre preferences",
+        "STATUS": "READY FOR TEST",
+        "queries": {
+          "priority": {
+            "db": "postgres",
+            "query": "DELETE FROM profile_genre_blend WHERE profile_id=$profile_genre_blend_profile_id"
+          }
+        },
+        "tables": {
+          "profile_genre_blend": [
+            "profile_id"
+          ]
+        },
+        "params": {
+        }
+      }
+    }
+  }
+}

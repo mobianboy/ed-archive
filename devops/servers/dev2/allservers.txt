@@ -1,0 +1,4 @@
+apidev2.eardishcorp.com
+svcdev2.eardishcorp.com
+dbsvcdev2.eardishcorp.com
+dbpgdev2.eardishcorp.com

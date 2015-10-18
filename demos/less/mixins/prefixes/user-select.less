@@ -1,0 +1,20 @@
+/**
+ * User-select mixin
+ * .userSelect();
+ *
+ * Description:
+ * Method of preventing text/element selection using CSS.
+ *
+ * Example:
+ * .userSelect( none );
+ *
+ * This mixin takes in the following parameter
+ * @select: <none> | <text> | <all> | <element>
+*/
+
+.userSelect( @select ) {
+  -webkit-user-select: @select;
+  -moz-user-select: @select;
+  -ms-user-select: @select;
+  user-select: @select;
+}

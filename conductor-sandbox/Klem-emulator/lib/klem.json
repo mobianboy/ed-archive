@@ -1,0 +1,79 @@
+{
+	"KLEM" : {
+		"test": {
+			"name" : "ephect test 1",
+			"desc" :
+		}""
+		
+		"version" : "0.1",
+		"admin-port" : 8181,
+		"session-log" : "session.txt",
+		"title" : "klem test client test session",
+		"on-remote-disconnect" : "handler-function",
+		"#":"this is a comment tag",
+		"#":"this is another comment tag",
+		"command-port" : {
+			"connect" : {
+				"control" : {
+					"port" : 2020,
+					"type" : "raw-socket",
+					"perms" : "READ-ONLY"
+				},
+			},
+		},
+		"session" : {
+			"connection" : {
+				"front-clear" : {
+					"url"  : "127.0.0.1",
+					"port" : 80,
+					"type" : "raw-socket",
+					"persist" : "true",
+					""
+				},
+			},
+
+			"task" : {
+				"name" : "first",
+				"next-task" : "second", 
+				"config" : {
+					"channel"   : "front-clear",
+					"source" : "filename2.json",
+					"error" : "error-handler",
+					"type" : "elapsed-time-after-last-step",
+					"value" : 0,				
+					"rr" : {
+						"request" : {
+							"read" : "request2.json"
+						},
+						"response" : {
+								"write" : "response2.json",
+								"handler" : "callback-function2"
+						},
+					},
+				},
+			},
+
+
+			"task" : {
+				"name" : "second",
+				"next-task" : "", 
+				"config" : {
+					"channel"   : "front-clear",
+					"source" : "filename2.json",
+					"error" : "error-handler",
+					"type" : "elapsed-time-after-last-step",
+					"value" : 0,				
+					"rr" : {
+						"request" : {
+							"read" : "request2.json"
+						},
+						"response" : {
+								"write" : "response2.json",
+								"handler" : "callback-function2"
+						},
+					},
+				},
+			},
+		},
+	},
+}
