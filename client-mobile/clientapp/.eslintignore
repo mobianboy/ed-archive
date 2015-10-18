@@ -1,0 +1,13 @@
+# Ignore Dependencies
+bower_components/
+node_modules/
+
+# Ignore Vagrant
+vagrant/
+
+# Ignore Build except es6 output files
+build/
+!build/**/*.es6.js
+
+# Ignore ES6 files for now
+**/*.es6.js

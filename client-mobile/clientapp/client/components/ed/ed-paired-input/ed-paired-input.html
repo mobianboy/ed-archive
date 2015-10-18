@@ -1,0 +1,29 @@
+<link rel="import" href="../ed-form-input/ed-form-input.html" />
+
+<polymer-element name="ed-paired-input" attributes="icon type placeholder required disabled">
+  <template>
+    <link rel="stylesheet" href="ed-paired-input.css">
+    <div class="container">
+      <ed-form-input
+          id="primary-box"
+          type="{{type}}"
+          icon="{{icon}}"
+          pattern="^.{8,}"
+          placeholder="{{placeholder}}"
+          required?="{{required}}"
+          disabled?="{{disabled}}">
+      </ed-form-input>
+      <p class="password-req-text">*8 characters minimum</p>
+      <ed-form-input
+          id="confirm-box"
+          type="{{type}}"
+          icon="{{icon}}-check"
+          pattern="^.{8,}"
+          placeholder="Type {{placeholder}} Again"
+          required?="{{required}}"
+          disabled?="{{disabled}}">
+      </ed-form-input>
+    </div>
+  </template>
+  <script src="ed-paired-input.js"></script>
+</polymer-element>

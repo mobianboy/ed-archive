@@ -1,0 +1,36 @@
+@import "../../styles/ed/colors.vars.less";
+@import "../../styles/fonts/edTypeStyles.less";
+@import "../../styles/ed/menu-button.mixin.less";
+
+.edTitleBar( no-button ) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  border: 0;
+  background-color: @darkPurple2;
+  color: @originalWhite;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 4;
+  h1 {
+    width: 100%;
+    text-align: center;
+    .edType( heading-L );
+    line-height: 10vh;
+    margin: 0 auto;
+    pointer-events: none;
+  }
+}
+
+.edTitleBar() {
+  .edTitleBar( no-button );
+  ed-menu-button::shadow {
+    .edMenuButton();
+  }
+}
+
+.edContentStyle() {
+  margin-top: 10vh;
+}

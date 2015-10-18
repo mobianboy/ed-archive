@@ -1,0 +1,56 @@
+@import "../../styles/mixins/prefixes/placeholder.less";
+@import "../../styles/fonts/edTypeStyles.less";
+@import "../../styles/ed/colors.vars.less";
+@import "../../styles/ed/alignments.mixin.less";
+@import "../../styles/ed/buttons.mixin.less";
+@import "../../styles/ed/title-bar.mixin.less";
+
+
+.report-wrapper {
+  width: 100%;
+  background-color: @darkPurple2;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 59.6rem;
+  overflow: hidden;
+  position: relative;
+  .report-title-bar {
+    .edTitleBar();
+  }
+  .icon-text {
+    .edContentStyle();
+    
+    ed-icon{
+      float: left;
+      width: 100%;
+      padding-bottom: 3rem;
+      height: 9rem;
+      fill: @lightGrey1;
+    }
+    p {
+      text-align: center;
+      .edType( heading-M );
+      color: @lightGrey1;
+      span {
+        display: block;
+      }
+    }
+  }
+  textarea {
+    .edType( heading-S );
+    padding: 2rem;
+    outline: none;
+    box-sizing: border-box;
+    width: 94%;
+    background: @darkPurple3;
+    color: @lightGrey1;
+    margin: 0 3%;
+    border: none;
+    resize: none;
+  }
+  .report-submit {
+    .edPrimaryButton();
+    bottom: 0;
+    margin: 3% auto 0 auto;
+  }
+}

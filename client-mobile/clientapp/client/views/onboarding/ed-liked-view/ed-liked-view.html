@@ -1,0 +1,24 @@
+<link rel="import" href="../../../components/ed/ed-bubble-select/ed-bubble-select.html"/>
+
+<polymer-element name="ed-liked-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-liked-view.css">
+    <div class="genre-container">
+      <div class="header" >
+        <span>tap 1, 2 or 3 genres</span>
+        <span>you want to hear</span>
+      </div>
+      <form id="bubble-container">
+        <ed-bubble-select view-type="like" data-id="1" genre="pop">pop</ed-bubble-select>
+        <ed-bubble-select view-type="like" data-id="2" genre="rock">rock</ed-bubble-select>
+        <ed-bubble-select view-type="like" data-id="3" genre="alternative">alternative</ed-bubble-select>
+        <ed-bubble-select view-type="like" data-id="4" genre="country">country</ed-bubble-select>
+        <ed-bubble-select view-type="like" data-id="5" genre="hip-hop">hip-hop/ <br> urban</ed-bubble-select>
+      </form>
+      <button id="next-button" type="submit" href="#" disabled>
+        Next
+      </button>
+    </div>
+  </template>
+  <script src="ed-liked-view.js"></script>
+</polymer-element>

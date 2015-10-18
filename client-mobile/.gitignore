@@ -1,0 +1,92 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Node directory
+node_modules/
+
+# WebStorm Folder
+.idea
+
+# OSX
+.DS_Store
+
+# Temp Files
+*.swp
+*.swo
+*.bak
+*.diff
+
+# Cordova Ignores
+# we ignore www because it is built from the clienapp repo
+cordova/www/
+crosswalk/www/
+!manifest.json
+!config.xml
+
+# Ignoring Platform folder means each dev has to add platforms manually
+cordova/platforms/
+cordova/plugins/
+
+# from: https://github.com/crilleengvall/gitignore/blob/master/Phonegap.gitignore
+# built application files
+*.apk
+*.ap_
+*.ipa
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# Crosswalk compiled python
+*.pyc
+
+# generated files - android project subfolder
+Android/bin/
+Android/gen/
+Android/assets/
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# IOS / Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+IOS/www/
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+

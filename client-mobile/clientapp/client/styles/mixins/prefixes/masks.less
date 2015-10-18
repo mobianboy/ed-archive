@@ -1,0 +1,34 @@
+/***
+ * Masks property mixin
+ * .masks();
+ *
+ * Example:
+ * .masks( url('images/mask.png'); @repeat: no-repeat; @attach: scroll );
+ *
+ * Description:
+ * This mixin is used in order to crop over images with another image.
+ * Currently this mixin only supports Webkit due to low support for other browsers
+ * will be improved upon for other browsers moving forward.
+ * .masks is a mixin for -webkit-mask which is shorthand for
+ * <mask-image> [<mask-repeat> || <mask-attachment> || <mask-position> || <mask-origin> || <mask-clip>]
+ *
+ * This mixin will take in the following parameters with its respective values
+ * @image: url('somekindofimage.png')| -webkit-gradient | none
+ * @repeat: repeat | repeat-x | repeat-y | no-repeat | inherit
+ * @attach: scroll | fixed
+ * @position: [ <percentage>| <length>| left | center | right  ]  [ <percentage> | <length> | top  | center | bottom ]
+ * @origin: [padding | border | content]
+ * @clip: border | padding | content | text
+
+***/
+.masks( @image; @repeat: repeat; @attach: scroll; @position: 0% 0%; @origin: padding; @clip: border ) {
+  //TODO the following commented out code doesn't work please review for shorthand css
+  //-webkit-mask: @image @repeat @attach @position @origin @clip;
+  -webkit-mask-image: @image;
+  -webkit-mask-repeat: @repeat;
+  -webkit-mask-attachment: @attach;
+  -webkit-mask-position: @position;
+  -webkit-mask-origin: @origin;
+  -webkit-mask-clip: @clip;
+}
+

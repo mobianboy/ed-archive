@@ -1,0 +1,37 @@
+<polymer-element name="ed-star-rating" attributes="disable">
+  <template>
+    <link rel="stylesheet" href="./ed-star-rating.css">
+    <div id="track-info">
+      <p id="track-name" class="track-title"></p>
+      <p id="artist-name" class="artist-name"></p>
+    </div>
+    <p class="rate-song">RATE SONG:</p>
+    <div id="disable-text">
+      <p>
+        To rate a song, you must listen for<br>
+        at least 30 seconds without scrubbing
+      </p>
+    </div>
+    <div id="rating-form-wrapper">
+      <form id="rating-form">
+        <fieldset class="rating">
+          <div id="input-field">
+            <input type="radio" name="rating" value="1">
+            <input type="radio" name="rating" value="2">
+            <input type="radio" name="rating" value="3">
+            <input type="radio" name="rating" value="4">
+            <input type="radio" name="rating" value="5">
+          </div>
+          <div id="star-field">
+            <ed-icon name="star" id="star-1"></ed-icon>
+            <ed-icon name="star" id="star-2"></ed-icon>
+            <ed-icon name="star" id="star-3"></ed-icon>
+            <ed-icon name="star" id="star-4"></ed-icon>
+            <ed-icon name="star" id="star-5"></ed-icon>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </template>
+  <script src="ed-star-rating.js"></script>
+</polymer-element>

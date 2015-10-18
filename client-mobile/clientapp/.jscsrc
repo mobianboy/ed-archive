@@ -1,0 +1,190 @@
+{
+  // JSCS Settings
+  "fileExtensions": [ ".js" ],
+  "excludeFiles": [
+    "node_modules/**",
+    "bower_components/**",
+    "build/**",
+    "logs/**"
+  ],
+  "maxErrors": 100, // defaults to Infinity
+  "esnext": true,
+  //"errorFilter": "path/to/filter/func.js", // see: https://github.com/jscs-dev/node-jscs/wiki/Error-Filters
+
+  // Style Settings
+  "requireCurlyBraces": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "try",
+    "catch"
+  ],
+  "safeContextKeyword": "self",
+  "disallowNewlineBeforeBlockStatements": true,
+//  "requireLineBreakAfterVariableAssignment": true, // unsupported?
+  "requireOperatorBeforeLineBreak": true,
+  "disallowOperatorBeforeLineBreak": [ "." ],
+  "requireParenthesesAroundIIFE": true,
+  "requireMultipleVarDecl": "onevar",
+  "requireCommaBeforeLineBreak": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "requireCapitalizedConstructors": {
+    "allExcept": [ "Symbol", "Polymer" ]
+  },
+  "requireDotNotation": true,
+  "maximumLineLength": {
+    "value": 100,
+    "tabSize": 2,
+    "allowUrlComments": true,
+    "allowRegex": true
+  },
+  "validateIndentation": 2,
+  "validateQuoteMarks": {
+    "mark": "\"",
+    "escape": true
+  },
+  "requireSpaceAfterLineComment": {
+    "allExcept": [ "#", "*", "=", "/" ]
+  },
+//  "disallowImplicitTypeConversion": ["numeric", "boolean", "binary", "string"],
+  "disallowMixedSpacesAndTabs": true,
+  "disallowTrailingWhitespace": true,
+  "disallowMultipleLineStrings": true,
+  "disallowTrailingComma": true,
+  "requireSpaceBeforeBlockStatements": true,
+  "requirePaddingNewLinesInObjects": true,
+  "disallowPaddingNewlinesInBlocks": true,
+  "requireBlocksOnNewline": 1,
+  "disallowEmptyBlocks": true,
+  "disallowQuotedKeysInObjects": "allButReserved",
+  "disallowSpaceAfterObjectKeys": true,
+  "requireSpaceBeforeObjectValues": true,
+  "requireSpaceBeforeKeywords": [
+    "else",
+    "while",
+    "catch"
+  ],
+  "requireSpaceAfterKeywords": [
+    "do",
+    "for",
+    "while",
+    "if",
+    "else",
+    "switch",
+    "case",
+    "try",
+    "catch",
+    "return",
+    "typeof",
+    "with"
+  ],
+  "requirePaddingNewlinesBeforeKeywords": [
+    "do",
+    "for",
+    "while",
+    "if",
+    "switch",
+    "try",
+    "with"
+    // todo remove return?
+//    "return"
+  ],
+  "disallowPaddingNewlinesBeforeKeywords": [
+    "else",
+    "catch"
+//    "case"
+  ],
+  "requireSpacesInsideObjectBrackets": "all",
+  "requireSpacesInsideArrayBrackets": {
+    "allExcept": [
+      "(", ")",
+      "{", "}",
+      "[", "]"
+    ]
+  },
+  "requireSpacesInsideParentheses": {
+    "all": true,
+    "except": [
+      "(", ")",
+      "{", "}",
+      "[", "]",
+      "/",
+      "function"
+    ]
+  },
+  "requireLineFeedAtFileEnd": true,
+  "requireSpacesInConditionalExpression": true,
+  "disallowSpaceAfterPrefixUnaryOperators": true,
+  "disallowSpaceBeforePostfixUnaryOperators": true,
+  "disallowSpaceBeforeBinaryOperators": [
+    ","
+//    ":"
+  ],
+  "requireSpaceAfterBinaryOperators": true,
+  "requireSpaceBeforeBinaryOperators": [
+    "=",
+    "+=",
+    "-=",
+    "*=",
+    "/=",
+    "%=",
+    "<<=",
+    ">>=",
+    ">>>=",
+    "&=",
+    "|=",
+    "^=",
+    "+=",
+    "+",
+    "-",
+    "*",
+    "/",
+    "%",
+    "<<",
+    ">>",
+    ">>>",
+    "&",
+    "|",
+    "^",
+    "&&",
+    "||",
+    "===",
+    "==",
+    ">=",
+    "<=",
+    "<",
+    ">",
+    "!=",
+    "!=="
+  ],
+//  "disallowDanglingUnderscores": true,
+  "disallowSpacesInCallExpression": true,
+  "validateParameterSeparator": ", ",
+//  "requireSpaceBetweenArguments": true, // unsupported?
+  "requireAnonymousFunctions": true,
+  "disallowFunctionDeclarations": true,
+  "requireSpacesInAnonymousFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "disallowSpacesInAnonymousFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
+  "requireSpacesInNamedFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "disallowSpacesInNamedFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
+  "requireSpacesInFunctionDeclaration": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "disallowSpacesInFunctionDeclaration": {
+    "beforeOpeningRoundBrace": true
+  },
+  "validateLineBreaks": "LF",
+  "disallowKeywords": [ "with" ],
+  "disallowKeywordsOnNewLine": [ "else" ],
+  "disallowMultipleLineBreaks": true
+}

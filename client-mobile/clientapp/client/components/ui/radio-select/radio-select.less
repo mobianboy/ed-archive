@@ -1,0 +1,19 @@
+
+:host {
+  display: block;
+  position: relative;
+  border:thin solid black;
+  &([checked]) ::content * {
+    opacity: 1;
+  }
+  ::content * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  input[type="radio"] {
+    display:none;
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "name": "Eardish-Client-App",
+  "version": "0.0.2",
+  "homepage": "https://github.com/eardish/clientapp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.6",
+    "es6-module-loader": "=0.16.6",
+    "system.js": "=0.16.11",
+    "director": "=1.2.8",
+    "app-router": "=2.6.1",
+    "normalize.css": "=3.0.3",
+    "aws-sdk-js": "=2.1.28",
+    "IndexedDBShim": "=2.0.2"
+  },
+  "license": "To Be Decided",
+  "description": "The Client Application for the Eardish Platform"
+}

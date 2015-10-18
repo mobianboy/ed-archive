@@ -1,0 +1,144 @@
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/mixins/prefixes/transforms.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/ed/alignments.mixin.less";
+
+// Variables
+
+@baseURL: '../../../assets/background-images/genre-pics/';
+
+@rockDislike: 'selected-dislike/02.jpg';
+@countryDislike: 'selected-dislike/04.jpg';
+@hiphopDislike: 'selected-dislike/05.jpg';
+@popDislike: 'selected-dislike/01.jpg';
+@alternativeDislike: 'selected-dislike/03.jpg';
+
+@rockLike: 'selected-like/02.jpg';
+@countryLike: 'selected-like/04.jpg';
+@hiphopLike: 'selected-like/05.jpg';
+@popLike: 'selected-like/01.jpg';
+@alternativeLike: 'selected-like/03.jpg';
+
+@rockDeselected: 'deselected/02.jpg';
+@countryDeselected: 'deselected/04.jpg';
+@hiphopDeselected: 'deselected/05.jpg';
+@popDeselected: 'deselected/01.jpg';
+@alternativeDeselected: 'deselected/03.jpg';
+
+
+// Mixins
+.applyBackgroundActive( @genreURL ){
+  background: url( '@{baseURL}@{genreURL}' ) no-repeat center;
+  background-size: cover;
+  color: @originalWhite;
+}
+
+.applyBackgroundInactive( @genreURL ){
+  background: url( '@{baseURL}@{genreURL}' ) no-repeat center;
+  background-size: cover;
+  color: @lightGrey1;
+}
+
+// dislike views
+:host([view-type="dislike"][genre="rock"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @rockDislike );
+  }
+}
+:host([view-type="dislike"][genre="country"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @countryDislike );
+  }
+}
+:host([view-type="dislike"][genre="hip-hop"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @hiphopDislike );
+  }
+}
+:host([view-type="dislike"][genre="pop"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @popDislike );
+  }
+}
+:host([view-type="dislike"][genre="alternative"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @alternativeDislike );
+  }
+}
+
+// like views
+:host([view-type="like"][genre="rock"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @rockLike );
+  }
+}
+:host([view-type="like"][genre="country"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @countryLike );
+  }
+}
+:host([view-type="like"][genre="hip-hop"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @hiphopLike );
+  }
+}
+:host([view-type="like"][genre="pop"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @popLike );
+  }
+}
+:host([view-type="like"][genre="alternative"][checked]) {
+  .ed-bubble {
+    .applyBackgroundActive( @alternativeLike );
+  }
+}
+
+// deselected View
+:host([genre="rock"]) {
+  .ed-bubble {
+    .applyBackgroundInactive( @rockDeselected );
+  }
+}
+:host([genre="country"]) {
+  .ed-bubble {
+    .applyBackgroundInactive( @countryDeselected );
+  }
+}
+:host([genre="hip-hop"]) {
+  .ed-bubble {
+    .applyBackgroundInactive( @hiphopDeselected );
+  }
+}
+:host([genre="pop"]) {
+  .ed-bubble {
+    .applyBackgroundInactive( @popDeselected );
+  }
+}
+:host([genre="alternative"]) {
+  .ed-bubble {
+    .applyBackgroundInactive( @alternativeDeselected );
+  }
+}
+
+input[type="checkbox"] {
+  display: none;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+}
+
+.ed-bubble {
+  float: left;
+  width: 50%;
+  // todo change height
+  height: 15vh;
+  color: @originalWhite;
+  text-align: center;
+  .edType( heading-XS );
+  text-transform: uppercase;
+  span {
+    display: inline-block;
+    .verticalAlign();
+  }
+}
+

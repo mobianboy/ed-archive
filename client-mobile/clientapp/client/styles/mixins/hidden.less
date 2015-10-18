@@ -1,0 +1,36 @@
+
+.customHidden( @rules ) {
+  &.hidden, &.hide, &[hidden] {
+    @rules();
+  }
+}
+
+// display only
+.hidden(display) {
+  .customHidden({
+    display: none;
+  });
+}
+
+// visibility only
+.hidden(visibility) {
+  .customHidden({
+    visibility: hidden;
+  });
+}
+
+// opacity only
+.hidden(opacity) {
+  .customHidden({
+    opacity: 0;
+  });
+}
+
+// default
+.hidden() {
+  .customHidden({
+    display: none;
+    visibility: hidden;
+  });
+}
+

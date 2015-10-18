@@ -1,0 +1,65 @@
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/mixins/prefixes/animations.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/ed/ellipsis-overflow.mixin.less";
+
+#mini-player-container {
+  width: 100vw;
+  height: 8vh;
+  background: @darkPurple2;
+  overflow: hidden;
+
+  img {
+    height: 7vh;
+    padding: .5vh;
+    vertical-align: middle;
+  }
+  .text-container {
+    display: inline-block;
+    color: @originalWhite;
+    vertical-align: middle;
+
+    h1, h5 {
+      max-width: 60vw;
+      .edEllipsisOverflow();
+    }
+  }
+  .responsive-btn-wrapper {
+    width: 6vh;
+    height: 6vh;
+    float: right;
+    padding: 1vh;
+  }
+}
+
+#play-btn {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: @darkPurple1;
+  border: none;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
+
+  ed-icon {
+    width: 40%;
+    height: 100%;
+    vertical-align: middle;
+    fill: @originalWhite;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+#title {
+  .edType( heading-S );
+  margin: 0;
+  line-height: 1;
+}
+#name {
+  opacity: .25;
+  .edType( heading-XS );
+  margin: .1vh 0 0;
+}

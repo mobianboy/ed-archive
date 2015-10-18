@@ -1,0 +1,44 @@
+@import "../../../styles/mixins/hidden.less";
+@import "../../../styles/ed/buttons.mixin.less";
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/ed/backgrounds.mixin.less";
+@import "../../../styles/ed/error-text.mixin.less";
+
+* {
+  font-family: Ubuntu;
+}
+
+.hidden();
+
+.registration-container {
+  .mainPicturedBackground();
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.ed-logo-header {
+  .logoFormHeader();
+  width: 100%;
+  overflow-y: auto;
+}
+
+.ed-registration-body {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  min-height: 55vh;
+}
+
+.error-messages {
+  .edErrorText();
+  margin: 0 10px
+}
+
+#registration-submit {
+  .edPrimaryButton();
+}
+
+#sign-up-button {
+  .edSecondaryButton();
+  text-decoration: none;
+}

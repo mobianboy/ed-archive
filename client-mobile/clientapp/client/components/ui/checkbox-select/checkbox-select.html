@@ -1,0 +1,13 @@
+<polymer-element name="checkbox-select" attributes="name value disabled required checked">
+  <template>
+    <link rel="stylesheet" href="./checkbox-select.css">
+    <input id="checkbox-field" type="checkbox"
+           name={{name}} value={{value}}
+           disabled?="{{disabled}}"
+           required?="{{required}}"
+           checked?="{{checked}}"
+        />
+    <content select="*"></content>
+  </template>
+  <script src="./checkbox-select.js"></script>
+</polymer-element>

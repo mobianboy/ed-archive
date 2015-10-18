@@ -1,0 +1,134 @@
+@import "mixins/prefixes/animations.less";
+@import "mixins/prefixes/transforms.less";
+
+.container {
+  height: 20px;  /* Can be anything */
+  position: relative;
+  background: #555;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+  & span {
+    display: block;
+    height: 100%;
+    border-radius: 20px 8px 8px 20px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgb(194, 51, 31);
+  }
+}
+
+/* Flips Bar */
+
+:host([direction='RTL']){
+  .current-text {
+    float: right;
+  }
+  .inner-bar {
+    float: right;
+    .transform( rotate(180deg) );
+  }
+  .max-text{
+    float:left;
+  }
+  .progress-display {
+    float: right;
+  }
+}
+
+:host([direction='LTR']){
+  .current-text {
+    float: left;
+  }
+  .max-text{
+    float: right;
+  }
+  .progress-display {
+    float:left;
+  }
+  .inner-bar {
+    float: left;
+  }
+}
+
+/* Spinning Bar Animation */
+
+:host([animation='bars']){
+  .inner-bar {
+    .animation( spin 2s linear infinite );
+    background-image:
+    linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, .2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, .2) 50%,
+        rgba(255, 255, 255, .2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 50px 50px;
+    content: "";
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 1;
+    border-radius: 20px 8px 8px 20px;
+    overflow: hidden;
+    display: block;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    background-color: rgb(194, 51, 31);
+
+  }
+}
+
+.keyframes( spin, {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+});
+
+/* Pulsing Animation */
+:host([animation='pulse']){
+  .inner-bar {
+    .animation( pulse 2s ease-out infinite );
+    background-image: linear-gradient(135deg, red, #ffc6d0);
+    background-size: 1000px 2000px;
+    content: "";
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 1;
+    border-radius: 20px 8px 8px 20px;
+    overflow: hidden;display: block;
+    height: 100%;
+    position: relative;
+    text-align: center;
+  }
+}
+
+.keyframes( pulse, {
+  100% {
+    background-position: 0% center, left center, right center;
+  }
+  0% {
+    background-position: 150% center, left center, right center;
+  }
+});
+
+
+/* Show/Hide Values */
+:host([show-value='false']){
+  .progress-display {
+    visibility: hidden;
+  }
+  .current-text {
+    visibility: hidden;
+  }
+  .max-text {
+    visibility: hidden;
+  }
+}
+

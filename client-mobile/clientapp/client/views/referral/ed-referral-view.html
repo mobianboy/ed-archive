@@ -1,0 +1,24 @@
+<link rel="import" href="../../components/ed/ed-icon/ed-icon.html"/>
+<link rel="import" href="../../components/ed/ed-menu-button/ed-menu-button.html"/>
+<link rel="import" href="../../components/ed/ed-form-input/ed-form-input.html"/>
+
+<polymer-element name="ed-referral-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-referral-view.css">
+    <div id="referral-wrapper">
+      <div class="referral-title-bar">
+        <ed-menu-button></ed-menu-button>
+        <h1 id="referral-title">Invite Friends</h1>
+      </div>
+      <ed-icon class="friends-icon" name="invite-friends"></ed-icon>
+      <p class="referral-text">
+        {{ userService.currentProfile.name.first }}, you have<br>{{ referrals }} {{referrals === 1 ? "invite" : "invites"}} left
+      </p>
+      <div id="errorEmail" class="hidden"><span>*</span> Please enter a valid email address</div>
+      <ed-form-input id="email-input" type="email" class="email" placeholder="Friend's Email"
+                     icon="envelope"></ed-form-input>
+      <button id="referral-submit" class="invalid" on-click="{{submitFriendEmail}}">SEND INVITE</button>
+    </div>
+  </template>
+  <script src="ed-referral-view.js"></script>
+</polymer-element>

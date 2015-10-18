@@ -1,0 +1,36 @@
+/***
+ * Filter property mixin
+ * .filter();
+ *
+ *
+ * Example:
+ * .filter( grayscale(50%) contrast(20%) );
+ *
+ * Description:
+ * .filter mixin is shorthand for -webkit-filter and filter
+ * This mixin will take in the following parameters with its respective values
+ * the parameters do not have to be in order and may contain more than one parameter.
+ * Currently does not support for IE and Opera Mini as the native filter does not support.
+ *
+ * @filter: <none> || <blur> || <brightness> || <contrast> || <url> ||
+               <drop-shadow> || <grayscale> || <hue-rotate> || <invert> ||
+               <opacity> || <sepia>
+ * The following is a list of values for the parameters of .filter:
+ * blur: <number> || <percentage>
+ * brightness: <number> || <percentage>
+ * contrast: <number> || <percentage>
+ * url: url(svg-url#element-id)
+ * drop-shadow: <offset-x> <offset-y> (required) || <blur-radius> (optional) ||
+                <spread-radius> (optional) || <color> (optional)
+                * The above all take in numerical values with the exception of color *
+ * grayscale: <number> || <percentage>
+ * hue-rotate: <angle>
+ * invert: <number> || <percentage>
+ * opacity: <number> || <percentage>
+ * sepia: <number> || <percentage>
+***/
+.filter( @filter ) {
+  -webkit-filter+_: @filter;
+  filter+_: @filter;
+}
+

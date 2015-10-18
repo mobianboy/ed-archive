@@ -1,0 +1,53 @@
+<link rel="import" href="../ed-single-chart/ed-single-chart.html"/>
+<link rel="import" href="../../../components/ed/ed-menu-button/ed-menu-button.html"/>
+
+<polymer-element name="ed-charts-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-charts-view.css">
+    <div class="chart-wrapper">
+      <div class="chart-title-bar">
+        <ed-menu-button></ed-menu-button>
+        <h1 id="chart-title">Charts</h1>
+      </div>
+      <ed-icon id="arrow-left" class="chart-arrows" name="arrow-back"></ed-icon>
+      <ed-icon id="arrow-right" class="chart-arrows" name="arrow-back" rotation="180"></ed-icon>
+      <div id="single-chart-wrapper">
+        <ed-single-chart class="single-chart first"
+                         chart-name="most-tracks-rated-fan"
+                         default-copy="Rate songs and be the first one to appear here!"
+                         chart-title="Star Lord"
+                         chart-subtitle="Fans who rated the most songs"
+                         chart-badge="badge-star-lord"
+                         chart-object="">
+        </ed-single-chart>
+        <ed-single-chart class="single-chart second"
+                         chart-name="completed-listens-fan"
+                         default-copy= "Listen to songs from beginning to end to appear here!"
+                         chart-title="Iron Ears"
+                         chart-subtitle="Fans who listened to songs from beginning to end"
+                         chart-badge="badge-iron-ears"
+                         chart-object="">
+
+        </ed-single-chart>
+        <ed-single-chart class="single-chart third"
+                         chart-name="highest-rated-track"
+                         default-copy="Songs that have the highest ratings will appear here"
+                         chart-title="Highest Rated Song"
+                         chart-subtitle="This week's most popular song"
+                         chart-badge="badge-hrs"
+                         chart-object="">
+
+        </ed-single-chart>
+        <ed-single-chart class="single-chart fourth"
+                         chart-name="completed-listens-track"
+                         default-copy="Songs that have the most completed plays will appear here"
+                         chart-title="Most Completed Plays"
+                         chart-subtitle="Songs played from beginning to end"
+                         chart-badge="badge-artist-mcl"
+                         chart-object="">
+        </ed-single-chart>
+      </div>
+    </div>
+  </template>
+  <script src="./ed-charts-view.js"></script>
+</polymer-element>

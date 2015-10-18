@@ -1,0 +1,36 @@
+<link rel="import" href="../../../components/ed/ed-user-ranking/ed-user-ranking.html"/>
+<link rel="import" href="../../../components/ed/ed-star-rating/ed-star-rating.html"/>
+<link rel="import" href="../../../components/ed/ed-mini-player/ed-mini-player.html"/>
+<link rel="import" href="../../../components/ed/ed-song-card-scrubber/ed-song-card-scrubber.html"/>
+<link rel="import" href="../../../components/ed/ed-icon/ed-icon.html"/>
+
+<polymer-element name="ed-song-card-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-song-card-view.css">
+    <div id="song-card-wrapper" class="minimized">
+      <section id="mini-player-wrapper">
+        <ed-mini-player id="mini-player"
+            song="Track Title" artist="Artist Name"
+            image="" on-tap="{{open}}"></ed-mini-player>
+      </section>
+
+      <section id="main-player-wrapper" class="close">
+        <div class="player-background">
+          <div id="user-ranking">
+            <button id="minify-button" on-tap="{{close}}">
+              <ed-icon id="minify-icon" name="arrow-back" rotation="270"></ed-icon>
+            </button>
+            <div class="rankings-container">
+              <ed-user-ranking id="songs-rated" top="Songs" bottom="Rated" rank="0"></ed-user-ranking>
+              <ed-user-ranking id="complete-listens" teal top="Completed" bottom="Plays" rank="0"></ed-user-ranking>
+            </div>
+          </div>
+          <ed-song-card-scrubber id="main-player" min="0" max="0" value
+                                 image=""></ed-song-card-scrubber>
+          <ed-star-rating id="star-rating"></ed-star-rating>
+        </div>
+      </section>
+    </div>
+  </template>
+  <script src="ed-song-card-view.js"></script>
+</polymer-element>

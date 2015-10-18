@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+@import "mixins/hidden.less";
+@import "fonts/edTypeStyles.less";
+@import "mixins/breakpoints/mixins.less";
+@import "ed/buttons.mixin.less";
+@import "ed/colors.vars.less";
+@import "ed/backgrounds.mixin.less";
+@import "mixins/prefixes/transforms.less";
+@import "mixins/prefixes/animations.less";
+@import "mixins/prefixes/user-select";
+
+
+html {
+  font-size: 62.5%;
+  background: @darkPurple3;
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  .userSelect(none);
+  background-color: @darkPurple3;
+  .edType( paragrpah-M );
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  &[unresolved] {
+    display: block;
+    opacity: 1;
+  }
+  & > .left {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin: 20px 0 0;
+  }
+}
+
+ed-side-menu {
+  position: absolute;
+  height: 98%;
+  width: 84%;
+  margin: 0;
+  padding-top: 2%;
+  background-color: @originalWhite;
+  -webkit-transition: -webkit-transform .23s;
+  transition: transform .23s;
+  .transform( translate3d( -100%, 0, 0 ));
+  &.show-menu {
+    .transform( translate3d( 0, 0, 0 ));
+    & + .router-animation-wrapper {
+      .transform( translate3d( 84%, 0, 0 ));
+    }
+  }
+  & + .router-animation-wrapper {
+    .transform( translate3d( 0, 0, 0 ));
+  }
+}
+
+#animation-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  -webkit-transition: -webkit-transform .23s;
+  transition: transform .23s;
+  &.player-padding {
+    height: 92vh;
+    padding-bottom: 8vh;
+  }
+}
+
+.hidden();

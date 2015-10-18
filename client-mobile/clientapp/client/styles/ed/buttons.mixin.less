@@ -1,0 +1,46 @@
+@import "colors.vars.less";
+@import "../fonts/edTypeStyles.less";
+@import "alignments.mixin.less";
+
+/**
+* Single Line Button Mixin
+* .edPrimaryButton();
+*
+* Description:
+* This mixin is used to make the standard eardish button
+*
+*/
+.edPrimaryButton( @backgroundColor: @originalPurple; @activeColor: @lightPurple1; @disabledColor: @originalGrey ) when ( iscolor(@backgroundColor) ) {
+  .edType( heading-L );
+  display: inherit;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 4% auto 0;
+  padding: 6%;
+  border: 0;
+  color: @originalWhite;
+  background-color: @backgroundColor;
+  text-transform: uppercase;
+  text-align: center;
+  // no :hover
+  &:active, &:focus {
+    background-color: @activeColor;
+    border: 0;
+    outline: 0;
+  }
+  &:disabled {
+    background-color: @disabledColor;
+    color: @lightGrey1;
+  }
+}
+
+.edSecondaryButton( @backgroundColor: @darkPurple3; @activeColor: @darkPurple1 ) when ( iscolor(@backgroundColor) ) {
+  .edPrimaryButton( @backgroundColor; @activeColor );
+  .edType( heading-M );
+  padding: 5%;
+  .small-text {
+    .edType( heading-S );
+    color: @originalTeal;
+    text-transform: none;
+  }
+}

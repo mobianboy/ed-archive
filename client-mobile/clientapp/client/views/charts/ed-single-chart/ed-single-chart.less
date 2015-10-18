@@ -1,0 +1,159 @@
+@import "../../../styles/mixins/hidden.less";
+@import "../../../styles/mixins/prefixes/flex.less";
+@import "../../../styles/ed/buttons.mixin.less";
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/ed/backgrounds.mixin.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/ed/title-bar.mixin.less";
+@import "../../../styles/ed/ellipsis-overflow.mixin.less";
+
+.hidden();
+
+.single-wrapper {
+  background-color: @originalPurple;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  .single-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    text-align: center;
+    z-index: 2;
+    .chart-title-text {
+      margin: 0;
+      padding-top: 2%;
+      .edType( heading-M );
+      white-space: pre;
+      font-style: italic;
+    }
+    .chart-subtitle-text {
+      margin: 0;
+      padding: 1.2% 0 2%;
+      .edType( heading-XXS );
+      line-height: 65%;
+      white-space: pre;
+    }
+    header {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: @lightPurple1;
+      color: @originalWhite;
+    }
+  }
+
+  .ranks-badge-wrapper {
+    width: 100%;
+    height: 100%;
+    margin-top: 10vh;
+    background: @darkPurple3;
+    overflow: hidden;
+  }
+
+  .badges {
+    color: @originalTeal;
+    text-align: center;
+    background-color: @darkPurple2;
+    padding-bottom: 2%;
+    .direction-divs {
+      position: absolute;
+      width: 33%;
+      height: 33%;
+    }
+    #move-left {
+      left: 0;
+    }
+    #move-right {
+      right: 0;
+    }
+    .time-left {
+      .edType( heading-XS );
+      white-space: pre;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .countdown-timer {
+      .edType( heading-S );
+      white-space: pre;
+      margin: 0;
+    }
+  }
+
+  #badge-hrs {
+    height: 100%;
+    width: 65%;
+  }
+
+  .default-view {
+    .edType( heading-XS );
+    color: @lightGrey1;
+    width: 100%;
+    .copy {
+      width: 90vw;
+      margin: 0 auto;
+      padding-top: 6vh;
+      text-align: center;
+    }
+  }
+
+  .rankings {
+    list-style-type: none;
+    width: 100%;
+    height: 37vh;
+    margin: 0 0 1vh;
+    padding: 0;
+    background: @darkPurple3;
+    overflow-y: scroll;
+    li {
+      .flexContainer( row; flex-start; stretch; stretch );
+      width: 100%;
+      padding-bottom: 1%;
+      .edType( heading-XS );
+      color: @originalWhite;
+      border-bottom: 0.1rem solid @originalGrey;
+      .chart-rank {
+        margin: 4% 0 0 1%;
+        padding: 0;
+      }
+      &:nth-child(-n+10) .chart-rank {
+        // add extra margin to #1 through #9
+        margin-left: 4%;
+      }
+      .img-container {
+        width: 9%;
+        padding: 1% 0 1% 2%;
+      }
+      .chart-points {
+        margin: 4% 4% 0 0;
+        padding: 0;
+      }
+      .fan-name {
+        .edEllipsisOverflow();
+        //.edChartName();
+        margin: 4% 7% 0 3%;
+        .flexItem( 2, 2, 0 );
+      }
+      .track-info {
+        display: block;
+        margin: 0 4%;
+        .flexItem( 2, 2, 0 );
+        .track-name{
+          .edEllipsisOverflow();
+          .edType( heading-M );
+          margin: 2% 0 0;
+        }
+        .artist-name {
+          .edEllipsisOverflow();
+          .edType( heading-XXS );
+          margin: 0;
+        }
+      }
+    }
+  }
+}

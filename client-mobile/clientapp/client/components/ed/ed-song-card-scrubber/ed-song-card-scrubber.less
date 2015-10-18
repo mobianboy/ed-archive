@@ -1,0 +1,141 @@
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/mixins/prefixes/transforms.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/mixins/prefixes/animations.less";
+
+.responsive-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  .responsive-container {
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+  }
+}
+
+:host([complete]){
+  #fill-circle {
+    fill: @darkPurple3;
+  }
+}
+
+#rate-request {
+  color: @originalTeal;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  bottom: 16%;
+  z-index: 2;
+  .edType( heading-L );
+  span {
+    display: block;
+    .edType( heading-S );
+  }
+  ed-icon {
+    fill: @originalTeal;
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    left: 0;
+    margin-top: 3%;
+  }
+}
+
+#svg-circle {
+  z-index: 1;
+  position: relative;
+}
+
+#song-timer {
+  .edType( heading-S );
+  color: @originalWhite;
+  opacity: 0.5;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8%;
+  pointer-events: none;
+}
+
+#back-circle {
+  stroke: @originalPurple;
+}
+
+#front-circle {
+  stroke: @originalTeal;
+}
+#mid-circle {
+  stroke: @originalTeal;
+  opacity: .25;
+  transition: transform 250ms;
+}
+
+#shadow-scrubber {
+  stroke-width: 18;
+  stroke: @darkPurple3;
+  opacity: .4;
+  cursor: pointer;
+}
+
+#circle-scrubber {
+  cursor: pointer;
+  stroke: @originalWhite;
+}
+
+#circle-scrubber, #shadow-scrubber {
+  stroke-dasharray: .5, 290%;
+  stroke-linecap: round;
+}
+
+#mid-circle, #front-circle, #circle-scrubber, #shadow-scrubber {
+  .transform( rotate(-90deg) );
+  .transformOrigin(50% 50%);
+  -webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
+}
+
+#play-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: transparent;
+  width: 23%;
+  height: 27vw;
+  border-radius: 50%;
+  border: none;
+  z-index: 3;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
+
+  ed-icon {
+    fill: @originalWhite;
+    width: 43%;
+    height: 50%;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+#skip-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  width: 19%;
+  height: 10%;
+  border: none;
+  z-index: 3;
+  outline: none;
+  span {
+    text-transform: uppercase;
+    .edType(heading-XXS);
+    color: @originalTeal;
+  }
+}

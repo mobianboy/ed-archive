@@ -1,0 +1,103 @@
+/***
+ * Transform property mixin
+ * .transform();
+ *
+ * Description:
+ * This mixin is shorthand for transform, -webkit-transform, and -ms-transform.
+ * .transform should be used like a native css transform property
+ *
+ * Example:
+ * .transform( skewX(25deg) rotate(25deg) translateX(17px) );
+ *
+ * This mixin will take in the following parameters with its respective values
+ * Only one of these may be used at a time
+ * <none>
+ * matrix(n,n,n,n,n,n): <number> (6 values)
+ * matrix3d(n,n,n,n, ...): <number> (16 values)
+ * translate( x, y): one or two <translation-value> values
+ * translate3d(x,y,z): three <translation-value> values
+ * translateX(x): <translation-value>
+ * translateY(y): <translation-value>
+ * translateZ(z): <translation-value>
+ * scale(x,y): one or two unitless <number>s, e.g., scale(2.1,4)
+ * scale3d(x,y,z): three unitless <number>s
+ * scaleX(x): a unitless <number>, e.g., scaleX(2.7)
+ * scaleY(y): a unitless <number>, e.g., scaleY(0.3)
+ * scaleZ(z):  a unitless <number>, e.g., scaleZ(0.3)
+ * rotate(angle):  <angle>, e.g., rotate(30deg)
+ * rotate3d(x,y,z,angle): three <number>s and an <angle>
+ * rotateX(angle): <angle>, e.g., rotate(30deg)
+ * rotateY(angle): <angle>, e.g., rotate(30deg)
+ * rotateZ(angle): <angle>, e.g., rotate(30deg)
+ * skew(x-angle,y-angle): one or two <angle>s, e.g., skew(30deg,-10deg)
+ * skewX(angle): an <angle>, e.g., skewX(-30deg)
+ * skewY(angle): an <angle>, e.g., skewY(4deg)
+ * perspective(n): <length>
+***/
+.transform( @transform ) {
+  -webkit-transform+_: @transform;
+      -ms-transform+_: @transform;
+          transform+_: @transform;
+}
+
+/***
+ * TransformStyle property mixin
+ * .transformStyle();
+ *
+ * Description:
+ * The transformStyle property specifies how nested elements are rendered in 3D space.
+ * To be used with transform
+ *
+ * Example:
+ * .transformStyle( preserve-3d );
+ *
+ * This mixin will take in the following parameters
+ * @perspective: flat | preserve-3d
+ ***/
+
+.transformStyle( @style ) {
+  -webkit-transform-style: @style;
+  transform-style: @style;
+}
+
+
+/***
+ * Perspective property mixin
+ * .perspective();
+ *
+ * Description:
+ * The perspective property defines how many pixels a 3D element is placed from the view. This property allows you to change the perspective on how 3D elements are viewed.
+ *
+ * Example:
+ * .perspective( 200px );
+ *
+ * This mixin will take in the following parameters
+ * @perspective: <length> | none
+ ***/
+.perspective( @perspective ) {
+  -webkit-perspective: @perspective;
+  perspective: @perspective;
+}
+
+/***
+ * Transform-origin property mixin
+ * .transformOrigin();
+ *
+ * Description:
+ * The transform-origin property allows you to change the position on transformed elements.
+ *
+ * Example:
+ * .transformOrigin( center bottom );
+ *
+ * This mixin will take in the following parameters
+ * @origin: x-axis y-axis z-axis
+   x-axis: left | center | right | <length> | <percent>
+   y-axis: top | center | bottom | <length> | <percent>
+   z-axis: <length>
+ ***/
+
+.transformOrigin( @origin ) {
+  -ms-transform-origin: @origin;
+  -webkit-transform-origin: @origin;
+  transform-origin: @origin;
+}

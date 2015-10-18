@@ -1,0 +1,37 @@
+<flip-box animation="horizontal" trigger="btn" rotation="loop">
+  <section id="title" class="front">
+    <h3>i'm batman</h3>
+  </section>
+  <div class="front">
+    <img src="http://goo.gl/Rnlefq" />
+  </div>
+    <span class="back">
+      <h4>that was fun! <br> Ryan is a great manager!</h4>
+    </span>
+</flip-box>
+
+<style>
+  flip-box .front, flip-box .back {
+    text-align: center;
+  }
+  flip-box img {
+    height: 200px;
+    width: 320px;
+  }
+</style>
+
+<template>
+  <script>
+    (function(){
+      var flipBox = document.querySelector('flip-box');
+
+      flipBox.animation = "vertical";
+      console.log(flipBox.animation);
+
+      flipBox.trigger = "btn";
+      console.log(flipBox.trigger);
+
+      flipBox.flip();
+    })();
+  </script>
+</template>

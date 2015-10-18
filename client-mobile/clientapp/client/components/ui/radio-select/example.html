@@ -1,0 +1,35 @@
+<radio-select name="privacy" value="public">
+  <img src="http://www.geocaching.com/images/logtypes/2.png" alt="radio button icon" />
+</radio-select>
+<radio-select name="privacy" value="network">
+  <img src="http://ubuntuforums.org/images/smilies/icon_sad.gif" alt="radio button icon" />
+</radio-select>
+<radio-select name="privacy" value="friends">
+  <img src="http://png-5.findicons.com/files/icons/1617/circular/16/smiley_smile.png" alt="radio button icon" />
+</radio-select>
+<radio-select name="privacy" value="friends">
+  <img src="http://png-5.findicons.com/files/icons/1617/circular/16/smiley_smile.png" alt="radio button icon" />
+</radio-select>
+
+<style>
+  radio-select {
+    border: 3px solid green;
+    border-radius: 50%;
+    width:  18px;
+    height: 19px;
+  }
+  radio-select[checked] {
+    border-color: purple;
+  }
+</style>
+
+<template>
+  <script>
+    (function(){
+      var radios = document.querySelectorAll("radio-select[value=privacy]");
+      Array.prototype.forEach.call(radios, function(radio){
+        radio.disabled = false;
+      });
+    })();
+  </script>
+</template>

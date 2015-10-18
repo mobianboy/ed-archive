@@ -1,0 +1,12 @@
+@import "../mixins/prefixes/transforms.less";
+
+// use this on the parent element for verticalAlign IF the parent element is an odd number of pixels
+.parentElementVertAlign() {
+  .transformStyle( preserve-3d );
+}
+
+.verticalAlign() {
+  position: relative;
+  top: 50%;
+  .transform( translateY(-50%) );
+}

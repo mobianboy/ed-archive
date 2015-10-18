@@ -1,0 +1,28 @@
+@import "../../../styles/mixins/prefixes/transforms.less";
+@import "../../../styles/ed/alignments.mixin.less";
+
+:host {
+  display: inline-block;
+}
+
+:host:not( [name] ) {
+  display: none;
+}
+
+:host([rotation="90"]) {
+  .transform( rotate(90deg) );
+}
+
+:host([rotation="180"]) {
+  .transform( rotate(180deg) );
+}
+
+:host([rotation="270"]) {
+  .transform( rotate(270deg) );
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  //.verticalAlign();
+}

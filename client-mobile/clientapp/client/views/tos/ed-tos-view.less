@@ -1,0 +1,41 @@
+@import "../../styles/ed/colors.vars.less";
+@import "../../styles/ed/title-bar.mixin.less";
+
+* {
+  font-family: "Ubuntu";
+}
+.tos-wrapper {
+  width: 100%;
+  background-color: @darkPurple3;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 59.6rem;
+  position: relative;
+  .tos-title-bar {
+    .edTitleBar();
+  }
+  .tos-section {
+    background: @originalWhite;
+    padding: 2rem;
+    .title-text {
+      .edType( paragraph-L );
+      span {
+        display: block;
+      }
+    }
+    .tos-header {
+      padding: 1.3rem 0;
+      color: @originalTeal;
+      text-transform: uppercase;
+      .edType( heading-XS );
+      font-weight: 500;
+    }
+    .tos-body {
+      word-wrap: break-word;
+      .edType( paragraph-L );
+      font-weight: 400;
+    }
+  }
+}
+
+

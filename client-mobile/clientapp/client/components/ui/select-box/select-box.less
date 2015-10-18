@@ -1,0 +1,106 @@
+
+.select {
+  position:  absolute;
+  overflow:  hidden;
+  z-index: 2;
+  margin-top: -20px;
+  .label {
+    padding: 8px;
+    max-width: 150px;
+    //creates the arrow from a square
+    &:after{
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 14px;
+      border: 8px solid transparent;
+      border-top-color: #999;
+    }
+  }
+  // current display box
+  label {
+    max-width: 150px;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    padding: 8px;
+    cursor: pointer;
+    background: white;
+  }
+  .options {
+    max-width: 220px;
+    margin: 0;
+    padding: 0;
+    color: #666;
+    height: 0;
+    border-right: 1px dotted #999;
+    border-left: 1px dotted #999;
+    border-radius: 5px;
+    max-height: 160px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &:hover {
+      height: auto;
+      border-bottom: 2px solid #999;
+    }
+    li {
+      // individual list boxes
+      label {
+        text-align: left;
+        display:    block;
+        padding:    6px 220px 6px 15px;
+        cursor:     pointer;
+        overflow:   hidden;
+        box-sizing: border-box;
+        &:hover {
+          background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+        }
+      }
+      // hides radio button
+      [type="radio"] {
+        position: absolute;
+        display: block;
+        left: -999px;
+        // content display on click
+        &:checked ~ label:after {
+          content: attr(data-title);
+          display: block;
+          position: absolute;
+          top: 6px;
+          left: 20px;
+          padding: 5px 25px;
+          color: #666;
+          pointer-events: none;
+          font-size: 80%;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  #is-focus {
+    position: absolute;
+    display: block;
+    opacity: 0;
+    left: 150px;
+    // creates the arrow after clicking
+    &:focus {
+      ~ label span.label:after {
+        border-top-color: transparent;
+        border-bottom-color: #999;
+        top: 0.3em;
+      }
+      ~ .options {
+        height: auto;
+        border-bottom: 2px solid #999;
+      }
+    }
+  }
+}
+
+:host([disabled]) {
+  .select {
+    overflow: hidden;
+    opacity: .5;
+    pointer-events: none;
+  }
+}

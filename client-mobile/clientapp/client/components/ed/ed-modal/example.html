@@ -1,0 +1,40 @@
+<ed-modal trigger=".b-button" clickoff closebutton>
+  <h2>Modal title</h2>
+  <p>I only work in black</p>
+  <p> ... and very very very dark grey.</p>
+  <video class="some-video" auto-play="true">
+    <source src="http://vimeo.com/51651391">
+    I'm sorry; your browser doesn't support HTML5 video.
+  </video>
+</ed-modal>
+
+<template>
+  <script>
+    ( function( document ) {
+      var divA = document.createElement( "div" );
+      divA.id = "a-button";
+      divA.innerHTML = "#a-button trigger";
+
+      this.appendChild( divA );
+
+      var modal = document.querySelector("ed-modal");
+
+      document.addEventListener( "polymer-ready", function () {
+        console.log( "polymer-ready", performance.now() );
+        console.log(modal.trigger); // #a-button
+        modal.trigger = ".b-button";
+
+        console.log(modal.clickoff); // true
+        modal.clickoff = false;
+
+        console.log(modal.closebutton); // true
+        modal.closebutton = false;
+
+        modal.open();
+
+        modal.close();
+      });
+    })( document );
+  </script>
+</template>
+

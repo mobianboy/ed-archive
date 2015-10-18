@@ -1,0 +1,31 @@
+/***
+ * Region property mixin
+ * .flowTo();
+ * .flowFrom();
+ *
+ * Description:
+ * Using Regions allows you to flow text across different areas
+ * of the page into containers using the .flowTo and .flowFrom
+ * CSS properties. ONLY SUPPORTS SAFARI AND IE.
+ *
+ * Example:
+ * .starting-variable {
+ *  .flowTo( flow-name );
+ * }
+ *
+ * .ending-variable {
+ *  .flowFrom( flow-name );
+ * }
+ * This mixin takes in the following parameter
+ * @flowTo: <name>
+ * @flowFrom: <name>
+***/
+.flowTo( @flowTo ) {
+  -webkit-flow-into: @flowTo;
+  -ms-flow-into: @flowTo;
+}
+
+.flowFrom( @flowFrom ) {
+  -webkit-flow-from: @flowFrom;
+  -ms-flow-from: @flowFrom;
+}

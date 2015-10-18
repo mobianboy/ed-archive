@@ -1,0 +1,23 @@
+<link rel="import" href="../../../components/ed/ar-anchor/ar-anchor.html" />
+<link rel="import" href="../../../components/ed/ed-icon/ed-icon.html" />
+
+<polymer-element name="ed-forgot-pass-request-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-forgot-pass-request-view.css">
+    <div class="forgot-container">
+      <div class="ed-logo-header">
+        <ed-icon name="eardish-logo-with-slogan"></ed-icon>
+      </div>
+      <div class="ed-forgot-body">
+        <p class="forgot-text">Please enter the email address you used to register.</p>
+        <p class="forgot-text">We'll send you an email with instructions on how to reset your password.</p>
+        <div id="errorServer" class="hidden"><span>*</span> We can't seem to find that email address.... Please try again!</div>
+        <div id="errorEmail" class="hidden"><span>*</span> Please enter a valid email address</div>
+        <ed-form-input class="email" type="email" placeholder="Your Email" icon="envelope"></ed-form-input>
+        <button id="forgot-submit" class="invalid" on-click="{{submitRequest}}">Submit</button>
+        <ar-anchor id="back-button" type="button" route="/login">Back</ar-anchor>
+      </div>
+    </div>
+  </template>
+  <script src="ed-forgot-pass-request-view.js"></script>
+</polymer-element>

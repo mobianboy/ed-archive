@@ -1,0 +1,31 @@
+<link rel="import" href="../../../components/ed/ar-anchor/ar-anchor.html" />
+<link rel="import" href="../../../components/ed/ed-icon/ed-icon.html" />
+<link rel="import" href="../../../components/ed/ed-form-input/ed-form-input.html" />
+
+<polymer-element name="ed-login-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-login-view.css">
+    <div class="login-container">
+      <div class="ed-logo-header">
+        <ed-icon name="eardish-logo-with-slogan"></ed-icon>
+      </div>
+      <div class="ed-login-body">
+        <p id="errorServer" class="hidden"><span>*</span> Whoops! Your email or password is wrong. Let's try that again.</p>
+        <p id="errorEmail" class="hidden"><span>*</span> Please enter a valid email address</p>
+        <p id="errorPassword" class="hidden"><span>*</span> Your password needs to be at least 8 characters</p>
+
+        <ed-form-input tabindex="1" type="email" class="email" placeholder="Your Email" icon="envelope"></ed-form-input>
+        <ed-form-input tabindex="2" id="form-password" type="password" class="password" placeholder="Password" icon="password"></ed-form-input>
+
+        <ar-anchor tabindex="5" id="login-forgot-password" route="/forgot-pass/request">Forgot Password?</ar-anchor>
+        <button tabindex="3" id="login-submit" class="invalid" on-click="{{submitForm}}">Login</button>
+
+        <ar-anchor tabindex="4" id="sign-up-button" type="button" route="/register">
+          <span class="small-text">Have a referral code?</span>
+          <br />Sign Up Here
+        </ar-anchor>
+      </div>
+    </div>
+  </template>
+  <script src="ed-login-view.js"></script>
+</polymer-element>

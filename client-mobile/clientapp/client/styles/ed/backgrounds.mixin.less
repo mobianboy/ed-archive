@@ -1,0 +1,23 @@
+@import "../ed/colors.vars.less";
+@import "../../styles/mixins/prefixes/transforms.less";
+
+@baseURL: "assets/background-images/";
+@imageURL: "login_image__1080x1920.jpg";
+
+.mainPicturedBackground( @relativePath: "../../../"; ) {
+  background: url( '@{relativePath}@{baseURL}@{imageURL}' ) no-repeat fixed center;
+  background-size: cover;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.logoFormHeader() {
+  ed-icon {
+    display: block;
+    width: 94%;
+    padding: 0 3%;
+    fill: @originalWhite;
+    pointer-events: none;
+    text-align: center;
+  }
+}

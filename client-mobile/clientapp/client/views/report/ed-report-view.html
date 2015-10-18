@@ -1,0 +1,25 @@
+<link rel="import" href="../../components/ed/ed-icon/ed-icon.html"/>
+
+<polymer-element name="ed-report-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-report-view.css">
+    <div class="report-wrapper">
+      <div class="report-title-bar">
+        <button>
+          <ed-icon name="arrow-back"></ed-icon>
+        </button>
+        <h1>Report A Bug</h1>
+      </div>
+      <section class="icon-text">
+        <ed-icon name="bug"></ed-icon>
+        <p>We love feedback no matter
+          <span>bad or good. Please tell us</span>
+          <span>what went wrong?</span>
+        </p>
+      </section>
+      <textarea rows="6" placeholder="Type here..."></textarea>
+      <button class="report-submit" type="submit">Send</button>
+    </div>
+  </template>
+  <script src="ed-report-view.js"></script>
+</polymer-element>

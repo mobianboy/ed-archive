@@ -1,0 +1,14 @@
+<polymer-element name="on-off" attributes="on-text off-text checked disabled">
+  <template>
+    <link rel="stylesheet" href="./on-off.css">
+
+    <div id="toggle" class="toggle">
+      <input id="checkbox" type="checkbox" checked?={{checked}} disabled?={{disabled}} />
+      <span class="knob"></span>
+      <span class="labels" data-on-text="{{onText}}" data-off-text="{{offText}}"></span>
+      <span class="background"></span>
+    </div>
+
+  </template>
+  <script src="./on-off.js"></script>
+</polymer-element>

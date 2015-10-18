@@ -1,0 +1,24 @@
+#holder {
+  width: 50%;
+  height: 50%;
+  border:2px dotted black;
+  z-index: 2;
+}
+
+:host([fill="parent"]){
+  #holder {
+    width: 100%;
+    height: 100%;
+    border: 2px dotted black;
+    z-index: 2;
+  }
+}
+
+:host([fill="window"]){
+  #holder {
+    width: 100vmax;
+    height: 100vmax;
+    border: 2px dotted black;
+    z-index: 2;
+  }
+}

@@ -1,0 +1,77 @@
+/*
+ * font abstraction, in order to change font-family/font-face change the root-url folder structure
+ * and make sure the new font files are saved in that folder and file names are all lowercase,
+ * double check to make sure the new font contains all the font variations (italic, bold-italic, etc.)
+ */
+
+@font-family: Ubuntu;
+@root-url: './../assets/fonts/Ubuntu/ubuntu';
+
+.edFont() {
+  font-family: @font-family;
+  line-height: 128%;
+}
+
+/* Light */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-light.woff') format('woff'), url('@{root-url}-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Light Italic */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-light-italic.woff') format('woff'), url('@{root-url}-light-italic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Normal */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-regular.woff') format('woff'), url('@{root-url}-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Normal Italic */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-italic.woff') format('woff'), url('@{root-url}-italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Medium */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-medium.woff') format('woff'), url('@{root-url}-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Medium Italic */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-medium-italic.woff') format('woff'), url('@{root-url}-medium-italic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Bold */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-bold.woff') format('woff'), url('@{root-url}-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Bold Italic */
+@font-face {
+  font-family: @font-family;
+  src: url('@{root-url}-bold-italic.woff') format('woff'), url('@{root-url}-bold-italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}

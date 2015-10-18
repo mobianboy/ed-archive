@@ -1,0 +1,22 @@
+@import "./colors.vars.less";
+@import "../fonts/edTypeStyles.less";
+
+.edListStyle {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  li {
+    .edType( heading-M );
+    color: @lightGrey1;
+    padding: 4vh 6vw;
+    background-color: @darkPurple3;
+    border-bottom: 0.1rem solid @darkPurple1;
+    &:last-of-type {
+      // mini player offset
+      margin-bottom: 8vh;
+    }
+    &:active, &:focus {
+      background-color: @darkPurple1;
+    }
+  }
+}

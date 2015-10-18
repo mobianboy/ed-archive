@@ -1,0 +1,62 @@
+@import "../../../styles/mixins/prefixes/flex.less";
+@import "../../../styles/mixins/hidden.less";
+@import "../../../styles/ed/buttons.mixin.less";
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/ed/backgrounds.mixin.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/ed/error-text.mixin.less";
+
+* {
+  font-family: Ubuntu;
+}
+
+.hidden();
+
+.login-container {
+  .flexContainer( column; flex-start; stretch; stretch );
+  .mainPicturedBackground();
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.ed-logo-header {
+  .logoFormHeader();
+  width: 100%;
+  .flexItem( 1, 0 );
+  overflow-y: scroll;
+}
+
+.ed-login-body {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+ed-form-input {
+  width: 95%;
+  height: 8vh;
+  margin: 0 auto 1vh;
+}
+
+#errorEmail, #errorPassword, #errorServer {
+  .edErrorText();
+}
+
+#login-submit {
+  .edPrimaryButton();
+}
+
+#login-forgot-password {
+  display: block;
+  margin: 5% auto;
+  .edType( heading-S );
+  color: @lightGrey1;
+  text-decoration: none;
+  text-align: center;
+}
+
+#sign-up-button {
+  .edSecondaryButton();
+  text-decoration: none;
+}
+

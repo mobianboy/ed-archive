@@ -1,0 +1,23 @@
+<link rel="import" href="../../components/ed/ed-menu-button/ed-menu-button.html"/>
+
+<polymer-element name="ed-discover-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-discover-view.css">
+    <div class="discover-wrapper">
+      <div class="discover-heading">
+        <ed-menu-button></ed-menu-button>
+        <h1 id="discover-title">discover</h1>
+      </div>
+      <ul class="discover-list" on-tap="{{discoverGenreHandler}}">
+        <li id="mymix" data-id="profileBlend">My Mix</li>
+        <li class="genre-title">by genre</li>
+        <li id="pop" data-id="1">Pop</li>
+        <li id="rock" data-id="2">Rock</li>
+        <li id="alternative" data-id="3">Alternative</li>
+        <li id="country" data-id="4">Country</li>
+        <li id="hiphop" data-id="5">Hip-Hop/Urban</li>
+      </ul>
+    </div>
+  </template>
+  <script src="ed-discover-view.js"></script>
+</polymer-element>

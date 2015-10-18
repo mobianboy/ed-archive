@@ -1,0 +1,80 @@
+<link rel="import" href="../../../components/ed/ar-anchor/ar-anchor.html" />
+<link rel="import" href="../../../components/ed/ed-icon/ed-icon.html" />
+<link rel="import" href="../../../components/ed/ed-form-input/ed-form-input.html" />
+<link rel="import" href="../../../components/ed/ed-paired-input/ed-paired-input.html" />
+
+<polymer-element name="ed-registration-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-registration-view.css">
+    <div class="registration-container">
+      <div class="ed-logo-header">
+        <ed-icon name="eardish-logo-with-slogan"></ed-icon>
+      </div>
+      <div class="ed-registration-body">
+        <section class="error-messages">
+          <div id="errorMissing" class="hidden errorFirstName errorLastName"><span>*</span> All fields are required</div>
+          <div id="errorEmail" class="hidden"><span>*</span> Please enter a valid email address</div>
+          <div id="errorZipcode" class="hidden"><span>*</span> Please provide a 5-digit zip code</div>
+          <div id="errorYearOfBirth" class="hidden"><span>*</span> Please enter a valid birth year</div>
+          <div id="errorPasswordShort" class="hidden"><span>*</span> Your password needs to be at least 8 characters</div>
+          <div id="errorPasswordMismatch" class="hidden"><span>*</span> Your passwords don't match, please try again</div>
+          <div id="errorEmailTaken" class="hidden"><span>*</span> That email address is already in use</div>
+          <div id="errorInviteCode" class="hidden"><span>*</span> Your referral code isn’t right. Give it another shot!</div>
+        </section>
+        <ed-form-input type="text"
+                       class="name-first"
+                       placeholder="First Name"
+                       icon="name-first"
+                       required>
+        </ed-form-input>
+        <ed-form-input type="text"
+                       class="name-last"
+                       placeholder="Last Name"
+                       icon="name-last"
+                       required>
+        </ed-form-input>
+        <ed-form-input type="email"
+                       class="email"
+                       placeholder="Your Email"
+                       icon="envelope"
+                       required>
+        </ed-form-input>
+        <ed-form-input type="number"
+                       class="birthday"
+                       min="1901"
+                       max="2015"
+                       placeholder="Year of Birth"
+                       icon="birthday"
+                       required>
+        </ed-form-input>
+        <ed-form-input type="tel"
+                       class="zipcode"
+                       placeholder="Zip Code"
+                       icon="zip"
+                       required>
+        </ed-form-input>
+        <ed-paired-input type="password"
+                         class="password"
+                         placeholder="Password"
+                         icon="password">
+        </ed-paired-input>
+        <ed-form-input type="text"
+                       class="invite-code"
+                       id="referral-code"
+                       placeholder="Referral Code"
+                       icon="star"
+                       required>
+        </ed-form-input>
+        <button id="registration-submit" class="invalid" on-click="{{submitForm}}">
+          Sign Up
+        </button>
+        <ar-anchor id="sign-up-button" type="button" route="/login">
+          <span class="small-text">Have an account already?</span>
+          <br />
+          Login Here
+        </ar-anchor>
+      </div>
+    </div>
+  </template>
+  <script src="ed-registration-view.js"></script>
+</polymer-element>

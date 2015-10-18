@@ -1,0 +1,1 @@
+Please see the repo's wiki for [getting started guide](https://github.com/eardish/clientapp/wiki/Getting-Started), [style guidelines](https://github.com/eardish/clientapp/wiki/Eardish-Client-Side-Code-Style-Guide), [dependency management process](https://github.com/eardish/clientapp/wiki/Adding-and-Updating-Dependencies), etc.

@@ -1,0 +1,42 @@
+@import "../../styles/ed/buttons.mixin.less";
+@import "../../styles/ed/colors.vars.less";
+@import "../../styles/ed/title-bar.mixin.less";
+@import "../../styles/ed/list-style.mixin.less";
+@import "../../styles/mixins/prefixes/animations.less";
+
+* {
+  font-family: "Ubuntu";
+}
+
+.settings-wrapper {
+  background-color: @darkPurple3;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 59.6rem;
+  overflow: hidden;
+  position: relative;
+  .settings-title-bar {
+    .edTitleBar();
+    button {
+      outline: none;
+    }
+  }
+  .settings-list {
+    .edListStyle();
+    .edContentStyle();
+    a {
+      text-decoration: none;
+      color: @originalWhite;
+    }
+    .version-title {
+      // no :hover
+      &:active, &:focus {
+        background-color: @darkPurple3;
+      }
+      span {
+        float: right;
+      }
+    }
+  }
+}
+

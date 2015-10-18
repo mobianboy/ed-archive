@@ -1,0 +1,92 @@
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/mixins/prefixes/animations.less";
+@import "../../../styles/mixins/prefixes/transforms.less";
+
+#song-card-wrapper {
+  width: 100%;
+  overflow-y: scroll;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  &.minimized {
+    overflow: hidden;
+  }
+}
+
+#mini-player-wrapper {
+  background: @darkPurple2;
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  pointer-events: all;
+  transition: all .35s;
+  .transform( translate3d( 0, 0, 0 ));
+
+  &.close {
+    .transform( translate3d( 0, 100vh, 0 ));
+    z-index: 2;
+  }
+}
+
+
+
+#main-player-wrapper {
+  min-height: 100%;
+  z-index: 2;
+  pointer-events: all;
+  background: @darkPurple2;
+  -webkit-transition: -webkit-transform .35s, opacity 0s 0s;
+  transition: transform .35s, opacity 0s 0s;
+  opacity: 1;
+  margin: 0 auto;
+  .transform( translate3d( 0, 0, 0 ));
+
+  &.close {
+    -webkit-transition: -webkit-transform .35s, opacity 0s .35s;
+    transition: transform .35s, opacity 0s .35s;
+    .transform( translate3d( 0, 100vh, 0 ));
+    opacity: 0;
+  }
+
+  .player-background {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 59.6rem;
+  }
+}
+
+#user-ranking {
+  margin: 0 auto;
+  width: 91%;
+
+  .rankings-container {
+    float: right;
+    height: 12vh;
+    line-height: 12vh;
+  }
+}
+
+#minify-button {
+  width: 13%;
+  height: 12vh;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.7rem;
+}
+
+#minify-icon {
+  fill: @lightGrey1;
+  height: 60%;
+  width: 80%;
+}
+
+#songs-rated {
+  .user-rank {
+    margin-right: 1rem;
+  }
+}

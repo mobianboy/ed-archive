@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <base href="/"/>
+  <link rel="shortcut icon" href="assets/favicon.ico" />
+  <title>Client App Tests</title>
+
+  <!-- Vendor Scripts -->
+  <script src="vendor/indexeddbshim.js"></script>
+  <script src="vendor/aws-sdk.js"></script>
+  <script src="vendor/webcomponents.js"></script>
+  <script src="vendor/polymer.js"></script>
+  <script src="vendor/traceur-runtime.js"></script>
+  <script src="vendor/es6-module-loader.js"></script>
+  <script src="vendor/system.js"></script>
+  <link rel="import" href="vendor/app-router.html" />
+
+  <!-- Test Vendor Scripts -->
+  <link rel="stylesheet" href="vendor/mocha.css"/>
+  <script src="vendor/mocha.js"></script>
+  <script src="vendor/chai.js"></script>
+  <script src="vendor/sinon.js"></script>
+  <script src="vendor/chai-as-promised.js"></script>
+  <script src="vendor/sinon-chai.js"></script>
+
+  <script>
+    // Set up Mocha
+    mocha.setup({
+      ui: "tdd"
+    });
+  </script>
+
+  <!-- INCLUDE COMPONENT TEST FILES -->
+</head>
+<body>
+  <nav style="margin: 5px 0; text-align: center; overflow: auto;">
+    <a href="http://mochajs.org/" target="_blank">MochaJS</a> -
+    <a href="http://chaijs.com/guide/styles/#bdd" target="_blank">ChaiJS</a> -
+    <a href="http://sinonjs.org/docs/" target="_blank">SinonJS</a> -
+    <a href="https://github.com/domenic/chai-as-promised/" target="_blank">Chai-as-Promised</a> -
+    <a href="https://github.com/domenic/sinon-chai" target="_blank">Sinon-Chai</a>
+  </nav>
+  <div id="mocha"></div>
+  <div id="test-wrappers" class="hidden">
+    <!-- INCLUDE TEST WRAPPERS -->
+  </div>
+
+  <script>
+    // Run Mocha
+    document.addEventListener( "polymer-ready", function() {
+      console.log( "running tests" );
+      mocha.run();
+    });
+  </script>
+
+  <!-- INCLUDE DOMAIN TEST FILES -->
+
+  <!-- Livereload -->
+  <script id="reload-tag" type="text/javascript">
+   (function(){
+      // Live Reload Script
+      if( !window.frameElement && ( /^local.eardish|localhost|:5115/g ).test( location.host ) ) {
+        document.write(
+            "<script src=\"http://" +
+            ( location.host || "localhost" ).split( ":" )[0] +
+            ":35729/livereload.js\"></" +
+            "script>"
+        );
+      }
+
+      // Remove this script tag
+      var here = document.getElementById("reload-tag");
+      setTimeout(function(){
+        document.body.removeChild(here);
+      }, 200);
+    })();
+  </script>
+</body>
+</html>

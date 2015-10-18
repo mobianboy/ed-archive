@@ -1,0 +1,30 @@
+
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/mixins/hidden.less";
+
+
+ed-splash {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 10;
+  background-color: @originalWhite;
+  opacity: 1;
+  transition: opacity ease-in 0.5s;
+  -webkit-transition: opacity ease-in 0.5s;
+
+  .customHidden({
+    display: block;
+    visibility: visible;
+    opacity: 0;
+  });
+
+  ed-icon {
+    display: block;
+    margin: 50% auto 0;
+    fill: @originalPurple;
+  }
+}

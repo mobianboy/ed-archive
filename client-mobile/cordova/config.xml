@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.eardish.client" version="0.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>eardish</name>
+    <description>
+        The eardish music discovery platform.
+    </description>
+    <author email="tech@eardish.com" href="http://www.eardish.com">
+        The Eardish client dev team
+    </author>
+
+    <content src="index.html#/login" />
+
+    <!-- Start Plugin Settings -->
+    <!-- White list settings -->
+    <!-- Navigation: No config needed, file:// URLs only are allowed by default -->
+    <!-- Intent URLs -->
+    <!-- Allow links to web pages to open in a browser -->
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+
+    <!-- Allow SMS links to open messaging app -->
+    <allow-intent href="sms:*" />
+
+    <!-- Allow tel: links to open the dialer -->
+    <allow-intent href="tel:*" />
+
+    <!-- Allow geo: links to open maps -->
+    <allow-intent href="geo:*" />
+
+    <!-- Allow mailto: links to open system email app -->
+    <allow-intent href="mailto:*" />
+
+    <!-- Allow market links to open market -->
+    <allow-intent href="market:*" />
+
+    <!-- Network Requests -->
+    <access origin="*://*.eardish.com/*" />
+    <access origin="*://*.eardishcorp.com/*" />
+
+    <access origin="http://*.cloudfront.net/*" />
+    <access origin="https://*.cloudfront.net/*" />
+
+    <access origin="http://*.amazonaws.com/*" />
+    <access origin="https://*.amazonaws.com/*" />
+
+    <access origin="*://*.doubleclick.net/*" />
+    <access origin="*://*.admob.com/*" />
+    <access origin="*://*.gstatic.com/*" />
+    <access origin="*://*.googlesyndication.com/*" />
+    <access origin="*://*.googleusercontent.com/*" />
+    <access origin="*://*.googleapis.com/*" />
+
+    <!--<access origin="*" />-->
+    <!-- End White list settings -->
+
+    <!-- Status Bar Settings -->
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <!-- END Status Bar Settings -->
+
+    <!-- END Plugin Settings -->
+
+    <!-- Global Preferences -->
+    <preference name="SplashScreenDelay" value="25000" />
+    <preference name="Fullscreen" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="HideKeyboardFormAccessoryBar" value="true"/>
+    <!-- END Global Prefs -->
+
+    <icon src="icon.png" />
+
+    <!-- iOS Specific Options -->
+    <platform name="ios">
+        <preference name="EnableViewportScale" value="true" />
+        <preference name="MediaPlaybackRequiresUserAction" value="false" />
+        <preference name="AllowInlineMediaPlayback" value="true" />
+        <preference name="BackupWebStorage" value="local" />
+        <preference name="TopActivityIndicator" value="white" />
+        <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+        <preference name="SuppressIncrementalRendering" value="false" />
+        <preference name="GapBetweenPages" value="0" />
+        <preference name="PageLength" value="0" />
+        <preference name="PaginationBreakingMode" value="page" />
+        <preference name="PaginationMode" value="unpaginated" />
+        <preference name="UIWebViewDecelerationSpeed" value="normal" />
+
+        <!-- Icons -->
+        <icon src="resources/ios/icons/icon-40.png" width="40" height="40" />
+        <icon src="resources/ios/icons/icon-40@2x.png" width="80" height="80" />
+        <icon src="resources/ios/icons/icon-50.png" width="50" height="50" />
+        <icon src="resources/ios/icons/icon-50@2x.png" width="100" height="100" />
+        <icon src="resources/ios/icons/icon-60.png" width="60" height="60" />
+        <icon src="resources/ios/icons/icon-60@2x.png" width="120" height="120" />
+        <icon src="resources/ios/icons/icon-60@3x.png" width="180" height="180" />
+        <icon src="resources/ios/icons/icon-72.png" width="72" height="72" />
+        <icon src="resources/ios/icons/icon-72@2x.png" width="144" height="144" />
+        <icon src="resources/ios/icons/icon-76.png" width="76" height="76" />
+        <icon src="resources/ios/icons/icon-76@2x.png" width="152" height="152" />
+        <icon src="resources/ios/icons/icon-small.png" width="29" height="29" />
+        <icon src="resources/ios/icons/icon-small@2x.png" width="58" height="58" />
+        <icon src="resources/ios/icons/icon.png" width="57" height="57" />
+        <icon src="resources/ios/icons/icon@2x.png" width="114" height="144" />
+
+        <!-- Splash Screen -->
+        <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
+        <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
+        <splash src="resources/ios/splash/Default-Portrait~ipad.png" width="768" height="1024"/>
+        <splash src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+        <splash src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" height="768"/>
+        <splash src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+        <splash src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
+        <splash src="resources/ios/splash/Default-667h.png" width="750" height="1334"/>
+        <splash src="resources/ios/splash/Default-736h.png" width="1242" height="2208"/>
+        <splash src="resources/ios/splash/Default-Landscape-736h.png" width="2208" height="1242"/>
+    </platform>
+
+    <!-- Android Specific Options -->
+    <platform name="android">
+        <preference name="KeepRunning" value="true" />
+        <preference name="InAppBrowserStorageEnabled" value="true"/>
+
+        <!-- Icons -->
+        <icon src="resources/android/drawable/icon.png" width="96" height="96" />
+
+        <icon src="resources/android/drawable_ldpi/36x36.png" width="36" height="36" density="ldpi" />
+
+        <icon src="resources/android/drawable_mdpi/16x16.png" width="16" height="16" density="mdpi" />
+        <icon src="resources/android/drawable_mdpi/24x24.png" width="24" height="24" density="mdpi" />
+        <icon src="resources/android/drawable_mdpi/32x32.png" width="32" height="32" density="mdpi" />
+        <icon src="resources/android/drawable_mdpi/48x48.png" width="48" height="48" density="mdpi" />
+
+        <icon src="resources/android/drawable_hdpi/72x72.png" width="72" height="72" density="hdpi" />
+        <icon src="resources/android/drawable_hdpi/48x48.png" width="48" height="48" density="hdpi" />
+        <icon src="resources/android/drawable_hdpi/36x36.png" width="36" height="36" density="hdpi" />
+        <icon src="resources/android/drawable_hdpi/24x24.png" width="24" height="24" density="hdpi" />
+
+        <icon src="resources/android/drawable_xhdpi/32x32.png" width="32" height="32" density="xhdpi" />
+        <icon src="resources/android/drawable_xhdpi/48x48.png" width="48" height="48" density="xhdpi" />
+        <icon src="resources/android/drawable_xhdpi/64x64.png" width="64" height="64" density="xhdpi" />
+        <icon src="resources/android/drawable_xhdpi/96x96.png" width="96" height="96" density="xhdpi" />
+
+        <icon src="resources/android/drawable_xxhdpi/48x48.png" width="48" height="48" density="xxhdpi" />
+        <icon src="resources/android/drawable_xxhdpi/72x72.png" width="72" height="72" density="xxhdpi" />
+        <icon src="resources/android/drawable_xxhdpi/96x96.png" width="96" height="96" density="xxhdpi" />
+        <icon src="resources/android/drawable_xxhdpi/144x144.png" width="144" height="144" density="xxhdpi" />
+
+        <icon src="resources/android/drawable_xxxhdpi/64x64.png" width="64" height="64" density="xxxhdpi" />
+        <icon src="resources/android/drawable_xxxhdpi/96x96.png" width="96" height="96" density="xxxhdpi" />
+        <icon src="resources/android/drawable_xxxhdpi/128x128.png" width="128" height="128" density="xxxhdpi" />
+        <icon src="resources/android/drawable_xxxhdpi/192x192.png" width="192" height="192" density="xxxhdpi" />
+
+        <!-- Splash Screens -->
+        <splash src="resources/android/drawable_land_hdpi/screen.png" density="land-hdpi" />
+        <splash src="resources/android/drawable_land_ldpi/screen.png" density="land-ldpi" />
+        <splash src="resources/android/drawable_land_mdpi/screen.png" density="land-mdpi" />
+        <splash src="resources/android/drawable_land_xhdpi/screen.png" density="land-xhdpi" />
+
+        <splash src="resources/android/drawable_port_hdpi/screen.png" density="port-hdpi" />
+        <splash src="resources/android/drawable_port_ldpi/screen.png" density="port-ldpi" />
+        <splash src="resources/android/drawable_port_mdpi/screen.png" density="port-mdpi" />
+        <splash src="resources/android/drawable_port_xhdpi/screen.png" density="port-xhdpi" />
+    </platform>
+</widget>

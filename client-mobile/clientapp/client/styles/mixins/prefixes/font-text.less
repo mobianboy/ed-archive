@@ -1,0 +1,43 @@
+/***
+* font-feature-settings Mixin
+* .fontFeature();
+*
+*
+* Ex: .fontFeature( "kern" 2 );
+*     .fontFeature( "smcp" );
+*
+* Description:
+* This mixin is shorthand for font-feature-settings which applies
+* advance typographic and font features to OpenType fonts.
+* No support for Safari and Opera Mini
+*
+* This mixin takes in the following parameters:
+* @feature: <string> [ <integer> | on | off ]
+***/
+.fontFeature( @feature ) {
+  -webkit-font-feature-settings+: @feature;
+  -moz-font-feature-settings+: @feature;
+  font-feature-settings+: @feature;
+}
+
+/***
+* Hyphen mixin
+* .hyphen();
+*
+* Description:
+* This mixin hyphenates words that are too long when it reaches a margin
+* instead of moving the entire word down to the next row. The word should also contain
+* "&shy;" in order to hyphenate the word.
+* No support for Chrome, Opera, or Mobile devices
+*
+* Ex: .hyphens( auto );
+*
+* This mixin takes in the following parameters:
+* @hyphens: none | manual | auto
+***/
+.hyphens( @hypen ) {
+  -webkit-hyphens: @hypen;
+  -moz-hyphens: @hypen;
+  -ms-hyphens: @hypen;
+  hyphens: @hypen;
+}

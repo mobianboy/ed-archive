@@ -1,0 +1,63 @@
+@import (once) "edFont.less";
+
+.edType( @textSize ) {
+  .edFont();
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.edType( @textSize ) when (  @textSize = heading-XXXL ) {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.edType( @textSize ) when (  @textSize = heading-XXL ) {
+  font-weight: 700;
+  font-size: 2.6rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-XL ) {
+  font-weight: 500;
+  font-size: 2.4rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-L ) {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-M ) {
+  font-weight: 500;
+  font-size: 1.8rem
+}
+
+.edType( @textSize ) when ( @textSize = heading-S ) {
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-XS ) {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-XXS ) {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.edType( @textSize ) when ( @textSize = paragraph-L ) {
+  font-weight: 500;
+  font-size: 2.4rem;
+}
+
+.edType( @textSize ) when ( @textSize = paragraph-M ) {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.edType( @textSize ) when ( @textSize = paragraph-S ) {
+  font-weight: 400;
+  font-size: 1.8rem;
+}

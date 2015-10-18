@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function() {
+      var
+        baseUrl = window.location.href.slice( 0, window.location.href.indexOf( "index.html" )),
+        base = document.createElement( "base" );
+
+      base.setAttribute( "href", baseUrl );
+      document.head.appendChild( base );
+
+      // Device ready promise
+      window.deviceReadyPromise = new Promise(function( resolve, reject ) {
+        var timeoutId;
+
+        // if no "cordova" resolve this now
+        if ( !(/^file:/gi).test( window.location.protocol ) ) {
+          resolve( true );
+          return;
+        }
+
+        document.addEventListener( "deviceready", function( event ) {
+          window.clearTimeout( timeoutId );
+
+          console.log( "saw device ready %o", event );
+          resolve( event );
+        }, false );
+
+        timeoutId = window.setTimeout(function() {
+          console.error(( new Error( "Device Ready took more than five minutes to get set up" )).stack );
+
+          // fake some event data
+          resolve({
+            type: "deviceready"
+          });
+        }, 300000 );
+      });
+
+      // Polymer ready promise
+      window.polymerReadyPromise = new Promise(function( resolve, reject ) {
+        var timeoutId;
+
+        document.addEventListener("polymer-ready", function( event ) {
+          window.clearTimeout( timeoutId );
+
+          console.log( "saw polymer ready on window %o", event );
+          resolve( event );
+        });
+
+        timeoutId = window.setTimeout(function() {
+          console.error(( new Error( "Polymer Took more than five minutes to get set up" )).stack );
+
+          // fake some event data
+          resolve({
+            type: "polymer-ready"
+          });
+        }, 300000 );
+      });
+
+      window.webComponentsReadyPromise = new Promise(function( resolve, reject ) {
+        var timeoutId;
+
+        document.addEventListener( "WebComponentsReady", function( event ) {
+          window.clearTimeout( timeoutId );
+          console.log( "webCompready" );
+          resolve( event );
+        });
+
+        timeoutId = window.setTimeout(function() {
+          resolve({
+            type: "WebComponentsReady"
+          });
+        }, 300000 );
+      });
+    })();
+  </script>
+  <title>eardish</title>
+  <link rel="shortcut icon" href="assets/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' file: data: http: https:; connect-src file: http://*.eardish.com:* https://*.eardish.com:* http://*.eardishcorp.com:* https://*.eardishcorp.com:* ws://*.eardish.com:* ws://*.eardishcorp.com:* wss://*.eardish.com:* wss://*.eardishcorp.com:* http://*.admob.com https://*.admob.com http://*.cloudfront.net https://*.cloudfront.net http://*.amazonaws.com https://*.amazonaws.com http://*.doubleclick.net https://*.doubleclick.net http://*.gstatic.com https://*.gstatic.com; img-src *; object-src *; media-src *; frame-src 'self' file: https: http: gap:;" />
+
+  <!-- Global Styles -->
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <!-- Vendor Scripts -->
+  <script>
+    // cordova.js
+    (function() {
+      var script;
+      if ( (/(android|iphone)/i).test( navigator.userAgent ) ) {
+        script = document.createElement( "script" );
+        script.setAttribute( "src", "cordova.js" );
+        document.head.appendChild( script );
+      }
+    })();
+  </script>
+  <script src="vendor/indexeddbshim.js"></script>
+  <script src="vendor/aws-sdk.js"></script>
+  <script src="vendor/webcomponents.js"></script>
+  <script src="vendor/polymer.js"></script>
+  <script src="vendor/traceur-runtime.js"></script>
+  <script src="vendor/es6-module-loader-sans-promises.js"></script>
+  <script src="vendor/system.js"></script>
+  <link rel="import" href="vendor/app-router.html" />
+
+  <script src="domain/load.script.js" async></script>
+
+  <!-- Eardish Views -->
+  <link rel="import" href="views/views.html" />
+  <link rel="import" href="components/ed/ed-splash/ed-splash.html" />
+</head>
+
+<body unresolved>
+
+<ed-splash id="splash-screen"></ed-splash>
+
+<ed-side-menu id="side-menu"></ed-side-menu>
+
+<div id="animation-wrapper" class="router-animation-wrapper">
+  <app-router id="root-app-router" mode="auto" trailingSlash="ignore" typecast="string">
+    <!-- ROOT -->
+    <app-route path="/" redirect="/login"></app-route>
+    <app-route path="/**/www/index.html" redirect="/login"></app-route>
+
+    <!-- LOGIN -->
+    <app-route path="/login" element="ed-login-view" bindRouter></app-route>
+
+    <!-- REGISTRATION -->
+    <app-route regex path="/^\/(register|registration)$/i" element="ed-registration-view" bindRouter></app-route>
+
+    <!-- ONBOARDING -->
+    <app-route path="/onboarding/**" element="ed-onboarding-view"></app-route>
+    <app-route path="/onboarding" redirect="/onboarding/like"></app-route>
+
+    <!-- PROFILE -->
+    <app-route path="/profile/edit" element="ed-profile-edit"></app-route>
+    <app-route path="/artist/:edId" element="ed-profile-artist" onUrlChange="updateModel"></app-route>
+    <app-route path="/fan/:edId" element="ed-profile-fan" onUrlChange="updateModel"></app-route>
+
+    <!-- RETRIEVE PASSWORD -->
+    <app-route path="/forgot-pass/**" element="ed-forgot-pass-view"></app-route>
+
+    <!-- CHARTS -->
+    <app-route path="/charts" element="ed-charts-view"></app-route>
+
+    <!-- SETTINGS -->
+    <app-route path="/settings" element="ed-settings-view" bindRouter></app-route>
+
+    <!-- DISCOVER -->
+    <app-route path="/discover" element="ed-discover-view"></app-route>
+
+    <!-- REFERRAL -->
+    <app-route path="/referral" element="ed-referral-view"></app-route>
+
+    <!-- catch all route, 404 page? or redirect... -->
+    <app-route path="*" redirect="/login"></app-route>
+  </app-router>
+</div>
+
+<ed-song-card-view id="song-card"></ed-song-card-view>
+
+<!-- APPLICATION SCRIPT -->
+<script src="domain/main.script.js" type="text/javascript"></script>
+
+<!-- REMOVE FOR PRODUCTION -->
+<script id="reload-tag" type="text/javascript">
+  (function( window, document ){
+    // Live Reload Script
+    if( ( /.*:5115$/g ).test( location.host ) ) {
+      document.write(
+          "<script src=\"http://" +
+          ( location.host || "localhost" ).split( ":" )[0] +
+          ":35729/livereload.js\"></" +
+          "script>"
+      );
+    }
+
+    // Remove this script tag
+    window.setTimeout(function(){
+      document.body.removeChild(this);
+    }.bind( document.getElementById( "reload-tag" ) ), 200);
+  })( window, document );
+</script>
+<!--END REMOVE FOR PRODUCTION -->
+</body>
+</html>

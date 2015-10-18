@@ -1,0 +1,73 @@
+@import "../../../styles/mixins/prefixes/placeholder.less";
+@import "../../../styles/mixins/prefixes/flex.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/ed/colors.vars.less";
+
+:host {
+  display: block;
+  width: 95%;
+  height: 8vh;
+  min-height: 45px;
+  margin: 0 auto 1vh;
+}
+
+:host(:focus) {
+  outline: none;
+}
+
+:host(.invalid) {
+  .form-input-container {
+    background-color: @originalRed;
+    border-color: @darkRed1;
+  }
+  input {
+    .input-placeholder( { color: @originalWhite } );
+  }
+  ed-icon {
+    fill: @originalWhite;
+  }
+}
+
+.form-input-container {
+  .flexContainer( row nowrap; space-around; center; stretch; );
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: @darkPurple3;
+  box-shadow: .4rem .4rem 0 0 fade(@darkPurple3, 75%) inset;
+}
+
+label {
+  display: inline-block;
+  .flexOrder( 1 );
+  .flexGrow( 1 );
+  height: 100%;
+  max-width: 10%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2%;
+  overflow: hidden;
+}
+
+input {
+  padding: 0;
+  display: inline-block;
+  .flexOrder( 2 );
+  .flexGrow( 3 );
+  height: 100%;
+  .edType( heading-L );
+  color: @originalWhite;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  .input-placeholder( { color: @originalGrey } );
+}
+
+// for svg height and width dimensions may both need to be
+// declared and they work like regular CSS max-width or max-height
+ed-icon {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  fill: @originalGrey;
+}

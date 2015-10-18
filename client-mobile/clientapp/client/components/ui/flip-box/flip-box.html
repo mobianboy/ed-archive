@@ -1,0 +1,17 @@
+<polymer-element name="flip-box">
+  <template>
+    <link rel="stylesheet" href="./flip-box.css">
+    <div class="flipbox-container">
+      <div class="box front">
+        <button class="flipbox-button">X</button>
+        <content select=".front"></content>
+      </div>
+
+      <div class="box back">
+        <button class="flipbox-button">X</button>
+        <content select=".back"></content>
+      </div>
+    </div>
+  </template>
+  <script src="./flip-box.js"></script>
+</polymer-element>

@@ -1,0 +1,40 @@
+<link rel="import" href="../../../components/ed/ed-icon/ed-icon.html"/>
+<link rel="import" href="../../../components/ed/ed-paired-input/ed-paired-input.html"/>
+
+<polymer-element name="ed-forgot-pass-reset-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-forgot-pass-reset-view.css">
+    <div class="forgot-container">
+      <div class="ed-logo-header">
+        <ed-icon name="eardish-logo-with-slogan"></ed-icon>
+      </div>
+      <div class="ed-forgot-body">
+        <p class="forgot-text">We've sent a security code your way. Enter it below and create a new password:</p>
+        <section class="error-messages">
+          <p id="errorResetCode" class="hidden"><span>*</span> Your code isn’t quite right. Give it another shot!</p>
+          <p id="errorPasswordShort" class="hidden"><span>*</span> Your password needs to be at least 8 characters</p>
+          <p id="errorPasswordMismatch" class="hidden"><span>*</span> Your passwords don't match, please try again</p>
+        </section>
+        <div id="forgot-form">
+          <ed-form-input
+              type="text"
+              class="reset-code"
+              placeholder="Security Code"
+              icon="security-code"
+              required>
+          </ed-form-input>
+          <ed-paired-input
+              class="password"
+              type="password"
+              placeholder="Password"
+              icon="password">
+          </ed-paired-input>
+          <button id="forgot-submit" type="submit">
+            Set new password
+          </button>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script src="ed-forgot-pass-reset-view.js"></script>
+</polymer-element>

@@ -1,0 +1,36 @@
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/mixins/prefixes/placeholder.less";
+@import "../../../styles/mixins/prefixes/flex.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+
+:host {
+  display: block;
+}
+
+:host(:focus) {
+  outline: none;
+}
+
+.container {
+  .flexContainer( column nowrap; space-between; center; stretch; );
+  width: 100%;
+  height: 100%;
+}
+
+#primaryBox {
+  .flexOrder( 1 );
+  margin-bottom: 1vh;
+}
+
+#confirmBox {
+  .flexOrder( 2 );
+}
+
+.password-req-text {
+  .edType( heading-S );
+  color: @originalTeal;
+  margin: 0 0 1vh;
+  :host(:not([type="password"])) & {
+    display: none;
+  }
+}

@@ -1,0 +1,43 @@
+
+.inner-box {
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  margin-right: -100px;
+  padding-right: 100px;
+  &p:last-child {
+    margin-bottom: 2em;
+  }
+}
+.outer-box {
+  height: 300px;
+  width: 300px;
+  background-color: lightgrey;
+  padding: 0 5px;
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: '';
+    height: 2em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+:host([disabled]) {
+  .inner-box {
+    overflow: hidden;
+    opacity: .5;
+    pointer-events: none;
+  }
+}
+
+:host([show-arrows]) {
+  .inner-box {
+    margin-right: -5px;
+    padding-right: -100px;
+  }
+}
+

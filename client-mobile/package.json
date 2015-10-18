@@ -1,0 +1,59 @@
+{
+  "name": "client-mobile",
+  "private": true,
+  "version": "0.5.0",
+  "author": "Ryan Bogle <ryan@eardish.com>",
+  "description": "Welcome to the cordova build repo for the Eardish clientapp",
+  "homepage": "https://github.com/eardish/client-mobile",
+  "bugs": {
+    "url": "https://github.com/eardish/client-mobile/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eardish/client-mobile.git"
+  },
+  "config": {
+    "app_build": "./clientapp/build/prod/*",
+    "cordova_www": "./cordova/www",
+    "xwalk_www": "./crosswalk/www",
+    "android_package": "com.eardish.client",
+    "xwalk_manifest": "www/manifest.json"
+  },
+  "scripts": {
+    "postinstall": "npm run-script cordova:install",
+    "cordova:install": "npm run-script cordova:install:platforms ; npm run-script cordova:install:plugins",
+    "cordova:install:platforms": "cd ./cordova && cordova platform add ios ; cordova platform add android ; cd ..",
+    "cordova:install:plugins": "cd ./cordova && cordova plugin add cordova-plugin-device cordova-plugin-camera cordova-plugin-inappbrowser cordova-plugin-crosswalk-webview cordova-plugin-admobpro cordova-plugin-geolocation cordova-plugin-file cordova-plugin-sim cordova-plugin-whitelist cordova-plugin-statusbar ; cd ..",
+    "cordova:remove:plugins": "cd ./cordova && cordova plugin remove cordova-plugin-device cordova-plugin-camera cordova-plugin-inappbrowser cordova-plugin-crosswalk-webview cordova-plugin-admobpro cordova-plugin-geolocation cordova-plugin-file cordova-plugin-sim cordova-plugin-whitelist cordova-plugin-statusbar ; cd ..",
+    "client:build": "cd ./clientapp && npm run-script prod:build ; cd ..",
+    "client:build:prod": "GULP_ENVIRONMENT=PRODUCTION npm run-script client:build",
+    "client:build:qa": "GULP_ENVIRONMENT=QA npm run-script client:build",
+    "client:build:intdev": "GULP_ENVIRONMENT=DEVELOPMENT npm run-script client:build",
+    "copy:cordova": "cp -R $npm_package_config_app_build $npm_package_config_cordova_www",
+    "copy:xwalk": "cp -R $npm_package_config_app_build $npm_package_config_xwalk_www",
+    "copy": "npm run-script copy:cordova && npm run-script copy:xwalk",
+    "prepare:cordova": "npm run-script client:build && npm run-script copy:cordova",
+    "prepare:xwalk": "npm run-script client:build && npm run-script copy:xwalk",
+    "prepare": "npm run-script client:build && npm run-script copy",
+    "xwalk:build:debug": "npm run-script xwalk:build -- --enable-remote-debugging",
+    "xwalk:build": "cd ./crosswalk && python make_apk.py --package=$npm_package_config_android_package --manifest=$npm_package_config_xwalk_manifest",
+    "build:android:xwalk": "npm run-script prepare:xwalk && npm run-script xwalk:build",
+    "build:android:xwalk:debug": "npm run-script prepare:xwalk && npm run-script xwalk:build:debug",
+    "ios:build": "cd ./cordova && cordova build ios",
+    "ios:build:debug": "npm run-script ios:build -- --debug",
+    "build:ios": "npm run-script prepare:cordova && npm run-script ios:build",
+    "build:ios:debug": "npm run-script prepare:cordova && npm run-script ios:build:debug",
+    "android:build": "cd ./cordova && cordova build android",
+    "android:build:debug": "npm run-script android:build -- --debug",
+    "build:android": "npm run-script prepare:cordova && npm run-script android:build",
+    "build:android:debug": "npm run-script prepare:cordova && npm run-script android:build:debug",
+    "cordova:build": "cd ./cordova && cordova build",
+    "cordova:build:debug": "npm run-script cordova:build -- --debug",
+    "build:cordova": "npm run-script prepare:cordova && npm run-script cordova:build",
+    "build:cordova:debug": "npm run-script prepare:cordova && npm run-script cordova:build:debug",
+    "run:ios:device": "npm run-script prepare:cordova && npm run-script ios:build && cd ./cordova && cordova run --debug ios --device -- -- --justlaunch",
+    "run:ios:emulator": "npm run-script prepare:cordova && npm run-script ios:build && cd ./cordova && cordova run --debug ios --emulator",
+    "run:android:device": "npm run-script prepare:cordova && npm run-script android:build && cd ./cordova && cordova run --nobuild --debug android --device",
+    "run:android:emulator": "npm run-script prepare:cordova && npm run-script android:build && cd ./cordova && cordova run --debug android --emulator"
+  }
+}

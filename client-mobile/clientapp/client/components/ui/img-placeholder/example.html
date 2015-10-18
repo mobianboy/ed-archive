@@ -1,0 +1,29 @@
+<img-placeholder image="placecage" src="http://www.fillmurray.com/300/200"></img-placeholder>
+<img-placeholder image="placecage"></img-placeholder>
+<img-placeholder image="fillmurray" src="invalidsource.com"></img-placeholder>
+<img-placeholder src="invalidsource.com"></img-placeholder>
+<img-placeholder image="notavalidprofile"></img-placeholder>
+
+<template>
+  <script>
+    ( function( document ) {
+      // script required for <img-placeholder>
+      document.addEventListener('polymer-ready', function() {
+        document.createElement("img-placeholder").imageMap = (function(){
+          var urlPrefix = "http://",
+              urlPostfix = ".com/200/300",
+              map = {},
+              imageNames = [
+                "fillmurray",
+                "placecage"
+              ];
+
+          imageNames.forEach( function ( imageName ){
+            map[imageName] = urlPrefix + imageName + urlPostfix;
+          });
+          return map;
+        })();
+      });
+    })( document );
+  </script>
+</template>

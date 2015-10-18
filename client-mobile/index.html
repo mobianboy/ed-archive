@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eardish Testing Cordova Build</title>
+  <style>
+    body {
+      padding-top: 50px;
+      font-size: 20px;
+    }
+    .built-ins {}
+    .field {}
+  </style>
+</head>
+<body>
+  <div class="built-ins">
+    <p>Click the button to load the client application from the specific environment server</p>
+    <button id="int-dev">Int-Dev</button>
+    <button id="qa">QA</button>
+    <button id="stag">Staging</button>
+    <script>
+      (function( location ){
+        var buttonDiv = document.querySelector( ".built-ins" );
+
+        buttonDiv.addEventListener( "click", function( event ) {
+          var target = event.target;
+
+          if ( target.tagName === "BUTTON" ) {
+            switch( target.id ) {
+              case "int-dev":
+                location.assign( "http://clientdev.eardishcorp.com:5115/" );
+                break;
+              case "qa":
+                location.assign( "http://clientqa.eardish.com" );
+                break;
+              case "stag":
+                location.assign( "http://clientstag.eardish.com" );
+                break;
+              default:
+                break;
+            }
+          }
+        });
+      })( window.location );
+    </script>
+  </div>
+  <div class="field">
+    <p>Load up any page you want!</p>
+    <label>href: </label><input type="text" />
+    <button>Go!</button>
+    <script>
+      (function(){
+        var
+          input = document.querySelector( ".field > input " ),
+          btn = document.querySelector( ".field > button" );
+
+        btn.addEventListener( "click", function( event ) {
+          var href = input.value;
+
+          if ( !(/^http/).test(href) ) {
+            href = "http://" + href;
+          }
+
+          window.location.assign( href ); // SO UNSAFE!
+        });
+      })();
+    </script>
+  </div>
+</body>
+</html>

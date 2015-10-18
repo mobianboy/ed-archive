@@ -1,0 +1,52 @@
+@import "../../../styles/mixins/prefixes/flex.less";
+@import "../../../styles/mixins/hidden.less";
+@import "../../../styles/ed/buttons.mixin.less";
+@import "../../../styles/ed/colors.vars.less";
+@import "../../../styles/ed/backgrounds.mixin.less";
+@import "../../../styles/fonts/edTypeStyles.less";
+@import "../../../styles/ed/error-text.mixin.less";
+
+* {
+  font-family: Ubuntu;
+}
+
+.hidden();
+
+.forgot-container {
+  .flexContainer( column; flex-start; stretch; stretch );
+  .mainPicturedBackground();
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.ed-logo-header {
+  .logoFormHeader();
+  width: 100%;
+  .flexItem( 1, 0 );
+  overflow-y: auto;
+}
+
+.ed-forgot-body {
+  text-align: center;
+}
+
+.forgot-text {
+  .edType( heading-S );
+  color: @lightGrey1;
+  text-align: center;
+}
+
+#errorServer, #errorEmail {
+  .edErrorText();
+}
+
+#forgot-submit {
+  .edPrimaryButton();
+  margin-top: 9%;
+}
+
+#back-button {
+  .edPrimaryButton( @backgroundColor: @darkPurple3; @activeColor: @darkPurple1; );
+  text-decoration: none;
+  padding: 7%;
+}

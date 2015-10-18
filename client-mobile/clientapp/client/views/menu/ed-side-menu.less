@@ -1,0 +1,74 @@
+@import "../../styles/ed/list-style.mixin.less";
+@import "../../styles/fonts/edTypeStyles.less";
+@import "../../styles/ed/colors.vars.less";
+@import "../../styles/ed/alignments.mixin.less";
+@import "../../styles/mixins/prefixes/transforms.less";
+@import "../../styles/mixins/prefixes/animations.less";
+
+// Note: ed-side-menu styles are in main.less
+
+.menu-wrapper {
+  height: 100%;
+  .menu-list {
+    width: 100%;
+    height: 78vh;
+    margin-top: 2%;
+    ar-anchor {
+      display: block;
+      float: left;
+      clear: left;
+      height: 15vh;
+      width: 98%;
+      box-sizing: border-box;
+      .edType( heading-L );
+      line-height: 15vh;
+      text-decoration: none;
+      color: @darkPurple3;
+      border-left: 1.5rem solid transparent;
+      ed-icon {
+        float: left;
+        margin: 0 5%;
+        width: 9vw;
+        height: 100%;
+        fill: @lightGrey1;
+      }
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      // no :hover for now, it causes weirdness in iOS
+      &.active, &:focus, &:active {
+        border-left-color: @originalPurple;
+      }
+    }
+  }
+  .profile-bar {
+    white-space: nowrap;
+    display: block;
+    width: 90%;
+    height: 10vh;
+    line-height: 10vh;
+    border-left: 1.5rem solid transparent;
+    .img-container {
+      display: inline-block;
+      vertical-align: middle;
+      width: 14%;
+      margin-left: 5%;
+    }
+    p {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 75%;
+      padding-left: 5%;
+      .edType( heading-S );
+      color: @darkPurple3;
+      vertical-align: middle;
+      margin: 0;
+    }
+    // no :hover for now, it causes weirdness in iOS
+    &.active, &:focus, &:active {
+      border-left-color: @originalPurple;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<polymer-element name="select-box" attributes="size required">
+  <template>
+    <link rel="stylesheet" href="./select-box.css">
+    <form>
+      <div class="select">
+        <input id="is-focus" type="radio" name="item" />
+        <label for="is-focus"><span class="label"></span></label>
+        <ul class="options">
+          <template repeat="{{opt in _options}}">
+            <li>
+              <input type="radio" name="item" value="{{opt.value}}" id="{{opt.value}}" />
+              <label for="{{opt.value}}" data-title="{{opt.label}}">{{opt.label}}</label>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </form>
+  </template>
+  <script src="./select-box.js"></script>
+</polymer-element>

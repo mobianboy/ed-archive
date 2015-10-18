@@ -1,0 +1,32 @@
+
+@import "ed/colors.vars.less";
+@import "mixins/prefixes/animations.less";
+
+.keyframes("my-fade-animation", {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  to{
+    opacity: 1;
+  }
+});
+
+.keyframes("my-other-animation", {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+});
+
+h2{
+//  color: orange;
+  background-color: black;
+  color: darken( @originalTeal, 20% );
+  .animation( ~"my-fade-animation 3s 1s" );
+  .animation( ~"my-other-animation 2.5s" );
+}

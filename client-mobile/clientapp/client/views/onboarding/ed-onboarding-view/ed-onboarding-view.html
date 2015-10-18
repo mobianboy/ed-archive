@@ -1,0 +1,10 @@
+<polymer-element name="ed-onboarding-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="./ed-onboarding-view.css">
+    <app-router>
+      <app-route path="/onboarding/like" element="ed-liked-view" bindRouter></app-route>
+      <app-route path="/onboarding/dislike" element="ed-disliked-view" bindRouter></app-route>
+    </app-router>
+  </template>
+  <script src="ed-onboarding-view.js"></script>
+</polymer-element>

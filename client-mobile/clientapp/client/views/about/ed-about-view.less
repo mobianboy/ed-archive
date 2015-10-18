@@ -1,0 +1,41 @@
+@import "../../styles/ed/colors.vars.less";
+@import "../../styles/ed/title-bar.mixin.less";
+
+* {
+  font-family: "Ubuntu";
+}
+.about-wrapper {
+  width: 100%;
+  background-color: @darkPurple3;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 59.6rem;
+  position: relative;
+  .about-title-bar {
+    .edTitleBar();
+  }
+  .about-section {
+    background: @originalWhite;
+    padding: 2rem;
+    .edContentStyle();
+    .version-text {
+      .edType( paragraph-L );
+      span {
+        float: right;
+      }
+    }
+    .about-header {
+      padding: 1.3rem 0;
+      text-transform: uppercase;
+      .edType( heading-XS );
+      font-weight: 500;
+    }
+    .about-body {
+      word-wrap: break-word;
+      .edType( paragraph-L );
+      font-weight: 400;
+    }
+  }
+}
+
+

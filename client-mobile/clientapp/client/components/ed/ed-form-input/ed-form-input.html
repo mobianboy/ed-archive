@@ -1,0 +1,22 @@
+<link rel="import" href="../ed-icon/ed-icon.html"/>
+
+<polymer-element name="ed-form-input" attributes="icon type placeholder min max pattern required disabled">
+  <template>
+    <link rel="stylesheet" href="./ed-form-input.css">
+    <div class="form-input-container">
+      <label for="input">
+        <ed-icon name="{{icon}}"></ed-icon>
+      </label>
+      <input id="input"
+             type="{{type}}"
+             min="{{min}}"
+             max="{{max}}"
+             pattern="{{pattern}}"
+             placeholder="{{placeholder}}"
+             required?="{{required}}"
+             disabled?="{{disabled}}"
+      />
+    </div>
+  </template>
+  <script src="ed-form-input.js"></script>
+</polymer-element>

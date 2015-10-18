@@ -1,0 +1,28 @@
+.inner-box {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 400px;
+  white-space: nowrap;
+}
+
+.outer-box {
+  height: 300px;
+  width: 300px;
+  background-color: lightgrey;
+  padding: 5px;
+  overflow: hidden;
+}
+
+:host([disabled]){
+  .inner-box {
+    overflow: hidden;
+    opacity: .5;
+    pointer-events: none;
+  }
+}
+
+:host([show-arrows]){
+  .inner-box {
+    padding-bottom: 10px;
+  }
+}
