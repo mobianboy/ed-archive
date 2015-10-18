@@ -1,0 +1,54 @@
+@import "./edFont.less";
+
+
+.edType( @textSize ) {
+  .edFont();
+  font-style: normal;
+  font-weight: 500;
+}
+
+.edType( @textSize ) when (  @textSize = heading-XXXL ) {
+  font-weight: 700;
+  font-size: 4.8rem;
+}
+
+.edType( @textSize ) when (  @textSize = heading-XXL ) {
+  font-weight: 700;
+  font-size: 3.9rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-XL ) {
+  font-size: 3.3rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-L ) {
+  font-weight: 400;
+  font-size: 3.0rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-M ) {
+  font-weight: 300;
+  font-size: 2.5rem
+}
+
+.edType( @textSize ) when ( @textSize = heading-S ) {
+  font-weight: 400;
+  font-size: 2.2rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-XS ) {
+  font-size: 1.9rem;
+}
+
+.edType( @textSize ) when ( @textSize = heading-XXS ) {
+  font-size: 1.5rem;
+}
+
+.edType( @textSize ) when ( @textSize = paragraph-L ) {
+  font-size: 1.9rem;
+}
+
+.edType( @textSize ) when ( @textSize = paragraph-M ) {
+  font-weight: 400;
+  font-size: 1.5rem;
+}

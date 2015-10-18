@@ -1,0 +1,50 @@
+@import "./queries.less";
+@import "./variables.less";
+
+/**
+ *
+ * Breakpoints
+ *
+ *  -- Phone
+ *
+ *  -- Portrait
+ *
+ *  -- Landscape
+ *
+ *  -- Desktop
+ *
+ **/
+
+// TODO DPI Check, move down a bp on high dpi devices
+
+.phone( @rules ) {
+  .screenOnly();
+  .and( @screenOnly );
+  .maxQueryWidth( @phoneMaxWidth; @and );
+  .create( @maxQueryWidth; @rules );
+}
+
+.portrait( @rules ) {
+  .screenOnly();
+  .and( @screenOnly );
+  .minQueryWidth( @phoneMaxWidth; @and );
+  .and2( @minQueryWidth );
+  .maxQueryWidth( @portraitMaxWidth; @and2 );
+  .create( @maxQueryWidth; @rules );
+}
+
+.landscape( @rules ) {
+  .screenOnly();
+  .and( @screenOnly );
+  .minQueryWidth( @portraitMaxWidth; @and );
+  .and2( @minQueryWidth );
+  .maxQueryWidth( @desktopMinWidth; @and2 );
+  .create( @maxQueryWidth; @rules );
+}
+
+.desktop( @rules ) {
+  .screenOnly();
+  .and( @screenOnly );
+  .minQueryWidth( @desktopMinWidth; @and );
+  .create( @minQueryWidth; @rules );
+}

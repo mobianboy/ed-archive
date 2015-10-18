@@ -1,0 +1,129 @@
+{
+  "service": "",
+  "request": "",
+  "priority": "",
+  "operation": "",
+  "limit": "",
+  "orderBy": "",
+  "currentUser": "",
+  "data": {
+    "album": {
+      "album_id": "",
+      "group_id": "",
+      "release_date": "",
+      "name": "",
+      "various_artist": "",
+      "album_art": "",
+      "record_label": ""
+    },
+    "album_track": {
+      "track_id": "",
+      "album_id": "",
+      "album_track_id": "",
+      "track_num": ""
+    },
+    "friend": {
+      "friend_id": "",
+      "first_name": "",
+      "last_name": "",
+      "user_id": "",
+      "friend_user_id": ""
+    },
+    "group": {
+      "group_id": "",
+      "default_profile_id": "",
+      "type": ""
+    },
+    "group_profile": {
+      "group_id": "",
+      "group_profile_id": "",
+      "name": "",
+      "location": "",
+      "genre": "",
+      "year_founded": "",
+      "bio": "",
+      "website": ""
+    },
+    "media": {
+      "media_id": "",
+      "track_id": "",
+      "quality": "",
+      "location": ""
+    },
+    "playlist": {
+      "playlist_id": "",
+      "user_id": "",
+      "name": "",
+      "created_at": ""
+    },
+    "playlist_follower": {
+      "playlist_follower_id": "",
+      "playlist_id": "",
+      "follower_id": "",
+      "acting_as_id": ""
+    },
+    "playlist_track": {
+      "playlist_track_id": "",
+      "playlist_id": "",
+      "track_id": "",
+      "track_position": "",
+      "added_at": ""
+    },
+    "related_group": {
+      "related_group_id": "",
+      "group1_id": "",
+      "group2_id": ""
+    },
+    "track": {
+      "track_id": "",
+      "group_id": "",
+      "name": "",
+      "length": "",
+      "play_count": "",
+      "waveform_image_loc": ""
+    },
+    "track_play": {
+      "track_play_id": "",
+      "user_id": "",
+      "track_id": "",
+      "posted_at": ""
+    },
+    "user": {
+      "user_id": "",
+      "default_profile_id": "",
+      "username": "",
+      "email": "",
+      "password": "",
+      "password_confirmation": ""
+    },
+    "user_album": {
+      "user.album_id": "",
+      "user_id": "",
+      "album_id": "",
+      "acting_as_id": ""
+    },
+    "user_group": {
+      "user_group_id": "",
+      "group_id": "",
+      "user_id": "",
+      "acting_as_id": "",
+      "admin": "",
+      "band_member": "",
+      "role": ""
+    },
+    "user_profile": {
+      "user_profile_id": "",
+      "user_id": "",
+      "first_name": "",
+      "last_name": "",
+      "location": "",
+      "bio": ""
+    },
+    "user_track": {
+      "user_track_id": "",
+      "user_id": "",
+      "track_id": "",
+      "acting_as_id": ""
+    }
+  }
+}

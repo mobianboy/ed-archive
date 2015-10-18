@@ -1,0 +1,18 @@
+{
+  "name": "eardish/conductor-dataobjects",
+  "description": "Eardish DataObjects",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "dev"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Eardish\\": "lib/Eardish"
+    }
+  },
+  "require-dev": {
+    "aws/aws-sdk-php": "2.7.*@dev",
+    "react/react": "0.5.*@dev"
+  }
+}

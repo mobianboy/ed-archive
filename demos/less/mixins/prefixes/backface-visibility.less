@@ -1,0 +1,19 @@
+/***
+ * Backface-visibility property mixin
+ * .backfaceVisibility();
+ *
+ * Example:
+ * .backfaceVisibility( hidden );
+ *
+ * Description:
+ * The backfaceVisibility property defines whether or not an element should be visible when not facing the screen.
+ * Currently this mixin only has no support for Opera Mini
+ *
+ * This mixin will take in the following parameters with its respective values
+ * @visibility: visible | hidden
+***/
+.backfaceVisibility( @visibility ) {
+  -webkit-backface-visibility: @visibility;
+  backface-visibility: @visibility;
+}
+

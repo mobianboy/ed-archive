@@ -1,0 +1,440 @@
+@charset "UTF-8";
+/* font abstraction, in order to change font-family/font-face change the root-url folder structure and make sure the new font files are saved in that folder and file names are all lowercase, double check to make sure the new font contains all the font variations (italic, bold-italic, etc.) */
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-regular.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-italic.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-bold.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-bold-italic.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-bold-italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-light.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-light-italic.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-light-italic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-medium.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: url('assets/fonts/Ubuntu/ubuntu-medium-italic.woff') format('woff'), url('assets/fonts/Ubuntu/ubuntu-medium-italic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+/**
+* String Interpolation
+**/
+/**
+* And / Or
+**/
+/**
+ * Base media types
+ *  all, print, screen, speech
+ **/
+/***
+  Media Features
+
+@media (color) { ... }
+@media (min-color: 4) { ... }
+  has min/max
+  value: the number of bits per color component of the device
+
+@media (color-index) { ... }
+@media (min-color-index: 256) { ... }
+  has min/max
+  value: number of entries in the color look-up table
+*/
+/*
+@media (min-aspect-ratio: 1/1) { ... }
+  has min/max
+  value: The aspect ratio fo the target display area, horizontal px / vertical px
+*/
+/*
+@media (device-aspect-ratio: 16/9) { ... }
+  has min/max
+  value: Aspect ratio of the device, horizontal/vertical
+*/
+/*
+@media (max-device-height: 799px) { ... }
+  has min/max
+  value: height of the output device, (screen size, not just rendering area)
+*/
+/*
+@media (max-device-width: 799px) { ... }
+  has min/max
+  value: width of the output device, (screen size, not just rendering area)
+*/
+/*
+// No real support yet
+@media handheld and (grid) and (max-width: 15em) { ... }
+(grid)
+  1 if output device is a grid or bitmap device
+  0 otherwise
+  "em" -- 1em is one cell of the grid horizontally and vertically
+*/
+/*
+@media (height: 10px) { ... }
+  has min/max
+  height of the device's rendering surface
+*/
+/*
+@media (min-width: 500px) and (max-width: 800px) { ... }
+  has min/max
+  value: the width of the rendering surface
+*/
+/*
+@media (monochrome) { ... }
+  has min/max
+  value: number of bits per pixel, 0 if not monochrome device
+*/
+/*
+@media (orientation: portrait) { ... }
+  value: landscape | portrait
+  landscape: the display is wider than it is tall
+  portrait: the display is taller than it is wide
+*/
+/*
+@media (resolution) { ... }
+  has min/max
+  value: resolution in dpi or dpcm
+  indicates the pixel density of the device
+*/
+/*
+// No real support yet, since TV is not supported
+@media (scan: progressive | interlace) // tv only
+  scanning process of TV outputs
+*/
+/**
+ * Created by Ryan Bogle on 11/10/14.
+ */
+/**
+ *
+ * Breakpoints
+ *
+ *  -- Phone
+ *
+ *  -- Portrait
+ *
+ *  -- Landscape
+ *
+ *  -- Desktop
+ *
+ **/
+/**
+ * Created by Ryan Bogle on 11/10/14.
+ */
+/* Eardish color variables */
+html {
+  font-size: 62.5%;
+  font-family: Ubuntu;
+  background-color: #20142c;
+  height: 100%;
+  width: 100%;
+}
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+body[unresolved] {
+  display: block;
+  opacity: 1;
+}
+body > .left {
+  float: left;
+  clear: both;
+  width: 100%;
+  margin: 20px 0 0;
+}
+#splash-screen {
+  position: absolute;
+  background-color: #5d0c7b;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  opacity: 0;
+  transition: opacity ease-in 0.2s;
+}
+#splash-screen svg {
+  width: 95%;
+  margin: 25% auto 0;
+  fill: white;
+  opacity: 0;
+  transition: inherit;
+}
+body[unresolved] #splash-screen {
+  display: block;
+  opacity: 1;
+}
+body[unresolved] #splash-screen svg {
+  opacity: 1;
+}
+.hidden,
+.hide,
+[hidden] {
+  display: none;
+  visibility: hidden;
+}
+/***
+ * Transform property mixin
+ * .transform();
+ *
+ * Description:
+ * This mixin is shorthand for transform, -webkit-transform, and -ms-transform.
+ * .transform should be used like a native css transform property
+ *
+ * Example:
+ * .transform( skewX(25deg) rotate(25deg) translateX(17px) );
+ *
+ * This mixin will take in the following parameters with its respective values
+ * Only one of these may be used at a time
+ * <none>
+ * matrix(n,n,n,n,n,n): <number> (6 values)
+ * matrix3d(n,n,n,n, ...): <number> (16 values)
+ * translate( x, y): one or two <translation-value> values
+ * translate3d(x,y,z): three <translation-value> values
+ * translateX(x): <translation-value>
+ * translateY(y): <translation-value>
+ * translateZ(z): <translation-value>
+ * scale(x,y): one or two unitless <number>s, e.g., scale(2.1,4)
+ * scale3d(x,y,z): three unitless <number>s
+ * scaleX(x): a unitless <number>, e.g., scaleX(2.7)
+ * scaleY(y): a unitless <number>, e.g., scaleY(0.3)
+ * scaleZ(z):  a unitless <number>, e.g., scaleZ(0.3)
+ * rotate(angle):  <angle>, e.g., rotate(30deg)
+ * rotate3d(x,y,z,angle): three <number>s and an <angle>
+ * rotateX(angle): <angle>, e.g., rotate(30deg)
+ * rotateY(angle): <angle>, e.g., rotate(30deg)
+ * rotateZ(angle): <angle>, e.g., rotate(30deg)
+ * skew(x-angle,y-angle): one or two <angle>s, e.g., skew(30deg,-10deg)
+ * skewX(angle): an <angle>, e.g., skewX(-30deg)
+ * skewY(angle): an <angle>, e.g., skewY(4deg)
+ * perspective(n): <length>
+***/
+/***
+ * TransformStyle property mixin
+ * .transformStyle();
+ *
+ * Description:
+ * The transformStyle property specifies how nested elements are rendered in 3D space.
+ * To be used with transform
+ *
+ * Example:
+ * .transformStyle( preserve-3d );
+ *
+ * This mixin will take in the following parameters
+ * @perspective: flat | preserve-3d
+ ***/
+/***
+ * Perspective property mixin
+ * .perspective();
+ *
+ * Description:
+ * The perspective property defines how many pixels a 3D element is placed from the view. This property allows you to change the perspective on how 3D elements are viewed.
+ *
+ * Example:
+ * .perspective( 200px );
+ *
+ * This mixin will take in the following parameters
+ * @perspective: <length> | none
+ ***/
+/***
+ * Transform-origin property mixin
+ * .transformOrigin();
+ *
+ * Description:
+ * The transform-origin property allows you to change the position on transformed elements.
+ *
+ * Example:
+ * .transformOrigin( center bottom );
+ *
+ * This mixin will take in the following parameters
+ * @origin: x-axis y-axis z-axis
+   x-axis: left | center | right | <length> | <percent>
+   y-axis: top | center | bottom | <length> | <percent>
+   z-axis: <length>
+ ***/
+.aspect-ratio {
+  width: 100%;
+  padding-bottom: 177%;
+}
+[hidden] {
+  display: none;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.bold {
+  font-weight: 400;
+}
+.logo,
+.art {
+  float: left;
+  clear: both;
+  width: 22%;
+  max-width: 132px;
+  height: auto;
+  margin: 1.5rem !important;
+}
+:host {
+  background-color: #150d1c;
+}
+.screen-image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  right: 0;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  border: 0;
+  background-color: inherit;
+}
+.screen-image[hidden] {
+  display: none;
+}
+.screen-image img {
+  margin: 0 auto;
+  object-fit: contain;
+  max-height: 100vh;
+  width: 100%;
+  background: #000000;
+}
+.screen-image #notifications {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: 640px;
+  max-height: 25%;
+  overflow: auto;
+  margin: 0 auto;
+  color: white;
+  background-color: #150d1c;
+  -webkit-transform: translateY(-200%);
+  -ms-transform: translateY(-200%);
+  transform: translateY(-200%);
+  transition: transform 0.5s ease-in;
+  z-index: 500;
+  font-family: Ubuntu;
+  line-height: 128%;
+  font-style: normal;
+  font-weight: 500;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 160%;
+  font-weight: 300;
+}
+.screen-image #notifications p {
+  display: none;
+  padding: 0;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}
+.screen-image #notifications p span.bold {
+  font-weight: 500;
+}
+.screen-image #notifications button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #FFFFFF;
+  background-color: #30273a;
+  position: absolute;
+  right: 0;
+  width: 7%;
+  height: 3.5rem;
+  font-size: 2.25rem;
+  font-family: Ubuntu;
+  font-weight: 800;
+}
+.screen-image #notifications.pick-song {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+.screen-image #notifications.pick-song #pick-song {
+  display: block;
+  float: left;
+  width: 55%;
+}
+.screen-image #notifications.got-song {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+.screen-image #notifications.got-song #got-song {
+  display: block;
+  float: left;
+  width: 55%;
+}
+.screen-image #notifications.thankyou {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+.screen-image #notifications.thankyou #thankyou {
+  display: block;
+  float: left;
+  width: 55%;
+}
+#cpe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 640px;
+  max-width: 100%;
+  max-height: 1135px;
+  background-color: #150d1c;
+  margin: 10% auto;
+}
+#cpe video {
+  display: block;
+  width: 100%;
+  background-color: inherit;
+  padding: 10% 0;
+}
+#cpe img {
+  padding: 8% 0;
+  display: block;
+  max-width: 75%;
+  max-height: 50%;
+  margin: 0 auto;
+  background-color: inherit;
+}
