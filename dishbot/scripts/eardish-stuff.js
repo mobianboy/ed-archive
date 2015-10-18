@@ -16,7 +16,6 @@
 //    This is just the beginning
 //
 //  Author
-//    ashwell <ryan@eardish.com>
 //
 
 module.exports = function( robot ) {
